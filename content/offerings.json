@@ -1,21 +1,6 @@
 {
   "offerings": [
     {
-      "unit": "1",
-      "summary": "blah blah",
-      "durationMinutes": 60,
-      "name": "Concious Dance",
-      "slug": "Concious Dance",
-      "needsPrice": true,
-      "maxQuantity": 8,
-      "kind": "session",
-      "image": "/images/uploads/tree-goddess-logo-clean.png",
-      "description": [
-        "blahbblah\n"
-      ],
-      "priceInCents": 25000
-    },
-    {
       "unit": "per class",
       "summary": "A slow, breath-led practice that works with the flow of prana through the body.",
       "durationMinutes": 75,

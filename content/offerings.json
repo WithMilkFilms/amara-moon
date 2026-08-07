@@ -1,83 +1,85 @@
-[
-  {
-    "slug": "oasis-studio-hire",
-    "name": "Oasis Studio Hire",
-    "kind": "studio_hire",
-    "unit": "per hour",
-    "priceInCents": 45000,
-    "needsPrice": true,
-    "durationMinutes": 60,
-    "maxQuantity": 8,
-    "summary": "The Oasis Studio, a timber space among the trees, available to teachers, practitioners and facilitators.",
-    "description": [
-      "A quiet, light-filled space for your own classes, workshops, retreats and gatherings. Warm timber floors and walls, with glass doors that open onto the garden and forest.",
-      "The Oasis Studio comfortably holds a small group. Mats, bolsters and blocks are available, and there is parking on site and a kitchenette for tea.",
-      "Tell us what you are planning and we will find the hours that work."
-    ],
-    "image": "/images/studio-interior-wide.jpg"
-  },
-  {
-    "slug": "pranic-balancing-yoga",
-    "name": "Pranic Balancing Yoga",
-    "kind": "session",
-    "unit": "per class",
-    "priceInCents": 18000,
-    "needsPrice": true,
-    "durationMinutes": 75,
-    "maxQuantity": 6,
-    "summary": "A slow, breath-led practice that works with the flow of prana through the body.",
-    "description": [
-      "Pranic Balancing Yoga moves at the pace of the breath. Postures are held long enough to be felt, with attention on where energy gathers and where it is stuck.",
-      "Suitable for all levels, including complete beginners. Come as you are."
-    ],
-    "image": "/images/yoga.png"
-  },
-  {
-    "slug": "breathwork",
-    "name": "Breathwork",
-    "kind": "session",
-    "unit": "per session",
-    "priceInCents": 25000,
-    "needsPrice": true,
-    "durationMinutes": 90,
-    "maxQuantity": 6,
-    "summary": "Guided conscious breathing to release what the body has been holding.",
-    "description": [
-      "A guided session using conscious connected breathing. The breath is the whole technique — no experience is needed, only willingness.",
-      "Held in the Oasis Studio with the doors open to the valley. Bring water and wear something warm for the rest at the end."
-    ],
-    "image": "/images/breathwork.png"
-  },
-  {
-    "slug": "sauna-40",
-    "name": "Sauna — 40 min (Infrared)",
-    "kind": "session",
-    "unit": "per session",
-    "priceInCents": 25000,
-    "needsPrice": false,
-    "durationMinutes": 40,
-    "maxQuantity": 4,
-    "summary": "A full forty minutes in the infrared sauna, looking into the trees.",
-    "description": [
-      "Infrared heat works at a lower air temperature than a traditional sauna, so you can stay in longer and go deeper. Forty minutes is enough to properly unwind.",
-      "Towels provided. Arrive a few minutes early to settle."
-    ],
-    "image": "/images/gallery/sauna-interior.jpg"
-  },
-  {
-    "slug": "sauna-20",
-    "name": "Sauna — 20 min (Infrared)",
-    "kind": "session",
-    "unit": "per session",
-    "priceInCents": 19000,
-    "needsPrice": false,
-    "durationMinutes": 20,
-    "maxQuantity": 4,
-    "summary": "A shorter infrared session — ideal after a trail run or a class.",
-    "description": [
-      "Twenty minutes of infrared heat, perfect on its own or straight after a walk on the mountain.",
-      "Towels provided."
-    ],
-    "image": "/images/gallery/sauna-door-open.jpg"
-  }
-]
+{
+  "offerings": [
+    {
+      "slug": "oasis-studio-hire",
+      "name": "Oasis Studio Hire",
+      "kind": "studio_hire",
+      "unit": "per hour",
+      "priceInCents": 45000,
+      "needsPrice": true,
+      "durationMinutes": 60,
+      "maxQuantity": 8,
+      "summary": "The Oasis Studio, a timber space among the trees, available to teachers, practitioners and facilitators.",
+      "description": [
+        "A quiet, light-filled space for your own classes, workshops, retreats and gatherings. Warm timber floors and walls, with glass doors that open onto the garden and forest.",
+        "The Oasis Studio comfortably holds a small group. Mats, bolsters and blocks are available, and there is parking on site and a kitchenette for tea.",
+        "Tell us what you are planning and we will find the hours that work."
+      ],
+      "image": "/images/studio-interior-wide.jpg"
+    },
+    {
+      "slug": "pranic-balancing-yoga",
+      "name": "Pranic Balancing Yoga",
+      "kind": "session",
+      "unit": "per class",
+      "priceInCents": 18000,
+      "needsPrice": true,
+      "durationMinutes": 75,
+      "maxQuantity": 6,
+      "summary": "A slow, breath-led practice that works with the flow of prana through the body.",
+      "description": [
+        "Pranic Balancing Yoga moves at the pace of the breath. Postures are held long enough to be felt, with attention on where energy gathers and where it is stuck.",
+        "Suitable for all levels, including complete beginners. Come as you are."
+      ],
+      "image": "/images/yoga.png"
+    },
+    {
+      "slug": "breathwork",
+      "name": "Breathwork",
+      "kind": "session",
+      "unit": "per session",
+      "priceInCents": 25000,
+      "needsPrice": true,
+      "durationMinutes": 90,
+      "maxQuantity": 6,
+      "summary": "Guided conscious breathing to release what the body has been holding.",
+      "description": [
+        "A guided session using conscious connected breathing. The breath is the whole technique — no experience is needed, only willingness.",
+        "Held in the Oasis Studio with the doors open to the valley. Bring water and wear something warm for the rest at the end."
+      ],
+      "image": "/images/breathwork.png"
+    },
+    {
+      "slug": "sauna-40",
+      "name": "Sauna — 40 min (Infrared)",
+      "kind": "session",
+      "unit": "per session",
+      "priceInCents": 25000,
+      "needsPrice": false,
+      "durationMinutes": 40,
+      "maxQuantity": 4,
+      "summary": "A full forty minutes in the infrared sauna, looking into the trees.",
+      "description": [
+        "Infrared heat works at a lower air temperature than a traditional sauna, so you can stay in longer and go deeper. Forty minutes is enough to properly unwind.",
+        "Towels provided. Arrive a few minutes early to settle."
+      ],
+      "image": "/images/gallery/sauna-interior.jpg"
+    },
+    {
+      "slug": "sauna-20",
+      "name": "Sauna — 20 min (Infrared)",
+      "kind": "session",
+      "unit": "per session",
+      "priceInCents": 19000,
+      "needsPrice": false,
+      "durationMinutes": 20,
+      "maxQuantity": 4,
+      "summary": "A shorter infrared session — ideal after a trail run or a class.",
+      "description": [
+        "Twenty minutes of infrared heat, perfect on its own or straight after a walk on the mountain.",
+        "Towels provided."
+      ],
+      "image": "/images/gallery/sauna-door-open.jpg"
+    }
+  ]
+}

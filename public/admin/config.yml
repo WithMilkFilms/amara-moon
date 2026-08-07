@@ -1,0 +1,106 @@
+backend:
+  name: github
+  repo: WithMilkFilms/amara-moon
+  branch: main
+  base_url: https://amara-moon.vercel.app
+  auth_endpoint: api/auth
+
+media_folder: "public/images/uploads"
+public_folder: "/images/uploads"
+
+collections:
+  - name: "offerings"
+    label: "Offerings"
+    files:
+      - name: "offerings"
+        label: "Offerings List"
+        file: "content/offerings.json"
+        fields:
+          - name: "offerings"
+            label: "Offerings"
+            widget: "list"
+            fields:
+              - {label: "Slug", name: "slug", widget: "string", hint: "Must match the URL, don't change unless you mean to break links"}
+              - {label: "Name", name: "name", widget: "string"}
+              - {label: "Kind", name: "kind", widget: "select", options: ["session", "studio_hire"]}
+              - {label: "Unit", name: "unit", widget: "string", hint: "e.g. 'per session', 'per hour'"}
+              - {label: "Price (ZAR cents)", name: "priceInCents", widget: "number", hint: "R250.00 = 25000"}
+              - {label: "Needs Price (shows Enquire instead of Pay)", name: "needsPrice", widget: "boolean"}
+              - {label: "Duration (minutes)", name: "durationMinutes", widget: "number"}
+              - {label: "Max Quantity", name: "maxQuantity", widget: "number"}
+              - {label: "Summary", name: "summary", widget: "text"}
+              - name: "description"
+                label: "Description"
+                widget: "list"
+                field: {label: "Paragraph", name: "paragraph", widget: "text"}
+              - {label: "Image", name: "image", widget: "image", choose_url: false}
+
+  - name: "cabin"
+    label: "Pine Forest Cabin"
+    files:
+      - name: "cabin"
+        label: "Cabin"
+        file: "content/cabin.json"
+        fields:
+          - {label: "Name", name: "name", widget: "string"}
+          - {label: "Max Guests", name: "maxGuests", widget: "number"}
+          - {label: "Price per Night (ZAR cents)", name: "pricePerNightInCents", widget: "number"}
+          - {label: "Needs Price (placeholder)", name: "needsPrice", widget: "boolean"}
+          - {label: "Min Nights", name: "minNights", widget: "number"}
+          - {label: "Max Nights", name: "maxNights", widget: "number"}
+          - {label: "Summary", name: "summary", widget: "text"}
+          - name: "description"
+            label: "Description"
+            widget: "list"
+            field: {label: "Paragraph", name: "paragraph", widget: "text"}
+          - name: "amenities"
+            label: "Amenities"
+            widget: "list"
+            field: {label: "Amenity", name: "amenity", widget: "string"}
+          - {label: "Image", name: "image", widget: "image", choose_url: false}
+          - name: "photos"
+            label: "Photo Gallery"
+            widget: "list"
+            fields:
+              - {label: "Photo", name: "src", widget: "image", choose_url: false}
+              - {label: "Alt Text", name: "alt", widget: "string"}
+
+  - name: "site"
+    label: "Site & Contact"
+    files:
+      - name: "site"
+        label: "Contact Details"
+        file: "content/site.json"
+        fields:
+          - {label: "Business Name", name: "name", widget: "string"}
+          - {label: "Tagline", name: "tagline", widget: "string"}
+          - {label: "Location", name: "location", widget: "string"}
+          - name: "address"
+            label: "Address"
+            widget: "object"
+            fields:
+              - {label: "Line 1", name: "line1", widget: "string"}
+              - {label: "Line 2", name: "line2", widget: "string"}
+              - {label: "City", name: "city", widget: "string"}
+              - {label: "Country", name: "country", widget: "string"}
+          - name: "geo"
+            label: "Map Coordinates"
+            widget: "object"
+            fields:
+              - {label: "Latitude", name: "latitude", widget: "number", value_type: "float"}
+              - {label: "Longitude", name: "longitude", widget: "number", value_type: "float"}
+          - {label: "Phone", name: "phone", widget: "string", hint: "Include country code, e.g. +27 71 686 97 32"}
+          - {label: "Email", name: "email", widget: "string"}
+          - name: "socials"
+            label: "Social Media"
+            widget: "object"
+            fields:
+              - {label: "Instagram Handle", name: "instagramHandle", widget: "string"}
+              - {label: "Instagram URL", name: "instagram", widget: "string"}
+              - {label: "Facebook URL", name: "facebook", widget: "string"}
+          - name: "proximity"
+            label: "Proximity Lines"
+            widget: "object"
+            fields:
+              - {label: "Beach", name: "beach", widget: "string"}
+              - {label: "Trails", name: "trails", widget: "string"}

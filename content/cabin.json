@@ -1,27 +1,4 @@
 {
-  "slug": "pine-forest-cabin",
-  "name": "Pine Forest Cabin",
-  "maxGuests": 2,
-  "pricePerNightInCents": 145000,
-  "needsPrice": true,
-  "minNights": 1,
-  "maxNights": 14,
-  "summary": "A self-contained cabin for two, tucked into the pines with its own entrance.",
-  "description": [
-    "The Pine Forest Cabin sleeps two. A double bed, a small kitchenette, a private bathroom and a door that opens straight onto the garden.",
-    "Guests have use of the pool and the deck, and there is private access to the mountain trails.",
-    "Breakfast is not included, but there is everything you need to make your own."
-  ],
-  "amenities": [
-    "Sleeps 2 guests",
-    "Private entrance & bathroom",
-    "Kitchenette",
-    "Access to pool & deck",
-    "Private access to mountain trails",
-    "Free parking on site",
-    "Fast wifi"
-  ],
-  "image": "/images/pine-forest-cabin-bedroom.jpg",
   "photos": [
     {
       "src": "/images/pine-forest-cabin-exterior.jpg",
@@ -35,5 +12,28 @@
       "src": "/images/pine-forest-cabin-bedroom.jpg",
       "alt": "The loft bedroom under the A-frame gable, bed made up beside a seating nook looking into the trees"
     }
-  ]
+  ],
+  "pricePerNightInCents": 285000,
+  "summary": "A self-contained cabin for two, tucked into the pines with its own entrance.",
+  "name": "Pine Forest Cabin",
+  "slug": "pine-forest-cabin",
+  "needsPrice": true,
+  "minNights": 1,
+  "amenities": [
+    "Sleeps 2 guests",
+    "Private entrance & bathroom",
+    "Kitchenette",
+    "Access to pool & deck",
+    "Private access to mountain trails",
+    "Free parking on site",
+    "Fast wifi"
+  ],
+  "image": "/images/pine-forest-cabin-bedroom.jpg",
+  "description": [
+    "The Pine Forest Cabin sleeps two. A double bed, a small kitchenette, a private bathroom and a door that opens straight onto the garden.",
+    "Guests have use of the pool and the deck, and there is private access to the mountain trails.",
+    "Breakfast is not included, but there is everything you need to make your own."
+  ],
+  "maxGuests": 2,
+  "maxNights": 14
 }

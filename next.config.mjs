@@ -25,7 +25,7 @@ if (isStaticExport && !process.env.NEXT_PUBLIC_APP_ORIGIN) {
  */
 const pageExtensions = isStaticExport
   ? ['static.tsx', 'tsx', 'ts']
-  : ['app.tsx', 'tsx', 'ts']
+  : ['app.tsx', 'app.ts', 'tsx', 'ts']
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {

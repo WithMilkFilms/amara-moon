@@ -1,0 +1,36 @@
+{
+  "schedule": [],
+  "programme": [
+    {
+      "title": "Pranic Balancing Yoga",
+      "blurb": "A slow, breath-led practice. All levels, including complete beginners.",
+      "offeringSlug": "pranic-balancing-yoga"
+    },
+    {
+      "title": "Breathwork",
+      "blurb": "Guided conscious connected breathing. No experience needed.",
+      "offeringSlug": "breathwork"
+    },
+    {
+      "title": "Movement & Dynamic Meditation",
+      "blurb": "Freer, more expressive movement practices that end in stillness."
+    },
+    {
+      "title": "Beach Yoga",
+      "blurb": "Practice on the sand at Hout Bay beach, a few minutes down the valley."
+    },
+    {
+      "title": "Trail Hikes",
+      "blurb": "Guided walks from the gate into Orangekloof and up towards the ravine."
+    },
+    {
+      "title": "Infrared Sauna",
+      "blurb": "Twenty or forty minutes in the sauna, looking into the trees. Bookable online.",
+      "offeringSlug": "sauna-40"
+    },
+    {
+      "title": "Therapies & Bodywork",
+      "blurb": "Treatments with visiting practitioners, by arrangement."
+    }
+  ]
+}

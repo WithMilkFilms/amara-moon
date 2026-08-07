@@ -1,18 +1,16 @@
+import scheduleData from '@/content/schedule.json'
+
 /*
  * ─────────────────────────────────────────────────────────────────────────────
- * WEEKLY TIMETABLE — AWAITING REAL TIMES
- * ─────────────────────────────────────────────────────────────────────────────
- * SCHEDULE is deliberately EMPTY. It previously held an invented starting
- * timetable, and unconfirmed days and times are worse than none: people plan
- * journeys around them, and `openingHoursSpecification` in lib/seo.ts feeds them
+ * WEEKLY TIMETABLE & PROGRAMME — data lives in content/schedule.json, editable
+ * through the CMS at /admin. SCHEDULE stays empty until real class times are
+ * confirmed; unconfirmed days and times are worse than none, since people plan
+ * journeys around them and `openingHoursSpecification` in lib/seo.ts feeds them
  * straight to Google as opening hours.
  *
- * Everything that reads this array already handles the empty case by showing a
- * "times to be announced" placeholder, so the site can ship without dates.
- *
- * To publish the real timetable, add entries below — nothing else needs to
- * change, the /schedule page and homepage teaser pick them up automatically.
- * `offeringSlug` must match a slug in lib/offerings.ts so the row can link
+ * Everything that reads SCHEDULE already handles the empty case by showing a
+ * "times to be announced" placeholder, so the site ships fine without dates.
+ * `offeringSlug` must match a slug in lib/offerings.ts so a row can link
  * through to booking.
  * ─────────────────────────────────────────────────────────────────────────────
  */
@@ -41,8 +39,21 @@ export interface ClassSlot {
   note?: string
 }
 
-/** No published times yet. See the note at the top of this file. */
-export const SCHEDULE: ClassSlot[] = []
+export interface ProgrammeItem {
+  title: string
+  blurb: string
+  offeringSlug?: string
+}
+
+interface ScheduleFile {
+  schedule: ClassSlot[]
+  programme: ProgrammeItem[]
+}
+
+const data = scheduleData as ScheduleFile
+
+/** No published times yet unless the CMS file has entries. */
+export const SCHEDULE: ClassSlot[] = data.schedule
 
 /** True while the timetable has no confirmed times, so views can say so. */
 export const SCHEDULE_IS_PUBLISHED = SCHEDULE.length > 0
@@ -58,45 +69,7 @@ export const SCHEDULE_IS_PUBLISHED = SCHEDULE.length > 0
  * bookable offering; where it is absent the practice runs but has no page yet,
  * so the item is plain text rather than a link to nowhere.
  */
-export interface ProgrammeItem {
-  title: string
-  blurb: string
-  offeringSlug?: string
-}
-
-export const PROGRAMME: ProgrammeItem[] = [
-  {
-    title: 'Pranic Balancing Yoga',
-    blurb: 'A slow, breath-led practice. All levels, including complete beginners.',
-    offeringSlug: 'pranic-balancing-yoga',
-  },
-  {
-    title: 'Breathwork',
-    blurb: 'Guided conscious connected breathing. No experience needed.',
-    offeringSlug: 'breathwork',
-  },
-  {
-    title: 'Movement & Dynamic Meditation',
-    blurb: 'Freer, more expressive movement practices that end in stillness.',
-  },
-  {
-    title: 'Beach Yoga',
-    blurb: 'Practice on the sand at Hout Bay beach, a few minutes down the valley.',
-  },
-  {
-    title: 'Trail Hikes',
-    blurb: 'Guided walks from the gate into Orangekloof and up towards the ravine.',
-  },
-  {
-    title: 'Infrared Sauna',
-    blurb: 'Twenty or forty minutes in the sauna, looking into the trees. Bookable online.',
-    offeringSlug: 'sauna-40',
-  },
-  {
-    title: 'Therapies & Bodywork',
-    blurb: 'Treatments with visiting practitioners, by arrangement.',
-  },
-]
+export const PROGRAMME: ProgrammeItem[] = data.programme
 
 /** Bookable start times for sauna and ad-hoc sessions. */
 export const SESSION_SLOTS = [

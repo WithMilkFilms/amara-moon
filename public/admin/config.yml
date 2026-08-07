@@ -65,6 +65,34 @@ collections:
               - {label: "Photo", name: "src", widget: "image", choose_url: false}
               - {label: "Alt Text", name: "alt", widget: "string"}
 
+  - name: "schedule"
+    label: "Weekly Schedule"
+    files:
+      - name: "schedule"
+        label: "Schedule & Programme"
+        file: "content/schedule.json"
+        fields:
+          - name: "schedule"
+            label: "Weekly Class Times"
+            widget: "list"
+            hint: "Leave empty until real class times are confirmed. Each entry needs a day, time and duration."
+            fields:
+              - {label: "Day", name: "day", widget: "select", options: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]}
+              - {label: "Time (24h, e.g. 09:00)", name: "time", widget: "string"}
+              - {label: "Duration (minutes)", name: "durationMinutes", widget: "number"}
+              - {label: "Title", name: "title", widget: "string"}
+              - {label: "Teacher", name: "teacher", widget: "string"}
+              - {label: "Offering Slug", name: "offeringSlug", widget: "string", hint: "Must match a slug in the Offerings collection so this links through to booking"}
+              - {label: "Note", name: "note", widget: "string", required: false}
+          - name: "programme"
+            label: "What Runs Here (Programme)"
+            widget: "list"
+            hint: "The practices on offer, shown while the weekly timetable is empty or alongside it"
+            fields:
+              - {label: "Title", name: "title", widget: "string"}
+              - {label: "Blurb", name: "blurb", widget: "text"}
+              - {label: "Offering Slug", name: "offeringSlug", widget: "string", required: false, hint: "Optional — leave blank if this practice has no bookable page yet"}
+
   - name: "site"
     label: "Site & Contact"
     files:

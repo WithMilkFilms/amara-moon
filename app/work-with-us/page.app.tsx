@@ -4,6 +4,7 @@ import { PageHeader } from '@/components/page-header'
 import { WorkWithUsForm } from '@/components/work-with-us-form'
 import { IMAGES } from '@/lib/images'
 import { SITE } from '@/lib/site'
+import { WORK_WITH_US_PAGE } from '@/lib/pages'
 import { LOOKING_FOR } from '@/lib/work-with-us'
 
 export const metadata: Metadata = {
@@ -17,9 +18,9 @@ export default function WorkWithUsPage() {
   return (
     <>
       <PageHeader
-        eyebrow="Work with Us"
-        title="Share your practice in the valley"
-        intro="We are inviting experienced teachers to join our growing community. Amara Moon is small and family run, and the people who teach here shape what it becomes."
+        eyebrow={WORK_WITH_US_PAGE.eyebrow}
+        title={WORK_WITH_US_PAGE.title}
+        intro={WORK_WITH_US_PAGE.intro}
         image={IMAGES.yoga}
         imageAlt="A yoga class in the studio, light coming through the trees"
       />
@@ -29,12 +30,10 @@ export default function WorkWithUsPage() {
           <div className="flex flex-col gap-8">
             <div className="flex flex-col gap-4">
               <h2 className="font-serif text-2xl text-foreground sm:text-3xl">
-                Introduce yourself
+                {WORK_WITH_US_PAGE.introduceHeading}
               </h2>
               <p className="max-w-prose font-sans text-base leading-relaxed text-pretty text-muted-foreground">
-                Tell us what you do and what you have in mind. There is no application
-                window and no form letter at the end of it — we read these ourselves and
-                reply properly.
+                {WORK_WITH_US_PAGE.introduceBody}
               </p>
             </div>
 
@@ -63,15 +62,13 @@ export default function WorkWithUsPage() {
                 Rather just talk
               </h2>
               <div className="flex flex-col gap-4 font-sans text-sm leading-relaxed text-muted-foreground">
-                <a
-                  href={SITE.emailHref}
+                <a href={SITE.emailHref}
                   className="flex items-center gap-3 break-all transition-colors hover:text-primary"
                 >
                   <Mail aria-hidden className="size-4 shrink-0 text-primary" />
                   {SITE.email}
                 </a>
-                <a
-                  href={SITE.phoneHref}
+                <a href={SITE.phoneHref}
                   className="flex items-center gap-3 transition-colors hover:text-primary"
                 >
                   <Phone aria-hidden className="size-4 shrink-0 text-primary" />

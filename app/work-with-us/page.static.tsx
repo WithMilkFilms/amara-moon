@@ -5,6 +5,7 @@ import { PageHeader } from '@/components/page-header'
 import { appUrl } from '@/lib/deployment'
 import { IMAGES } from '@/lib/images'
 import { SITE } from '@/lib/site'
+import { WORK_WITH_US_PAGE } from '@/lib/pages'
 import { LOOKING_FOR } from '@/lib/work-with-us'
 
 /**
@@ -12,7 +13,8 @@ import { LOOKING_FOR } from '@/lib/work-with-us'
  *
  * Same content, minus WorkWithUsForm — it posts to a server action that shared
  * hosting cannot run. Applicants get email and WhatsApp instead, plus a link to
- * the real form. LOOKING_FOR is shared from lib so the two pages cannot drift.
+ * the real form. Header and intro copy now share content/pages.json with the
+ * app twin, so the two cannot drift.
  */
 export const metadata: Metadata = {
   title: 'Work with Us',
@@ -25,9 +27,9 @@ export default function WorkWithUsPageStatic() {
   return (
     <>
       <PageHeader
-        eyebrow="Work with Us"
-        title="Share your practice in the valley"
-        intro="We are inviting experienced teachers to join our growing community. Amara Moon is small and family run, and the people who teach here shape what it becomes."
+        eyebrow={WORK_WITH_US_PAGE.eyebrow}
+        title={WORK_WITH_US_PAGE.title}
+        intro={WORK_WITH_US_PAGE.intro}
         image={IMAGES.yoga}
         imageAlt="A yoga class in the studio, light coming through the trees"
       />
@@ -37,18 +39,15 @@ export default function WorkWithUsPageStatic() {
           <div className="flex flex-col gap-8">
             <div className="flex flex-col gap-4">
               <h2 className="font-serif text-2xl text-foreground sm:text-3xl">
-                Introduce yourself
+                {WORK_WITH_US_PAGE.introduceHeading}
               </h2>
               <p className="max-w-prose font-sans text-base leading-relaxed text-pretty text-muted-foreground">
-                Send us a note about what you do and what you have in mind — include a
-                link to your website or Instagram so we can see your work. We read these
-                ourselves and reply properly.
+                {WORK_WITH_US_PAGE.introduceBody}
               </p>
             </div>
 
             <div className="flex max-w-md flex-col divide-y divide-border border-y border-border">
-              <a
-                href={`${SITE.emailHref}?subject=${encodeURIComponent('Teaching at Amara Moon')}`}
+              <a href={`${SITE.emailHref}?subject=${encodeURIComponent('Teaching at Amara Moon')}`}
                 className="group flex items-baseline justify-between gap-4 py-5 outline-none transition-colors focus-visible:ring-2 focus-visible:ring-ring"
               >
                 <span className="flex flex-col gap-1">
@@ -61,8 +60,7 @@ export default function WorkWithUsPageStatic() {
                   Best for detail
                 </span>
               </a>
-              <a
-                href={SITE.whatsappHref}
+              <a href={SITE.whatsappHref}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="group flex items-baseline justify-between gap-4 py-5 outline-none transition-colors focus-visible:ring-2 focus-visible:ring-ring"
@@ -84,11 +82,7 @@ export default function WorkWithUsPageStatic() {
                 There is also a short form on our booking site if you would rather fill
                 in your details there.
               </p>
-              <CtaLink
-                href={appUrl('/work-with-us')}
-                variant="outline"
-                className="self-start"
-              >
+              <CtaLink href={appUrl('/work-with-us')} variant="outline" className="self-start">
                 Open the form
               </CtaLink>
             </div>
@@ -116,15 +110,13 @@ export default function WorkWithUsPageStatic() {
                 Rather just talk
               </h2>
               <div className="flex flex-col gap-4 font-sans text-sm leading-relaxed text-muted-foreground">
-                <a
-                  href={SITE.emailHref}
+                <a href={SITE.emailHref}
                   className="flex items-center gap-3 break-all transition-colors hover:text-primary"
                 >
                   <Mail aria-hidden className="size-4 shrink-0 text-primary" />
                   {SITE.email}
                 </a>
-                <a
-                  href={SITE.phoneHref}
+                <a href={SITE.phoneHref}
                   className="flex items-center gap-3 transition-colors hover:text-primary"
                 >
                   <Phone aria-hidden className="size-4 shrink-0 text-primary" />

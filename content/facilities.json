@@ -1,0 +1,34 @@
+{
+  "heading": {
+    "eyebrow": "The grounds",
+    "title": "Everything here, in one place",
+    "intro": "The studio and the grounds are yours for the session — arrive early, stay after, and use the deck and the water as much as the practice."
+  },
+  "groups": [
+    {
+      "icon": "trees",
+      "title": "The Oasis Studio",
+      "items": [
+        "Peaceful 30m² yoga shala",
+        "Sound system",
+        "Kitchenette",
+        "Two connected bathrooms with showers"
+      ]
+    },
+    {
+      "icon": "waves",
+      "title": "Water and heat",
+      "items": ["Swimming pool", "Infrared sauna", "Hot tub"]
+    },
+    {
+      "icon": "flame",
+      "title": "Outdoors",
+      "items": [
+        "Outdoor sun deck",
+        "Nature's dining area and lounge",
+        "Fire pit",
+        "Braai area"
+      ]
+    }
+  ]
+}

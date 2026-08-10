@@ -9,6 +9,124 @@ media_folder: "public/images/uploads"
 public_folder: "/images/uploads"
 
 collections:
+  - name: "home"
+    label: "Home Page"
+    files:
+      - name: "home"
+        label: "Home Page Sections"
+        file: "content/home.json"
+        fields:
+          - name: "hero"
+            label: "Hero"
+            widget: "object"
+            fields:
+              - {label: "Subtitle", name: "subtitle", widget: "text"}
+          - name: "invitation"
+            label: "The Invitation Section"
+            widget: "object"
+            fields:
+              - {label: "Eyebrow", name: "eyebrow", widget: "string"}
+              - {label: "Pull-quote", name: "quote", widget: "text"}
+              - name: "paragraphs"
+                label: "Paragraphs"
+                widget: "list"
+                field: {label: "Paragraph", name: "paragraph", widget: "text"}
+          - name: "legend"
+            label: "Legend Section (page closing note)"
+            widget: "object"
+            fields:
+              - {label: "Eyebrow", name: "eyebrow", widget: "string"}
+              - {label: "Paragraph", name: "paragraph", widget: "text"}
+              - {label: "Closing quote", name: "closingQuote", widget: "text"}
+          - name: "teachInvitation"
+            label: "Teach Invitation Section"
+            widget: "object"
+            fields:
+              - {label: "Eyebrow", name: "eyebrow", widget: "string"}
+              - {label: "Heading", name: "heading", widget: "string"}
+              - {label: "Paragraph", name: "paragraph", widget: "text"}
+
+  - name: "facilities"
+    label: "Facilities (The Grounds)"
+    files:
+      - name: "facilities"
+        label: "Facilities"
+        file: "content/facilities.json"
+        fields:
+          - name: "heading"
+            label: "Section Heading"
+            widget: "object"
+            fields:
+              - {label: "Eyebrow", name: "eyebrow", widget: "string"}
+              - {label: "Title", name: "title", widget: "string"}
+              - {label: "Intro", name: "intro", widget: "text"}
+          - name: "groups"
+            label: "Facility Groups"
+            widget: "list"
+            fields:
+              - {label: "Icon", name: "icon", widget: "select", options: ["trees", "waves", "flame"]}
+              - {label: "Group title", name: "title", widget: "string"}
+              - name: "items"
+                label: "Items"
+                widget: "list"
+                field: {label: "Item", name: "item", widget: "string"}
+
+  - name: "pages"
+    label: "Page Headers & Copy"
+    files:
+      - name: "pages"
+        label: "Offerings, Schedule, Gallery, Work with Us, Contact"
+        file: "content/pages.json"
+        fields:
+          - name: "offerings"
+            label: "Offerings Page"
+            widget: "object"
+            fields:
+              - {label: "Eyebrow", name: "eyebrow", widget: "string"}
+              - {label: "Title", name: "title", widget: "string"}
+              - {label: "Intro", name: "intro", widget: "text"}
+          - name: "schedule"
+            label: "Schedule Page"
+            widget: "object"
+            fields:
+              - {label: "Eyebrow", name: "eyebrow", widget: "string"}
+              - {label: "Title", name: "title", widget: "string"}
+              - {label: "Intro", name: "intro", widget: "text"}
+              - {label: "Note (about times TBA)", name: "note", widget: "text"}
+              - {label: "Booking section heading", name: "bookingHeading", widget: "string"}
+              - {label: "Booking section body", name: "bookingBody", widget: "text"}
+          - name: "gallery"
+            label: "Gallery Page"
+            widget: "object"
+            fields:
+              - {label: "Eyebrow", name: "eyebrow", widget: "string"}
+              - {label: "Title", name: "title", widget: "string"}
+              - {label: "Intro", name: "intro", widget: "text"}
+              - {label: "Closing line", name: "closingLine", widget: "string"}
+          - name: "workWithUs"
+            label: "Work with Us Page"
+            widget: "object"
+            fields:
+              - {label: "Eyebrow", name: "eyebrow", widget: "string"}
+              - {label: "Title", name: "title", widget: "string"}
+              - {label: "Intro", name: "intro", widget: "text"}
+              - {label: "\"Introduce yourself\" heading", name: "introduceHeading", widget: "string"}
+              - {label: "\"Introduce yourself\" body", name: "introduceBody", widget: "text"}
+              - name: "lookingFor"
+                label: "Who We Look For"
+                widget: "list"
+                fields:
+                  - {label: "Title", name: "title", widget: "string"}
+                  - {label: "Body", name: "body", widget: "text"}
+          - name: "contact"
+            label: "Contact Page"
+            widget: "object"
+            fields:
+              - {label: "Eyebrow", name: "eyebrow", widget: "string"}
+              - {label: "Title", name: "title", widget: "string"}
+              - {label: "Intro", name: "intro", widget: "text"}
+              - {label: "Getting here paragraph", name: "gettingHere", widget: "text"}
+
   - name: "offerings"
     label: "Offerings"
     files:

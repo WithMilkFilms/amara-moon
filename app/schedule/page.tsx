@@ -4,6 +4,7 @@ import { ArrowUpRight } from 'lucide-react'
 import { CtaLink } from '@/components/cta'
 import { PageHeader } from '@/components/page-header'
 import { IMAGES } from '@/lib/images'
+import { SCHEDULE_PAGE } from '@/lib/pages'
 import { PROGRAMME } from '@/lib/schedule'
 
 export const metadata: Metadata = {
@@ -17,9 +18,9 @@ export default function SchedulePage() {
   return (
     <>
       <PageHeader
-        eyebrow="Schedule"
-        title="What runs at Amara Moon"
-        intro="Classes are small by design. Arrive a few minutes early, and bring nothing but yourself — mats and props are here."
+        eyebrow={SCHEDULE_PAGE.eyebrow}
+        title={SCHEDULE_PAGE.title}
+        intro={SCHEDULE_PAGE.intro}
         image={IMAGES.yoga}
         imageAlt="A rolled yoga mat and candle on the Oasis Studio floor"
       />
@@ -31,8 +32,7 @@ export default function SchedulePage() {
           below says what runs instead, and times follow once confirmed.
         */}
         <p className="max-w-2xl border-l-2 border-primary pl-5 font-sans text-sm leading-relaxed text-pretty text-muted-foreground">
-          Days and times for the coming season are being finalised. Everything below runs
-          here — tell us what you would like to join and we will let you know when it is on.
+          {SCHEDULE_PAGE.note}
         </p>
 
         <ul className="mt-12 flex flex-col">
@@ -79,10 +79,9 @@ export default function SchedulePage() {
 
         <div className="mt-14 flex flex-col gap-5 border border-border p-8 md:flex-row md:items-center md:justify-between">
           <div className="flex flex-col gap-2">
-            <h2 className="font-serif text-2xl text-foreground">Booking a session</h2>
+            <h2 className="font-serif text-2xl text-foreground">{SCHEDULE_PAGE.bookingHeading}</h2>
             <p className="max-w-xl font-sans text-sm leading-relaxed text-pretty text-muted-foreground">
-              Sauna sessions can be booked and paid for online. For classes and studio hire, send
-              us a note and we will confirm your place.
+              {SCHEDULE_PAGE.bookingBody}
             </p>
           </div>
           <div className="flex shrink-0 flex-col gap-3 sm:flex-row">

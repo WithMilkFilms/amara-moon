@@ -1,0 +1,24 @@
+{
+  "hero": {
+    "subtitle": "A haven in the forest designed to nurture the well-being of every visitor."
+  },
+  "invitation": {
+    "eyebrow": "The invitation",
+    "quote": "To relax, feel and explore your body from a place of joy and wonderment.",
+    "paragraphs": [
+      "Amara Moon is a family run retreat sanctuary nestled in the heart of Hout Bay, one of Cape Town's most breathtaking coastal valleys. Cradled between beautiful ancient mountains, indigenous fynbos and the Atlantic Ocean, it is a place where nature invites you to slow down, breathe deeply and reconnect with yourself.",
+      "We are here to support you along the journey of self-discovery and self-mastery. Our sanctuary is dedicated to offering a range of yoga classes, movement modalities, sauna sessions, therapies and meditative experiences.",
+      "Come to practise, to teach, to rest, or simply to sit on the deck and watch the light move across the valley."
+    ]
+  },
+  "legend": {
+    "eyebrow": "Where the oceans meet",
+    "paragraph": "Legend has it that where the oceans meet, the land holds a rare and powerful energy. Surrounded by the constant movement of wind, water, earth and sky, many who visit the Cape describe an immediate sense of peace, grounding and belonging — as though they have finally come home.",
+    "closingQuote": "It is within this extraordinary landscape that Amara Moon offers a sanctuary for transformation, where every experience is inspired by the wisdom of the towering trees that stretch skyward like yogis in a permanent upward salute."
+  },
+  "teachInvitation": {
+    "eyebrow": "Teach at Amara Moon",
+    "heading": "We are inviting experienced teachers to join our growing community",
+    "paragraph": "Yoga, movement, breathwork and bodywork — for a regular slot in the shala, a one-off workshop, or a retreat with the whole property."
+  }
+}

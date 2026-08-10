@@ -2,6 +2,7 @@ import Image from "next/image"
 import { CtaLink } from "@/components/cta"
 import { Logo } from "@/components/logo"
 import { IMAGES } from "@/lib/images"
+import { HERO } from "@/lib/home"
 import { SITE } from "@/lib/site"
 
 export function Hero() {
@@ -51,7 +52,7 @@ export function Hero() {
         </div>
 
         <p className="max-w-xl font-sans text-base leading-relaxed text-pretty text-muted-foreground md:text-lg">
-          A haven in the forest designed to nurture the well-being of every visitor.
+          {HERO.subtitle}
         </p>
 
         <div className="flex flex-col items-stretch gap-3 pt-2 sm:flex-row sm:items-center">

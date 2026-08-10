@@ -6,6 +6,7 @@ import { OfferingCard } from '@/components/offering-card'
 import { PageHeader } from '@/components/page-header'
 import { GoldRule, SectionHeading } from '@/components/section-heading'
 import { IMAGES } from '@/lib/images'
+import { OFFERINGS_PAGE } from '@/lib/pages'
 import { PINE_FOREST_CABIN, OFFERINGS, formatZar } from '@/lib/offerings'
 
 export const metadata: Metadata = {
@@ -19,9 +20,9 @@ export default function OfferingsPage() {
   return (
     <>
       <PageHeader
-        eyebrow="Offerings"
-        title="Ways to spend time here"
-        intro="Come for a class, book the sauna, hire the Oasis Studio for your own work, or stay the night in the valley."
+        eyebrow={OFFERINGS_PAGE.eyebrow}
+        title={OFFERINGS_PAGE.title}
+        intro={OFFERINGS_PAGE.intro}
         image={IMAGES.studioInterior}
         imageAlt="The Oasis Studio, mats and crystal singing bowls set out on wooden floors"
       />

@@ -1,25 +1,7 @@
+import { WORK_WITH_US_PAGE } from '@/lib/pages'
+
 /**
- * What we are looking for. Short and concrete beats an open-ended invitation.
- *
- * Lives here rather than in the page because both the app page and its
- * static-export twin render it, and two copies of the same list would
- * eventually disagree.
+ * What we are looking for. Sourced from content/pages.json (workWithUs.lookingFor)
+ * so the app page and its static twin share one list and cannot drift.
  */
-export const LOOKING_FOR = [
-  {
-    title: 'Teachers',
-    body: 'Experienced yoga, movement, breathwork and meditation teachers who want a regular slot in the shala or a one-off workshop.',
-  },
-  {
-    title: 'Retreat hosts',
-    body: 'Facilitators looking for a venue with accommodation, a pool and sauna, and private access to the mountain.',
-  },
-  {
-    title: 'Practitioners',
-    body: 'Massage therapists, bodyworkers and sound practitioners who would like to see clients here.',
-  },
-  {
-    title: 'Creatives',
-    body: 'Photographers, writers and makers whose work sits alongside what we do in the valley.',
-  },
-] as const
+export const LOOKING_FOR = WORK_WITH_US_PAGE.lookingFor

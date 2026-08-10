@@ -4,6 +4,7 @@ import { ContactForm } from '@/components/contact-form'
 import { PageHeader } from '@/components/page-header'
 import { IMAGES } from '@/lib/images'
 import { SITE } from '@/lib/site'
+import { CONTACT_PAGE } from '@/lib/pages'
 
 export const metadata: Metadata = {
   title: 'Contact',
@@ -22,9 +23,9 @@ export default async function ContactPage({
   return (
     <>
       <PageHeader
-        eyebrow="Contact"
-        title="Say hello"
-        intro="Questions about a class, hiring the studio, or staying the night? Send us a note and we'll come back to you."
+        eyebrow={CONTACT_PAGE.eyebrow}
+        title={CONTACT_PAGE.title}
+        intro={CONTACT_PAGE.intro}
         image={IMAGES.deckValley}
         imageAlt="The deck looking over the valley at dusk"
       />
@@ -39,8 +40,7 @@ export default async function ContactPage({
                 Find us
               </h2>
               <address className="flex flex-col gap-4 font-sans text-sm not-italic leading-relaxed text-muted-foreground">
-                <a
-                  href={SITE.mapsUrl}
+                <a href={SITE.mapsUrl}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-start gap-3 transition-colors hover:text-primary"
@@ -54,15 +54,13 @@ export default async function ContactPage({
                     </span>
                   </span>
                 </a>
-                <a
-                  href={SITE.phoneHref}
+                <a href={SITE.phoneHref}
                   className="flex items-center gap-3 transition-colors hover:text-primary"
                 >
                   <Phone aria-hidden className="size-4 shrink-0 text-primary" />
                   {SITE.phone}
                 </a>
-                <a
-                  href={SITE.emailHref}
+                <a href={SITE.emailHref}
                   className="flex items-center gap-3 break-all transition-colors hover:text-primary"
                 >
                   <Mail aria-hidden className="size-4 shrink-0 text-primary" />
@@ -76,8 +74,7 @@ export default async function ContactPage({
                 Getting here
               </h2>
               <p className="font-sans text-sm leading-relaxed text-pretty text-muted-foreground">
-                Ten minutes from Hout Bay village, at the foot of the Orangekloof valley. There is
-                parking on site, and private access to the mountain trails.
+                {CONTACT_PAGE.gettingHere}
               </p>
             </div>
 
@@ -86,22 +83,18 @@ export default async function ContactPage({
                 Follow
               </h2>
               <div className="flex flex-col gap-2">
-                <a
-                  href={SITE.socials.instagram}
+                <a href={SITE.socials.instagram}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="font-sans text-sm text-muted-foreground transition-colors hover:text-primary"
                 >
                   Instagram &middot; {SITE.socials.instagramHandle}
                 </a>
-                <a
-                  href={SITE.socials.facebook}
+                <a href={SITE.socials.facebook}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="font-sans text-sm text-muted-foreground transition-colors hover:text-primary"
                 >
-                  {/* No handle shown: the page has no vanity URL, and the raw
-                      numeric profile id would mean nothing to a visitor. */}
                   Facebook
                 </a>
               </div>

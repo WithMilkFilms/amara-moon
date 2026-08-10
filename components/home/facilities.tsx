@@ -1,6 +1,6 @@
 import { Flame, Trees, Waves } from 'lucide-react'
 import { SectionHeading } from '@/components/section-heading'
-import { FACILITY_GROUPS } from '@/lib/facilities'
+import { FACILITIES_HEADING, FACILITY_GROUPS } from '@/lib/facilities'
 
 /*
  * Only three icons, one per group rather than one per item. Eleven icons in a
@@ -17,9 +17,9 @@ export function Facilities() {
     <section className="border-t border-border">
       <div className="mx-auto max-w-6xl px-6 py-24 md:py-32">
         <SectionHeading
-          eyebrow="The grounds"
-          title="Everything here, in one place"
-          intro="The studio and the grounds are yours for the session — arrive early, stay after, and use the deck and the water as much as the practice."
+          eyebrow={FACILITIES_HEADING.eyebrow}
+          title={FACILITIES_HEADING.title}
+          intro={FACILITIES_HEADING.intro}
         />
 
         <div className="mt-14 grid grid-cols-1 gap-x-8 gap-y-12 sm:grid-cols-2 lg:grid-cols-3">

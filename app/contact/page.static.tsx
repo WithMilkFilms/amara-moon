@@ -5,6 +5,7 @@ import { PageHeader } from '@/components/page-header'
 import { appUrl } from '@/lib/deployment'
 import { IMAGES } from '@/lib/images'
 import { SITE } from '@/lib/site'
+import { CONTACT_PAGE } from '@/lib/pages'
 
 /**
  * Static-export twin of app/contact/page.app.tsx.
@@ -13,9 +14,8 @@ import { SITE } from '@/lib/site'
  * which posts to a server action that shared hosting cannot run. A form that
  * silently swallows enquiries is worse than no form, so this offers WhatsApp,
  * email and phone — which reach a phone in a valley faster anyway — plus a link
- * to the full form on the live app.
- *
- * Keep the aside in sync with the .app.tsx version when either changes.
+ * to the full form on the live app. Header and intro copy now share
+ * content/pages.json with the app twin, so the two cannot drift.
  */
 export const metadata: Metadata = {
   title: 'Contact',
@@ -28,9 +28,9 @@ export default function ContactPageStatic() {
   return (
     <>
       <PageHeader
-        eyebrow="Contact"
-        title="Say hello"
-        intro="Questions about a class, hiring the studio, or staying the night? Reach us however suits you — we answer messages ourselves."
+        eyebrow={CONTACT_PAGE.eyebrow}
+        title={CONTACT_PAGE.title}
+        intro={CONTACT_PAGE.intro}
         image={IMAGES.deckValley}
         imageAlt="The deck looking over the valley at dusk"
       />
@@ -73,8 +73,7 @@ export default function ContactPageStatic() {
                 },
               ].map((row) => (
                 <li key={row.label}>
-                  <a
-                    href={row.href}
+                  <a href={row.href}
                     {...(row.external
                       ? { target: '_blank', rel: 'noopener noreferrer' }
                       : {})}
@@ -111,8 +110,7 @@ export default function ContactPageStatic() {
                 Find us
               </h2>
               <address className="flex flex-col gap-4 font-sans text-sm not-italic leading-relaxed text-muted-foreground">
-                <a
-                  href={SITE.mapsUrl}
+                <a href={SITE.mapsUrl}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-start gap-3 transition-colors hover:text-primary"
@@ -126,15 +124,13 @@ export default function ContactPageStatic() {
                     </span>
                   </span>
                 </a>
-                <a
-                  href={SITE.phoneHref}
+                <a href={SITE.phoneHref}
                   className="flex items-center gap-3 transition-colors hover:text-primary"
                 >
                   <Phone aria-hidden className="size-4 shrink-0 text-primary" />
                   {SITE.phone}
                 </a>
-                <a
-                  href={SITE.emailHref}
+                <a href={SITE.emailHref}
                   className="flex items-center gap-3 break-all transition-colors hover:text-primary"
                 >
                   <Mail aria-hidden className="size-4 shrink-0 text-primary" />
@@ -148,8 +144,7 @@ export default function ContactPageStatic() {
                 Getting here
               </h2>
               <p className="font-sans text-sm leading-relaxed text-pretty text-muted-foreground">
-                Ten minutes from Hout Bay village, at the foot of the Orangekloof valley.
-                There is parking on site, and private access to the mountain trails.
+                {CONTACT_PAGE.gettingHere}
               </p>
             </div>
 
@@ -158,16 +153,14 @@ export default function ContactPageStatic() {
                 Follow
               </h2>
               <div className="flex flex-col gap-2">
-                <a
-                  href={SITE.socials.instagram}
+                <a href={SITE.socials.instagram}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="font-sans text-sm text-muted-foreground transition-colors hover:text-primary"
                 >
                   Instagram &middot; {SITE.socials.instagramHandle}
                 </a>
-                <a
-                  href={SITE.socials.facebook}
+                <a href={SITE.socials.facebook}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="font-sans text-sm text-muted-foreground transition-colors hover:text-primary"

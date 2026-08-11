@@ -2,7 +2,7 @@
   "heading": {
     "eyebrow": "The grounds",
     "title": "Everything here, in one place",
-    "intro": "The studio and the grounds are yours for the session — arrive early, stay after, and use the deck and the water as much as the practice."
+    "intro": "The studio and the grounds are yours for the session, arrive early, stay after, and use the deck and the water as much as the practice."
   },
   "groups": [
     {
@@ -18,7 +18,11 @@
     {
       "icon": "waves",
       "title": "Water and heat",
-      "items": ["Swimming pool", "Infrared sauna", "Hot tub"]
+      "items": [
+        "Swimming pool",
+        "Infrared sauna",
+        "Hot tub"
+      ]
     },
     {
       "icon": "flame",

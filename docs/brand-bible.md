@@ -30,7 +30,7 @@ placeholder (`needsPrice: true`). Any revenue thinking below is structural, not 
 
 ## 1.1 What Amara Moon actually is
 
-**[REAL]** A yoga and wellness sanctuary at 10a Connmara Drive, Orangekloof Valley, Hout Bay, Cape
+**[REAL]** A yoga and wellness sanctuary at 10a Connemara Drive, Orangekloof Valley, Hout Bay, Cape
 Town. On one property: a timber-and-glass yoga studio, an infrared sauna, a self-contained cabin for
 two, a pool and deck, and private access to mountain trails leading to Myburghs waterfall ravine.
 Off the mountain and on the beach in 3km.

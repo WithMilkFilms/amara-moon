@@ -125,7 +125,7 @@ export function localBusinessJsonLd() {
     ],
     // Omitted entirely rather than sent as [] while no times are confirmed.
     ...(openingHours.length > 0 ? { openingHoursSpecification: openingHours } : {}),
-    sameAs: [SITE.socials.instagram, SITE.socials.facebook],
+    sameAs: [SITE.socials.instagram, SITE.socials.facebook, ...(SITE.googlePlaceId ? [SITE.mapsUrl] : [])],
     hasMap: SITE.mapsUrl,
   }
 }

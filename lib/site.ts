@@ -10,13 +10,15 @@ export const SITE = {
   phoneHref: `tel:${siteData.phone.replace(/\s/g, '')}`,
   whatsappHref: `https://wa.me/${siteData.phone.replace(/[^0-9]/g, '')}`,
   emailHref: `mailto:${siteData.email}`,
-  mapsUrl: `https://www.google.com/maps/search/?api=1&query=${[
-    siteData.address.line1,
-    siteData.address.line2,
-    siteData.address.city,
-  ]
-    .join(' ')
-    .replace(/\s+/g, '+')}`,
+  mapsUrl: siteData.googlePlaceId
+    ? `https://www.google.com/maps/place/?q=place_id:${siteData.googlePlaceId}`
+    : `https://www.google.com/maps/search/?api=1&query=${[
+        siteData.address.line1,
+        siteData.address.line2,
+        siteData.address.city,
+      ]
+        .join(' ')
+        .replace(/\s+/g, '+')}`,
 } as const
 
 /**

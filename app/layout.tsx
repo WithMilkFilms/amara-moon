@@ -45,6 +45,9 @@ export const metadata: Metadata = {
    * Each page sets its own canonical instead.
    */
   generator: 'v0.app',
+  verification: {
+    google: 'vrR-XPbfWfptTfe_aBB3Nmn-y9hVWZnuWbnMtWDFTf0',
+  },
   keywords: [
     'yoga studio Hout Bay',
     'wellness retreat Cape Town',

@@ -1,6 +1,6 @@
 import Link from 'next/link'
-import Image from 'next/image'
 import { SHOP_PRODUCTS, SHOP_NOTE } from '@/lib/shop'
+import ProductImage from './ProductImage'
 
 export const metadata = {
 title: 'Shop',
@@ -15,9 +15,7 @@ return (
 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
 {SHOP_PRODUCTS.map((product) => (
 <div key={product.slug} className="border rounded-lg overflow-hidden">
-<div className="relative aspect-square">
-<Image src={product.image} alt={product.name} fill unoptimized className="object-cover" />
-</div>
+<ProductImage src={product.image} alt={product.name} />
 <div className="p-4">
 <h2 className="text-lg font-medium">{product.name}</h2>
 <p className="text-sm text-muted-foreground mt-1">{product.description}</p>

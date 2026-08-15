@@ -1,6 +1,6 @@
 'use client'
 
-import { Suspense, useEffect, useState } from 'react'
+import { Suspense, useEffect, useState, FormEvent } from 'react'
 import { useSearchParams } from 'next/navigation'
 import { getProductBySlug } from '@/lib/shop'
 
@@ -25,7 +25,7 @@ function EnquireForm() {
     setReference(generateReference())
   }, [])
 
-  async function handleSubmit(e) {
+  async function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault()
     setStatus('submitting')
     const formData = new FormData(e.currentTarget)

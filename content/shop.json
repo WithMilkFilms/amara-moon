@@ -1,0 +1,13 @@
+{
+  "note": "Made to order. Please allow 7 to 10 days for completion.",
+  "products": [
+    {
+      "slug": "seated-buddha-medium",
+      "name": "Seated Buddha, Medium",
+      "description": "Hand finished seated Buddha statue, medium size, ideal for garden or indoor altar spaces.",
+      "price": 850,
+      "image": "/images/uploads/buddha-seated-medium.jpg",
+      "turnaroundDays": "7 to 10 days"
+    }
+  ]
+}

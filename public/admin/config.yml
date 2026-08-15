@@ -250,3 +250,22 @@ collections:
             fields:
               - {label: "Beach", name: "beach", widget: "string"}
               - {label: "Trails", name: "trails", widget: "string"}
+
+  - name: "shop"
+    label: "Shop"
+    files:
+      - name: "shop"
+        label: "Shop Products"
+        file: "content/shop.json"
+        fields:
+          - {label: "Shop Note", name: "note", widget: "text"}
+          - name: "products"
+            label: "Products"
+            widget: "list"
+            fields:
+              - {label: "Slug", name: "slug", widget: "string", hint: "Must match the URL, do not change unless you mean to break links"}
+              - {label: "Name", name: "name", widget: "string"}
+              - {label: "Description", name: "description", widget: "text"}
+              - {label: "Price (ZAR)", name: "price", widget: "number"}
+              - {label: "Image", name: "image", widget: "image", choose_url: false}
+              - {label: "Turnaround", name: "turnaroundDays", widget: "string"}

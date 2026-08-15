@@ -16,7 +16,7 @@ return (
 {SHOP_PRODUCTS.map((product) => (
 <div key={product.slug} className="border rounded-lg overflow-hidden">
 <div className="relative aspect-square">
-<Image src={product.image} alt={product.name} fill className="object-cover" />
+<Image src={product.image} alt={product.name} fill unoptimized className="object-cover" />
 </div>
 <div className="p-4">
 <h2 className="text-lg font-medium">{product.name}</h2>

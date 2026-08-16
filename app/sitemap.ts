@@ -33,6 +33,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { path: '/schedule', priority: 0.8, changeFrequency: 'weekly' },
     { path: '/book-a-room', priority: 0.9, changeFrequency: 'monthly' },
     { path: '/gallery', priority: 0.6, changeFrequency: 'monthly' },
+    { path: '/shop', priority: 0.8, changeFrequency: 'monthly' },
     { path: '/contact', priority: 0.7, changeFrequency: 'yearly' },
     // Lower priority than guest-facing pages: it targets teachers and
     // facilitators, a much smaller audience than people looking to book.

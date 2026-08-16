@@ -1,109 +1,109 @@
 {
-"note": "Made to order. Please allow 7 to 10 days for completion. Most pieces available in gold or bronze finish, mention your preference when you enquire.",
-"products": [
-{
-"slug": "baby-monk",
-"name": "Baby Monk",
-"description": "Hand finished praying baby monk statue, 26cm, kneeling with hands together in prayer.",
-"price": 450,
-"image": "/images/uploads/baby-monk-26cm.jpeg",
-"turnaroundDays": "7 to 10 days"
-},
-{
-"slug": "ancient-buddha",
-"name": "Ancient Buddha",
-"description": "Hand finished meditating Buddha statue, 54cm, hands resting in lap.",
-"price": 1150,
-"image": "/images/uploads/ancient-buddha-54cm.jpeg",
-"turnaroundDays": "7 to 10 days"
-},
-{
-"slug": "radiant-seated-buddha",
-"name": "Radiant Seated Buddha",
-"description": "Hand finished Buddha statue, 54cm, seated with one hand resting on the knee.",
-"price": 1150,
-"image": "/images/uploads/radiant-seated-buddha-54cm.jpeg",
-"turnaroundDays": "7 to 10 days"
-},
-{
-"slug": "devotion-buddha",
-"name": "Devotion Buddha",
-"description": "Hand finished crowned Buddha statue, 23cm, hands together in prayer on a lotus base.",
-"price": 450,
-"image": "/images/uploads/devotion-buddha-23cm.jpeg",
-"turnaroundDays": "7 to 10 days"
-},
-{
-"slug": "guardian-foo-pair",
-"name": "Guardian Foo Pair",
-"description": "Hand finished guardian lion statues, sold as a pair, 23cm, ideal for flanking an entrance or altar space.",
-"price": 700,
-"image": "/images/uploads/guardian-foo-pair-23cm.jpeg",
-"turnaroundDays": "7 to 10 days"
-},
-{
-"slug": "garden-pagoda-lantern",
-"name": "Garden Pagoda Lantern",
-"description": "Hand finished pagoda style garden lantern, 44cm, a striking feature for pathways or garden corners.",
-"price": 950,
-"image": "/images/uploads/garden-pagoda-lantern-44cm.jpeg",
-"turnaroundDays": "7 to 10 days"
-},
-{
-"slug": "lotus-dreams-buddha-candle-holder",
-"name": "Lotus Dreams Buddha Candle Holder",
-"description": "Hand finished Buddha candle holder, 34cm, resting figure cradling a lotus shaped holder.",
-"price": 750,
-"image": "/images/uploads/lotus-dreams-buddha-candle-holder-34cm.jpeg",
-"turnaroundDays": "7 to 10 days"
-},
-{
-"slug": "golden-head-buddha-xl",
-"name": "Golden Head Buddha XL",
-"description": "Hand finished large Buddha head, 58cm, a striking standalone feature for garden or entrance display.",
-"price": 2200,
-"image": "/images/uploads/golden-head-buddha-xl-58cm.jpeg",
-"turnaroundDays": "7 to 10 days"
-},
-{
-"slug": "oceanas-wall-mandala",
-"name": "Oceanas Wall Mandala",
-"description": "Hand finished wall mandala, 52cm, bearded face in relief, a striking wall or garden feature.",
-"price": 850,
-"image": "/images/uploads/oceanas-wall-mandala-52cm.jpeg",
-"turnaroundDays": "7 to 10 days"
-},
-{
-"slug": "balinese-goddess-wall-mask",
-"name": "Balinese Goddess Wall Mask",
-"description": "Hand finished Balinese goddess wall mask, 30cm, ornate crown detail.",
-"price": 600,
-"image": "/images/uploads/balinese-goddess-wall-mask-30cm.jpeg",
-"turnaroundDays": "7 to 10 days"
-},
-{
-"slug": "zen-garden-buddha",
-"name": "Zen Garden Buddha",
-"description": "Hand finished Buddha bust, 25cm, a calming presence indoors or out, also lovely tucked into a bathroom nook.",
-"price": 600,
-"image": "/images/uploads/zen-garden-buddha-25cm.jpeg",
-"turnaroundDays": "7 to 10 days"
-},
-{
-"slug": "ocean-buddha",
-"name": "Ocean Buddha",
-"description": "Hand finished meditating Buddha, 71cm, turquoise and gold finish, also available in gold, mention your preference when you enquire.",
-"price": 1200,
-"image": "/images/uploads/ocean-buddha-71cm.jpeg",
-"turnaroundDays": "7 to 10 days"
-},
-{
-"slug": "serenity-buddha",
-"name": "Serenity Buddha",
-"description": "Hand finished Buddha statue, 30cm, ivory and gold finish, meditating pose.",
-"price": 500,
-"image": "/images/uploads/serenity-buddha-30cm.jpeg",
-"turnaroundDays": "7 to 10 days"
-}
-]
+  "note": "Made to order. Please allow 7 to 10 days for completion. Most pieces available in gold or bronze finish.",
+  "products": [
+    {
+      "slug": "baby-monk",
+      "name": "Baby Monk",
+      "description": "Hand finished praying baby monk statue, 26cm, kneeling with hands together in prayer.",
+      "price": 450,
+      "image": "/images/uploads/baby-monk-26cm.jpeg",
+      "turnaroundDays": "7 to 10 days"
+    },
+    {
+      "slug": "ancient-buddha",
+      "name": "Ancient Buddha",
+      "description": "Hand finished meditating Buddha statue, 54cm, hands resting in lap.",
+      "price": 1150,
+      "image": "/images/uploads/ancient-buddha-54cm.jpeg",
+      "turnaroundDays": "7 to 10 days"
+    },
+    {
+      "slug": "radiant-seated-buddha",
+      "name": "Radiant Seated Buddha",
+      "description": "Hand finished Buddha statue, 54cm, seated with one hand resting on the knee.",
+      "price": 1150,
+      "image": "/images/uploads/radiant-seated-buddha-54cm.jpeg",
+      "turnaroundDays": "7 to 10 days"
+    },
+    {
+      "slug": "devotion-buddha",
+      "name": "Devotion Buddha",
+      "description": "Hand finished crowned Buddha statue, 23cm, hands together in prayer on a lotus base.",
+      "price": 450,
+      "image": "/images/uploads/devotion-buddha-23cm.jpeg",
+      "turnaroundDays": "7 to 10 days"
+    },
+    {
+      "slug": "guardian-foo-pair",
+      "name": "Guardian Foo Pair",
+      "description": "Hand finished guardian lion statues, sold as a pair, 23cm, ideal for flanking an entrance or altar space.",
+      "price": 700,
+      "image": "/images/uploads/guardian-foo-pair-23cm.jpeg",
+      "turnaroundDays": "7 to 10 days"
+    },
+    {
+      "slug": "garden-pagoda-lantern",
+      "name": "Garden Pagoda Lantern",
+      "description": "Hand finished pagoda style garden lantern, 44cm, a striking feature for pathways or garden corners.",
+      "price": 950,
+      "image": "/images/uploads/garden-pagoda-lantern-44cm.jpeg",
+      "turnaroundDays": "7 to 10 days"
+    },
+    {
+      "slug": "lotus-dreams-buddha-candle-holder",
+      "name": "Lotus Dreams Buddha Candle Holder",
+      "description": "Hand finished Buddha candle holder, 34cm, resting figure cradling a lotus shaped holder.",
+      "price": 750,
+      "image": "/images/uploads/lotus-dreams-buddha-candle-holder-34cm.jpeg",
+      "turnaroundDays": "7 to 10 days"
+    },
+    {
+      "slug": "golden-head-buddha-xl",
+      "name": "Golden Head Buddha XL",
+      "description": "Hand finished large Buddha head, 58cm, a striking standalone feature for garden or entrance display.",
+      "price": 2200,
+      "image": "/images/uploads/golden-head-buddha-xl-58cm.jpeg",
+      "turnaroundDays": "7 to 10 days"
+    },
+    {
+      "slug": "oceanas-wall-mandala",
+      "name": "Oceanas Wall Mandala",
+      "description": "Hand finished wall mandala, 52cm, bearded face in relief, a striking wall or garden feature.",
+      "price": 850,
+      "image": "/images/uploads/oceanas-wall-mandala-52cm.jpeg",
+      "turnaroundDays": "7 to 10 days"
+    },
+    {
+      "slug": "balinese-goddess-wall-mask",
+      "name": "Balinese Goddess Wall Mask",
+      "description": "Hand finished Balinese goddess wall mask, 30cm, ornate crown detail.",
+      "price": 600,
+      "image": "/images/uploads/balinese-goddess-wall-mask-30cm.jpeg",
+      "turnaroundDays": "7 to 10 days"
+    },
+    {
+      "slug": "zen-garden-buddha",
+      "name": "Zen Garden Buddha",
+      "description": "Hand finished Buddha bust, 25cm, a calming presence indoors or out, also lovely tucked into a bathroom nook.",
+      "price": 600,
+      "image": "/images/uploads/zen-garden-buddha-25cm.jpeg",
+      "turnaroundDays": "7 to 10 days"
+    },
+    {
+      "slug": "ocean-buddha",
+      "name": "Ocean Buddha",
+      "description": "Hand finished meditating Buddha, 71cm, turquoise and gold finish, also available in gold, mention your preference when you enquire.",
+      "price": 1200,
+      "image": "/images/uploads/ocean-buddha-71cm.jpeg",
+      "turnaroundDays": "7 to 10 days"
+    },
+    {
+      "slug": "serenity-buddha",
+      "name": "Serenity Buddha",
+      "description": "Hand finished Buddha statue, 30cm, ivory and gold finish, meditating pose.",
+      "price": 500,
+      "image": "/images/uploads/serenity-buddha-30cm.jpeg",
+      "turnaroundDays": "7 to 10 days"
+    }
+  ]
 }

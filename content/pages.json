@@ -6,9 +6,9 @@
   },
   "schedule": {
     "eyebrow": "Schedule",
-    "title": "What runs at Amara Moon",
-    "intro": "Classes are small by design. Arrive a few minutes early, and bring nothing but yourself — mats and props are here.",
-    "note": "Days and times for the coming season are being finalised. Everything below runs here — tell us what you would like to join and we will let you know when it is on.",
+    "title": "Amara Moon offers a variety of classes geared to all levels, as-well as workshops, ceremonies and special events.",
+    "intro": "Our experienced teachers will guide you on a profound journey, Physically energetically and psychologically. You can also compliment your practices with our wellness facilities.",
+    "note": "Days and times for the coming season are being finalised. Everything below runs here, tell us what you would like to join and we will let you know when it is on.",
     "bookingHeading": "Booking a session",
     "bookingBody": "Sauna sessions can be booked and paid for online. For classes and studio hire, send us a note and we will confirm your place."
   },
@@ -21,9 +21,9 @@
   "workWithUs": {
     "eyebrow": "Work with Us",
     "title": "Share your practice in the valley",
-    "intro": "We are inviting experienced teachers to join our growing community. Amara Moon is small and family run, and the people who teach here shape what it becomes.",
+    "intro": "We’re inviting experienced yoga teachers and facilitators to become part the Amara Moon community. We’re a small, family-run space rooted in connection, presence and meaningful practice. The people who share their work here play an important part in shaping the energy, culture and experience of Amara Moon.",
     "introduceHeading": "Introduce yourself",
-    "introduceBody": "Tell us what you do and what you have in mind, a link to your website or Instagram helps us see your work. We read these ourselves and reply properly.",
+    "introduceBody": "Tell us a little about who you are, what you teach and what you feel you could bring to the Amara Moon space. We’d love to hear about your experience, your approach to teaching and any offerings or ideas you’d be interested in sharing with our community. A link to your website or Instagram is welcome so we can get a feel for your work. We personally read every application and will be in touch if we feel there’s a good fit.",
     "lookingFor": [
       {
         "title": "Teachers",
@@ -40,13 +40,17 @@
       {
         "title": "Creatives",
         "body": "Photographers, writers and makers whose work sits alongside what we do in the valley."
+      },
+      {
+        "title": "Musicians ",
+        "body": "Collaborations with talented musicians, live artists and dj's from acoustic and instrumental to ambient, meditative and deeply immersive live music for retreats, ceremonies and special events."
       }
     ]
   },
   "contact": {
     "eyebrow": "Contact",
     "title": "Say hello",
-    "intro": "Questions about a class, hiring the studio, or staying the night? Send us a note and we'll come back to you.",
-    "gettingHere": "Ten minutes from Hout Bay village, at the foot of the Orangekloof valley. There is parking on site, and private access to the mountain trails."
+    "intro": "Questions about a class, hiring the studio or staying the night? Send us a note and we'll come back to you.",
+    "gettingHere": "Ten minutes from Hout Bay village, at the foot of the Orangekloof valley. There is parking on site and private access to the mountain trails."
   }
 }

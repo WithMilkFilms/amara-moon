@@ -9,7 +9,7 @@ import { Textarea } from '@/components/ui/textarea'
 import { COLLABORATION_ROLES } from '@/lib/collaboration'
 import { SITE } from '@/lib/site'
 
-const WEB3FORMS_ACCESS_KEY = '2ebcf267-66ba-4bc3-8a66-9f2719249ffa'
+const WEB3FORMS_ACCESS_KEY = 'e637ea2f-9d9d-458a-8689-56698abbd9b8'
 
 const fieldClass =
   'rounded-none border-input bg-card font-sans text-foreground placeholder:text-muted-foreground/60'

@@ -4,7 +4,7 @@ import { Suspense, useEffect, useState, FormEvent } from 'react'
 import { useSearchParams } from 'next/navigation'
 import { getProductBySlug } from '@/lib/shop'
 
-const WEB3FORMS_ACCESS_KEY = '2ebcf267-66ba-4bc3-8a66-9f2719249ffa'
+const WEB3FORMS_ACCESS_KEY = 'e637ea2f-9d9d-458a-8689-56698abbd9b8'
 
 function generateReference() {
   const ts = Date.now().toString(36).toUpperCase()

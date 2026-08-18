@@ -24,7 +24,7 @@ const inter = Inter({
  * Hout Bay") so it survives Google's ~60 character truncation. "Cape Town"
  * lives in the description instead — adding it here would push the title to 64
  * and get the location clipped off the end. */
-const TITLE = 'Amara Moon | Yoga Studio & Wellness Retreat, Hout Bay'
+const TITLE = 'Amara Moon | Yoga & Wellness Retreat, Hout Bay, Cape Town'
 
 /* 150 characters, and carries all three target terms: yoga, Hout Bay, Cape Town. */
 const DESCRIPTION =
@@ -35,7 +35,7 @@ export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
     default: TITLE,
-    template: '%s | Amara Moon',
+    template: '%s | Amara Moon, Hout Bay Cape Town',
   },
   description: DESCRIPTION,
   /*

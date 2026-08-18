@@ -1,6 +1,7 @@
 import { Analytics } from '@vercel/analytics/next'
 import type { Metadata, Viewport } from 'next'
 import { Cormorant_Garamond, Inter } from 'next/font/google'
+import Script from 'next/script'
 import { SiteFooter } from '@/components/site-footer'
 import { SiteHeader } from '@/components/site-header'
 import { localBusinessJsonLd, OG_IMAGE, SITE_URL, webSiteJsonLd } from '@/lib/seo'
@@ -29,6 +30,9 @@ const TITLE = 'Amara Moon | Yoga & Wellness Retreat, Hout Bay, Cape Town'
 /* 150 characters, and carries all three target terms: yoga, Hout Bay, Cape Town. */
 const DESCRIPTION =
   'Yoga studio and wellness sanctuary in Hout Bay, Cape Town. Yoga classes, breathwork, infrared sauna and forest cabin stays in the Orangekloof Valley.'
+
+/* Google Analytics 4 measurement ID for amaramoon.capetown. */
+const GA_MEASUREMENT_ID = 'G-KG31SC5XGR'
 
 export const metadata: Metadata = {
   // Makes every relative canonical, OG and Twitter URL resolve absolutely.
@@ -106,7 +110,23 @@ export default function RootLayout({
         <SiteHeader />
         <main id="main">{children}</main>
         <SiteFooter />
-        {process.env.NODE_ENV === 'production' && <Analytics />}
+        {process.env.NODE_ENV === 'production' && (
+          <>
+            <Script
+              src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}
+              strategy="afterInteractive"
+            />
+            <Script id="ga4-init" strategy="afterInteractive">
+              {`
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){dataLayer.push(arguments);}
+                gtag('js', new Date());
+                gtag('config', '${GA_MEASUREMENT_ID}');
+              `}
+            </Script>
+            <Analytics />
+          </>
+        )}
       </body>
     </html>
   )

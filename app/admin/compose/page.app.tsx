@@ -19,9 +19,18 @@ export default async function AdminComposePage() {
   // A plain row count rather than a SQL COUNT(*) — the list is small enough
   // that this never matters, and it keeps the query identical in shape to
   // every other select in this codebase instead of reaching for a different
-  // API.
-  const rows = await db.select({ id: subscribers.id }).from(subscribers)
-  const count = rows.length
+  // API. Same reasoning as app/admin/page.app.tsx for the try/catch: the
+  // table may not exist yet on a fresh database, and that should show a
+  // clear message here rather than a server error.
+  let count = 0
+  let loadError = false
+  try {
+    const rows = await db.select({ id: subscribers.id }).from(subscribers)
+    count = rows.length
+  } catch (error) {
+    console.error('Admin compose: failed to load subscriber count:', error)
+    loadError = true
+  }
 
   return (
     <div className="mx-auto max-w-5xl px-6 pb-20 pt-28 md:pt-36">
@@ -32,7 +41,14 @@ export default async function AdminComposePage() {
 
       <h1 className="mb-8 font-serif text-3xl text-foreground">Compose mailer</h1>
 
-      <CampaignComposer subscriberCount={count} />
+      {loadError ? (
+        <p className="font-sans text-sm text-destructive">
+          The subscribers table doesn&apos;t exist in the database yet. Run
+          create-subscribers-table.sql against Neon once, then reload this page.
+        </p>
+      ) : (
+        <CampaignComposer subscriberCount={count} />
+      )}
     </div>
   )
 }

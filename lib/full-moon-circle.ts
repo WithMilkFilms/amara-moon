@@ -13,8 +13,9 @@ import fullMoonData from '@/content/full-moon-circle.json'
  *
  * The dates themselves are real full moon dates (source: public full moon
  * calendars), not computed — there is no moon-phase library in this project.
- * THIS LIST IS MANUALLY MAINTAINED and will run out. Refresh it before
- * February 2027 by looking up the next batch of full moon dates.
+ * THIS LIST IS MANUALLY MAINTAINED and will run out. Runs through May 2027 by
+ * request — refresh it before then by looking up the next batch of full moon
+ * dates.
  */
 export interface FullMoonDate {
   date: string

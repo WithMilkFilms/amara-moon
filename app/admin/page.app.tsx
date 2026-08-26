@@ -19,10 +19,19 @@ export const dynamic = 'force-dynamic'
 export default async function AdminDashboardPage() {
   await requireAdminSession()
 
-  const rows = await db
-    .select()
-    .from(subscribers)
-    .orderBy(desc(subscribers.createdAt))
+  // The subscribers table is created by hand (create-subscribers-table.sql,
+  // see lib/db/schema.ts) rather than by a migration, so it may genuinely not
+  // exist yet on a fresh database. A missing table should show a clear
+  // message here, not a blank server error page, so this is caught rather
+  // than left to throw.
+  let rows: Array<typeof subscribers.$inferSelect> = []
+  let loadError = false
+  try {
+    rows = await db.select().from(subscribers).orderBy(desc(subscribers.createdAt))
+  } catch (error) {
+    console.error('Admin dashboard: failed to load subscribers:', error)
+    loadError = true
+  }
 
   return (
     <div className="mx-auto max-w-4xl px-6 pb-20 pt-28 md:pt-36">
@@ -30,8 +39,9 @@ export default async function AdminDashboardPage() {
         <div className="flex flex-col gap-1">
           <h1 className="font-serif text-3xl text-foreground">Mailing list</h1>
           <p className="font-sans text-sm text-muted-foreground">
-            {rows.length} {rows.length === 1 ? 'address' : 'addresses'} stored, collected from
-            the site&apos;s opt in checkboxes.
+            {loadError
+              ? "Couldn't load the list."
+              : `${rows.length} ${rows.length === 1 ? 'address' : 'addresses'} stored, collected from the site's opt in checkboxes.`}
           </p>
         </div>
         <div className="flex items-center gap-3">
@@ -47,7 +57,12 @@ export default async function AdminDashboardPage() {
         </div>
       </div>
 
-      {rows.length === 0 ? (
+      {loadError ? (
+        <p className="font-sans text-sm text-destructive">
+          The subscribers table doesn&apos;t exist in the database yet. Run
+          create-subscribers-table.sql against Neon once, then reload this page.
+        </p>
+      ) : rows.length === 0 ? (
         <p className="font-sans text-sm text-muted-foreground">
           Nobody has opted in yet. The checkbox on the Full Moon Circle application form is
           the first place this fills in from.

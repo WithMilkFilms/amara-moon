@@ -2,7 +2,7 @@
 
 import { COLLABORATION_ROLES } from '@/lib/collaboration'
 import { db } from '@/lib/db'
-import { enquiries } from '@/lib/db/schema'
+import { enquiries, subscribers } from '@/lib/db/schema'
 import { sendEnquiryNotification } from '@/lib/email'
 import { FULL_MOON_DATES, formatFullMoonDate } from '@/lib/full-moon-circle'
 import { PINE_FOREST_CABIN, getOffering } from '@/lib/offerings'
@@ -164,6 +164,12 @@ export async function submitCollaboration(
  * the shape already fits, and the chosen circle date goes into the message
  * body rather than a new column, avoiding a migration for one extra string.
  * offeringSlug is always the circle's slug, not user-supplied.
+ *
+ * The mailing-list checkbox is different: that genuinely needs its own
+ * queryable table (see `subscribers` in lib/db/schema.ts) since a mailer has
+ * to pull "every opted-in email," which a free-text message can't answer.
+ * That insert is best-effort and wrapped separately — a mailing-list hiccup
+ * must never lose the application itself.
  */
 export async function submitFullMoonApplication(
   _prev: EnquiryState,
@@ -174,6 +180,7 @@ export async function submitFullMoonApplication(
   const phone = str(data, 'phone')
   const date = str(data, 'date')
   const notes = str(data, 'message')
+  const joinMailingList = data.get('mailingList') === 'on'
 
   if (!name || !email || !phone || !date) {
     return {
@@ -184,9 +191,7 @@ export async function submitFullMoonApplication(
   if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
     return { ok: false, error: 'That email address does not look right.' }
   }
-  const isKnownDate = (FULL_MOON_DATES as readonly { value: string }[]).some(
-    (d) => d.value === date,
-  )
+  const isKnownDate = FULL_MOON_DATES.some((d) => d.date === date)
   if (!isKnownDate) {
     return { ok: false, error: 'Please choose one of the listed dates.' }
   }
@@ -209,6 +214,23 @@ export async function submitFullMoonApplication(
       message,
     })
 
+    if (joinMailingList) {
+      try {
+        await db
+          .insert(subscribers)
+          .values({ name, email, source: 'womens-full-moon-circle' })
+          .onConflictDoUpdate({
+            target: subscribers.email,
+            set: { name },
+          })
+      } catch (error) {
+        // Soft-fail, same reasoning as email below: the application is the
+        // record that matters, a mailing-list write hiccup should not turn
+        // into an error message for someone who just applied.
+        console.error('subscribers upsert failed:', error)
+      }
+    }
+
     await sendEnquiryNotification({
       subject: `Full Moon Circle application — ${name}`,
       replyTo: email,
@@ -217,6 +239,7 @@ export async function submitFullMoonApplication(
         { label: 'Email', value: email },
         { label: 'Phone', value: phone },
         { label: 'Requested circle', value: dateLabel },
+        { label: 'Joining mailing list', value: joinMailingList ? 'Yes' : 'No' },
         { label: 'Note', value: notes ? `\n${notes}` : '' },
       ],
     })

@@ -7,7 +7,7 @@ import { CtaButton } from '@/components/cta'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Textarea } from '@/components/ui/textarea'
-import { FULL_MOON_DATES } from '@/lib/full-moon-circle'
+import { FULL_MOON_DATES, formatFullMoonOption } from '@/lib/full-moon-circle'
 
 const initial: EnquiryState = { ok: false }
 
@@ -38,7 +38,10 @@ export function FullMoonCircleForm() {
         <h2 className="font-serif text-2xl text-foreground">Apply to join</h2>
         <p className="font-sans text-sm leading-relaxed text-muted-foreground">
           Numbers are kept small, so this is an application rather than instant booking.
-          We&apos;ll confirm your place by email or phone.
+          We&apos;ll confirm your place by email or phone. The exact time moves with whoever
+          is hosting that month, so it may still say &quot;to be confirmed&quot; when you apply,
+          we&apos;ll follow up once it&apos;s set. Everyone is encouraged to bring something
+          for the harvest table.
         </p>
       </div>
 
@@ -100,8 +103,8 @@ export function FullMoonCircleForm() {
                 Choose a date
               </option>
               {FULL_MOON_DATES.map((d) => (
-                <option key={d.value} value={d.value}>
-                  {d.label}
+                <option key={d.date} value={d.date}>
+                  {formatFullMoonOption(d)}
                 </option>
               ))}
             </select>
@@ -119,6 +122,22 @@ export function FullMoonCircleForm() {
         </Label>
         <Textarea id="fmc-message" name="message" rows={4} className={fieldClass} />
       </div>
+
+      {/*
+        Native checkbox, same reasoning as the native select above: posts with
+        the form pre-hydration, no extra dependency. The server action reads
+        it as data.get('mailingList') === 'on', the value a checked native
+        checkbox sends by default.
+      */}
+      <label htmlFor="fmc-mailing-list" className="flex items-start gap-3 font-sans text-sm text-muted-foreground">
+        <input
+          id="fmc-mailing-list"
+          name="mailingList"
+          type="checkbox"
+          className="mt-0.5 size-4 shrink-0 rounded-none border-input accent-primary"
+        />
+        Add me to the mailing list for future events
+      </label>
 
       {state.error ? (
         <p role="alert" className="font-sans text-sm text-destructive">

@@ -1,27 +1,56 @@
+import fullMoonData from '@/content/full-moon-circle.json'
+
 /**
  * Upcoming dates for the Women's Full Moon Circle offering.
  *
- * Same reasoning as lib/collaboration.ts: kept in a plain module rather than
- * app/actions/enquiries.ts, since a 'use server' file may only export async
- * functions and this needs to be `.map()`-able on the client.
+ * Data lives in content/full-moon-circle.json, editable directly like the
+ * other content files (offerings, schedule) — same reasoning as
+ * lib/offerings.ts. `time` and `host` start out null: the exact time moves
+ * each month around whichever host has confirmed for that circle, so a date
+ * is bookable ahead of that confirmation, and this file gets filled in once
+ * it's known. formatFullMoonDate() below reads that state and says "to be
+ * confirmed" for whichever part is still missing.
  *
- * These are real full moon dates (source: public full moon calendars), not
- * computed — there is no moon-phase library in this project, and adding one
- * for a single date list was not worth it. THIS LIST IS MANUALLY MAINTAINED
- * and will run out. Refresh it before February 2027 by looking up the next
- * batch of full moon dates and extending the array below.
- *
- * `value` is what gets submitted and stored; `label` is what she sees.
+ * The dates themselves are real full moon dates (source: public full moon
+ * calendars), not computed — there is no moon-phase library in this project.
+ * THIS LIST IS MANUALLY MAINTAINED and will run out. Refresh it before
+ * February 2027 by looking up the next batch of full moon dates.
  */
-export const FULL_MOON_DATES = [
-  { value: '2026-09-26', label: 'Saturday, 26 September 2026' },
-  { value: '2026-10-25', label: 'Sunday, 25 October 2026' },
-  { value: '2026-11-24', label: 'Tuesday, 24 November 2026' },
-  { value: '2026-12-23', label: 'Wednesday, 23 December 2026' },
-  { value: '2027-01-22', label: 'Friday, 22 January 2027' },
-  { value: '2027-02-20', label: 'Saturday, 20 February 2027' },
-] as const
+export interface FullMoonDate {
+  date: string
+  time: string | null
+  host: string | null
+}
 
+export const FULL_MOON_DATES: FullMoonDate[] = (
+  fullMoonData as { dates: FullMoonDate[] }
+).dates
+
+function formatDayMonthYear(dateStr: string): string {
+  // Midday UTC sidesteps local-timezone date-rollback near midnight.
+  const d = new Date(`${dateStr}T12:00:00Z`)
+  return d.toLocaleDateString('en-ZA', {
+    weekday: 'long',
+    day: 'numeric',
+    month: 'long',
+    year: 'numeric',
+    timeZone: 'UTC',
+  })
+}
+
+/** Short label for the application form's dropdown, e.g. what she picks from. */
+export function formatFullMoonOption(entry: FullMoonDate): string {
+  const day = formatDayMonthYear(entry.date)
+  const time = entry.time ?? 'time to be confirmed'
+  return `${day}, ${time}`
+}
+
+/** Fuller label used once a date is looked up by value, e.g. in the confirmation email. */
 export function formatFullMoonDate(value: string): string {
-  return FULL_MOON_DATES.find((d) => d.value === value)?.label ?? value
+  const entry = FULL_MOON_DATES.find((d) => d.date === value)
+  if (!entry) return value
+  const day = formatDayMonthYear(entry.date)
+  const time = entry.time ?? 'time to be confirmed'
+  const host = entry.host ? `, hosted by ${entry.host}` : ' (host to be confirmed)'
+  return `${day}, ${time}${host}`
 }

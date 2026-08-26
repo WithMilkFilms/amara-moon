@@ -28,7 +28,7 @@ export async function adminLogin(
     return {
       ok: false,
       error:
-        'Admin login is not set up yet — ADMIN_PASSWORD and ADMIN_SESSION_SECRET need to be added in Vercel first.',
+        'Admin login is not set up yet, ADMIN_PASSWORD and ADMIN_SESSION_SECRET need to be added in Vercel first.',
     }
   }
   const password = typeof data.get('password') === 'string' ? String(data.get('password')) : ''
@@ -52,9 +52,19 @@ export interface SendCampaignState {
 }
 
 /**
+ * Substitutes {name} (case insensitive) with the subscriber's stored name,
+ * falling back to "there" when a subscriber never gave one. Applied to both
+ * the subject and body, since a subject line is a reasonable place to use it
+ * too.
+ */
+function personalize(text: string, name: string | null): string {
+  return text.replace(/\{name\}/gi, name?.trim() || 'there')
+}
+
+/**
  * Sends one campaign email to every stored subscriber.
  *
- * Sent one at a time in small batches rather than all at once — Resend (like
+ * Sent one at a time in small batches rather than all at once, Resend (like
  * most mail APIs) rate limits per second, and a burst of a few hundred
  * concurrent sends is more likely to trip that than to save real time on a
  * list this size.
@@ -107,12 +117,19 @@ export async function sendCampaign(
         const unsubscribeUrl = `${appBaseUrl()}/unsubscribe?email=${encodeURIComponent(
           row.email,
         )}&token=${signUnsubscribeToken(row.email)}`
-        const html = renderCampaignEmail({ template, subject, body, unsubscribeUrl })
+        const personalSubject = personalize(subject, row.name)
+        const personalBody = personalize(body, row.name)
+        const html = renderCampaignEmail({
+          template,
+          subject: personalSubject,
+          body: personalBody,
+          unsubscribeUrl,
+        })
         try {
           const { error } = await resend.emails.send({
             from,
             to: row.email,
-            subject,
+            subject: personalSubject,
             html,
           })
           return !error

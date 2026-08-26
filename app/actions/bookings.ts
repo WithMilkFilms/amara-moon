@@ -152,7 +152,7 @@ export async function createStayCheckout(input: {
   if (nights > PINE_FOREST_CABIN.maxNights) {
     return {
       ok: false,
-      error: `We can take up to ${PINE_FOREST_CABIN.maxNights} nights online — please get in touch for longer stays.`,
+      error: `We can take up to ${PINE_FOREST_CABIN.maxNights} nights online, please get in touch for longer stays.`,
     }
   }
 
@@ -167,7 +167,7 @@ export async function createStayCheckout(input: {
   if (PINE_FOREST_CABIN.needsPrice) {
     return {
       ok: false,
-      error: 'Online payment for stays is not switched on yet — please send an enquiry.',
+      error: 'Online payment for stays is not switched on yet, please send an enquiry.',
     }
   }
 
@@ -236,7 +236,7 @@ export async function createStayCheckout(input: {
             currency: CURRENCY,
             unit_amount: PINE_FOREST_CABIN.pricePerNightInCents,
             product_data: {
-              name: `${PINE_FOREST_CABIN.name} — ${nights} night${nights > 1 ? 's' : ''}`,
+              name: `${PINE_FOREST_CABIN.name} (${nights} night${nights > 1 ? 's' : ''})`,
               description: `${input.checkIn} to ${input.checkOut} · ${guests} guest${guests > 1 ? 's' : ''}`,
             },
           },
@@ -289,7 +289,7 @@ export async function createSessionCheckout(input: {
   if (offering.needsPrice) {
     return {
       ok: false,
-      error: 'This offering is priced on enquiry — please send us a message.',
+      error: 'This offering is priced on enquiry, please send us a message.',
     }
   }
 

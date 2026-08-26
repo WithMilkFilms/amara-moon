@@ -36,8 +36,10 @@ export function CampaignComposer({ subscriberCount }: Props) {
     () =>
       renderCampaignEmail({
         template,
-        subject: subject || 'Your subject line',
-        body: body || 'Write your message on the left, it will appear here as you type.',
+        subject: (subject || 'Your subject line').replace(/\{name\}/gi, 'Sarah'),
+        body: (
+          body || 'Write your message on the left, it will appear here as you type.'
+        ).replace(/\{name\}/gi, 'Sarah'),
         unsubscribeUrl: '#',
       }),
     [template, subject, body],
@@ -111,6 +113,11 @@ export function CampaignComposer({ subscriberCount }: Props) {
             placeholder="Write it as you would say it. Leave a blank line between paragraphs."
             className={fieldClass}
           />
+          <p className="font-sans text-xs text-muted-foreground">
+            Type {'{name}'} anywhere in the subject or message and it will be swapped for each
+            person&apos;s own name when it sends. Anyone with no name on file gets &quot;there&quot;
+            instead.
+          </p>
         </div>
 
         {state.error ? (

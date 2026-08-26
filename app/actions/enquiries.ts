@@ -138,7 +138,7 @@ export async function submitCollaboration(
       name,
       email,
       phone: phone || null,
-      subject: `Work with Us — ${role}`,
+      subject: `Work with Us: ${role}`,
       offeringSlug: null,
       message: body,
     })
@@ -146,7 +146,7 @@ export async function submitCollaboration(
     if (joinMailingList) await subscribeToMailingList(name, email, 'work-with-us')
 
     await sendEnquiryNotification({
-      subject: `Work with Us — ${role} — ${name}`,
+      subject: `Work with Us: ${role} (${name})`,
       replyTo: email,
       fields: [
         { label: 'Name', value: name },
@@ -226,7 +226,7 @@ export async function submitFullMoonApplication(
     if (joinMailingList) await subscribeToMailingList(name, email, 'womens-full-moon-circle')
 
     await sendEnquiryNotification({
-      subject: `Full Moon Circle application — ${name}`,
+      subject: `Full Moon Circle application (${name})`,
       replyTo: email,
       fields: [
         { label: 'Name', value: name },

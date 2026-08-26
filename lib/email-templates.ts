@@ -23,17 +23,17 @@ export const EMAIL_TEMPLATES: CampaignTemplate[] = [
   {
     id: 'moonlit',
     name: 'Moonlit',
-    description: 'Dark and warm, gold on charcoal — matches the site itself.',
+    description: 'Dark and warm, gold on charcoal, matches the site itself.',
   },
   {
     id: 'earthy',
     name: 'Earthy Warm',
-    description: 'Cream background, terracotta and moss — soft and easy to read.',
+    description: 'Cream background, terracotta and moss, soft and easy to read.',
   },
   {
     id: 'minimal',
     name: 'Minimal Line',
-    description: 'White, quiet, one thin gold rule — gets out of the way of the words.',
+    description: 'White, quiet, one thin gold rule, gets out of the way of the words.',
   },
 ]
 

@@ -3,6 +3,7 @@ import Image from 'next/image'
 import { notFound } from 'next/navigation'
 import { ArrowLeft, Clock } from 'lucide-react'
 import { CtaLink } from '@/components/cta'
+import { FullMoonCircleForm } from '@/components/full-moon-circle-form'
 import { OFFERINGS, formatZar, getOffering } from '@/lib/offerings'
 import { SCHEDULE, formatTime } from '@/lib/schedule'
 import { absoluteUrl, OG_IMAGE, serviceJsonLd } from '@/lib/seo'
@@ -148,32 +149,44 @@ export default async function OfferingPage({
           ) : null}
 
           {/*
-            Offerings with placeholder prices route to an enquiry rather than
-            checkout, so nobody is ever charged a guessed amount.
+            The Full Moon Circle gets its own application form, right here on
+            the offering page, instead of the generic enquire/book buttons —
+            it needs a name, email, phone and a specific date chosen up front.
+            Every other offering keeps the CTA block below unchanged.
           */}
-          <div className="flex flex-col gap-3 pt-1 sm:flex-row">
-            {offering.needsPrice ? (
-              <>
-                <CtaLink href={`/contact?offering=${offering.slug}`} size="lg">
-                  Enquire about this
-                </CtaLink>
-                <CtaLink href="/schedule" variant="outline" size="lg">
-                  See the timetable
-                </CtaLink>
-              </>
-            ) : (
-              <>
-                <CtaLink href={`/book/${offering.slug}`} size="lg">
-                  Book &amp; pay
-                </CtaLink>
-                <CtaLink href={`/contact?offering=${offering.slug}`} variant="outline" size="lg">
-                  Ask a question
-                </CtaLink>
-              </>
-            )}
-          </div>
+          {offering.slug === 'womens-full-moon-circle' ? null : (
+            // Offerings with placeholder prices route to an enquiry rather
+            // than checkout, so nobody is ever charged a guessed amount.
+            <div className="flex flex-col gap-3 pt-1 sm:flex-row">
+              {offering.needsPrice ? (
+                <>
+                  <CtaLink href={`/contact?offering=${offering.slug}`} size="lg">
+                    Enquire about this
+                  </CtaLink>
+                  <CtaLink href="/schedule" variant="outline" size="lg">
+                    See the timetable
+                  </CtaLink>
+                </>
+              ) : (
+                <>
+                  <CtaLink href={`/book/${offering.slug}`} size="lg">
+                    Book &amp; pay
+                  </CtaLink>
+                  <CtaLink href={`/contact?offering=${offering.slug}`} variant="outline" size="lg">
+                    Ask a question
+                  </CtaLink>
+                </>
+              )}
+            </div>
+          )}
         </div>
       </div>
+
+      {offering.slug === 'womens-full-moon-circle' ? (
+        <div className="mx-auto mt-14 max-w-2xl lg:mt-20">
+          <FullMoonCircleForm />
+        </div>
+      ) : null}
     </article>
   )
 }

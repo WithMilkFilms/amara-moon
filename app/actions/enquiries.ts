@@ -4,6 +4,7 @@ import { COLLABORATION_ROLES } from '@/lib/collaboration'
 import { db } from '@/lib/db'
 import { enquiries } from '@/lib/db/schema'
 import { sendEnquiryNotification } from '@/lib/email'
+import { FULL_MOON_DATES, formatFullMoonDate } from '@/lib/full-moon-circle'
 import { PINE_FOREST_CABIN, getOffering } from '@/lib/offerings'
 
 export interface EnquiryState {
@@ -153,5 +154,76 @@ export async function submitCollaboration(
   } catch (error) {
     console.error('submitCollaboration failed:', error)
     return { ok: false, error: 'Something went wrong saving your message. Please try again.' }
+  }
+}
+
+/**
+ * Handles the Women's Full Moon Circle application form.
+ *
+ * Shares the `enquiries` table, same reasoning as submitCollaboration above:
+ * the shape already fits, and the chosen circle date goes into the message
+ * body rather than a new column, avoiding a migration for one extra string.
+ * offeringSlug is always the circle's slug, not user-supplied.
+ */
+export async function submitFullMoonApplication(
+  _prev: EnquiryState,
+  data: FormData,
+): Promise<EnquiryState> {
+  const name = str(data, 'name')
+  const email = str(data, 'email')
+  const phone = str(data, 'phone')
+  const date = str(data, 'date')
+  const notes = str(data, 'message')
+
+  if (!name || !email || !phone || !date) {
+    return {
+      ok: false,
+      error: 'Please fill in your name, email, phone number, and pick a date.',
+    }
+  }
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+    return { ok: false, error: 'That email address does not look right.' }
+  }
+  const isKnownDate = (FULL_MOON_DATES as readonly { value: string }[]).some(
+    (d) => d.value === date,
+  )
+  if (!isKnownDate) {
+    return { ok: false, error: 'Please choose one of the listed dates.' }
+  }
+  if (notes.length > 4000) {
+    return { ok: false, error: 'Please keep your note under 4000 characters.' }
+  }
+
+  const dateLabel = formatFullMoonDate(date)
+  const message = notes
+    ? `Requested circle: ${dateLabel}\n\n${notes}`
+    : `Requested circle: ${dateLabel}`
+
+  try {
+    await db.insert(enquiries).values({
+      name,
+      email,
+      phone,
+      subject: 'Full Moon Circle application',
+      offeringSlug: 'womens-full-moon-circle',
+      message,
+    })
+
+    await sendEnquiryNotification({
+      subject: `Full Moon Circle application — ${name}`,
+      replyTo: email,
+      fields: [
+        { label: 'Name', value: name },
+        { label: 'Email', value: email },
+        { label: 'Phone', value: phone },
+        { label: 'Requested circle', value: dateLabel },
+        { label: 'Note', value: notes ? `\n${notes}` : '' },
+      ],
+    })
+
+    return { ok: true }
+  } catch (error) {
+    console.error('submitFullMoonApplication failed:', error)
+    return { ok: false, error: 'Something went wrong saving your application. Please try again.' }
   }
 }

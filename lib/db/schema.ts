@@ -45,5 +45,27 @@ export const enquiries = pgTable("enquiries", {
   createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
 })
 
+/**
+ * Mailing list for event announcements — separate from `enquiries` on
+ * purpose. An enquiry is one submission; a mailer needs one row per email,
+ * deduplicated, independent of how many times someone has enquired. `email`
+ * is unique so a repeat opt-in updates the existing row (via an upsert in the
+ * server action) instead of piling up duplicates.
+ *
+ * No migration tooling is set up in this repo (no drizzle-kit config, no
+ * migrations folder) — schema changes here are applied by hand against Neon.
+ * See the raw SQL handed over alongside this change.
+ */
+export const subscribers = pgTable("subscribers", {
+  id: serial("id").primaryKey(),
+  name: text("name"),
+  email: text("email").notNull().unique(),
+  // What they opted in through, e.g. "womens-full-moon-circle" — lets a
+  // future mailer segment by source instead of treating the list as one blob.
+  source: text("source"),
+  createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
+})
+
 export type Booking = typeof bookings.$inferSelect
 export type Enquiry = typeof enquiries.$inferSelect
+export type Subscriber = typeof subscribers.$inferSelect

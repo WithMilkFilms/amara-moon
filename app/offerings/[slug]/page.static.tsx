@@ -105,16 +105,27 @@ export default async function OfferingPageStatic({
           </div>
 
           <div className="flex flex-wrap items-center gap-x-8 gap-y-3 border-y border-border py-5">
-            <p className="font-serif text-2xl text-primary">
-              {offering.needsPrice
-                ? 'Price on enquiry'
-                : `${formatZar(offering.priceInCents)}`}
-              {!offering.needsPrice ? (
-                <span className="ml-2 font-sans text-xs uppercase tracking-widest-xs text-muted-foreground">
-                  {offering.unit}
-                </span>
-              ) : null}
-            </p>
+            {offering.slug === 'womens-full-moon-circle' ? (
+              // No on-page form in the static build — this links straight to
+              // the real form on the live app instead of just a price.
+              <a
+                href={appUrl(`/offerings/${offering.slug}`)}
+                className="font-serif text-2xl text-primary underline decoration-primary/40 underline-offset-4 transition-colors hover:text-foreground"
+              >
+                Donation based — apply below
+              </a>
+            ) : (
+              <p className="font-serif text-2xl text-primary">
+                {offering.needsPrice
+                  ? 'Price on enquiry'
+                  : `${formatZar(offering.priceInCents)}`}
+                {!offering.needsPrice ? (
+                  <span className="ml-2 font-sans text-xs uppercase tracking-widest-xs text-muted-foreground">
+                    {offering.unit}
+                  </span>
+                ) : null}
+              </p>
+            )}
             <p className="flex items-center gap-2 font-sans text-sm text-muted-foreground">
               <Clock aria-hidden className="size-4 text-primary" />
               {offering.durationMinutes} minutes

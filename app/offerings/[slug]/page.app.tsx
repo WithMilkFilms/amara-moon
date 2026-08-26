@@ -103,16 +103,27 @@ export default async function OfferingPage({
           </div>
 
           <div className="flex flex-wrap items-center gap-x-8 gap-y-3 border-y border-border py-5">
-            <p className="font-serif text-2xl text-primary">
-              {offering.needsPrice
-                ? 'Price on enquiry'
-                : `${formatZar(offering.priceInCents)}`}
-              {!offering.needsPrice ? (
-                <span className="ml-2 font-sans text-xs uppercase tracking-widest-xs text-muted-foreground">
-                  {offering.unit}
-                </span>
-              ) : null}
-            </p>
+            {offering.slug === 'womens-full-moon-circle' ? (
+              // Donation based rather than a fixed or enquire price — links
+              // straight down to the form instead of just stating a price.
+              <a
+                href="#fmc-apply"
+                className="font-serif text-2xl text-primary underline decoration-primary/40 underline-offset-4 transition-colors hover:text-foreground"
+              >
+                Donation based — apply below
+              </a>
+            ) : (
+              <p className="font-serif text-2xl text-primary">
+                {offering.needsPrice
+                  ? 'Price on enquiry'
+                  : `${formatZar(offering.priceInCents)}`}
+                {!offering.needsPrice ? (
+                  <span className="ml-2 font-sans text-xs uppercase tracking-widest-xs text-muted-foreground">
+                    {offering.unit}
+                  </span>
+                ) : null}
+              </p>
+            )}
             <p className="flex items-center gap-2 font-sans text-sm text-muted-foreground">
               <Clock aria-hidden className="size-4 text-primary" />
               {offering.durationMinutes} minutes
@@ -183,7 +194,7 @@ export default async function OfferingPage({
       </div>
 
       {offering.slug === 'womens-full-moon-circle' ? (
-        <div className="mx-auto mt-14 max-w-2xl lg:mt-20">
+        <div id="fmc-apply" className="mx-auto mt-14 max-w-2xl scroll-mt-24 lg:mt-20">
           <FullMoonCircleForm />
         </div>
       ) : null}

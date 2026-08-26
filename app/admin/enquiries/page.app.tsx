@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { desc } from 'drizzle-orm'
 import { AdminNav } from '@/components/admin-nav'
+import { EnquiryReply } from '@/components/enquiry-reply'
 import { requireAdminSession } from '@/lib/admin-auth'
 import { db } from '@/lib/db'
 import { enquiries } from '@/lib/db/schema'
@@ -141,6 +142,7 @@ export default async function AdminEnquiriesPage({
               <p className="whitespace-pre-wrap font-sans text-sm leading-relaxed text-muted-foreground">
                 {row.message}
               </p>
+              <EnquiryReply email={row.email} subject={row.subject} />
             </div>
           ))}
         </div>

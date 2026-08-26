@@ -13,6 +13,7 @@ import {
   verifyAdminPassword,
 } from '@/lib/admin-auth'
 import { EMAIL_TEMPLATES, renderCampaignEmail } from '@/lib/email-templates'
+import { SITE } from '@/lib/site'
 
 export interface AdminActionState {
   ok: boolean
@@ -126,6 +127,69 @@ export async function sendCampaign(
   }
 
   return { ok: failedCount === 0, sentCount, failedCount }
+}
+
+export interface ReplyState {
+  ok: boolean
+  error?: string
+  sentAt?: number
+}
+
+/**
+ * Sends a one off reply to a single enquiry, straight from the admin panel.
+ *
+ * Separate from sendCampaign on purpose: this is a single plain text email to
+ * one person, not a templated blast to the whole subscriber list, so it skips
+ * EMAIL_TEMPLATES entirely. replyTo is set to info@ (SITE.email) rather than
+ * left unset, so if the guest hits reply in their own inbox it comes back to
+ * the shared inbox, not to whatever RESEND_FROM happens to be.
+ */
+export async function replyToEnquiry(
+  _prev: ReplyState,
+  data: FormData,
+): Promise<ReplyState> {
+  await requireAdminSession()
+
+  const to = String(data.get('to') ?? '').trim()
+  const originalSubject = String(data.get('subject') ?? '').trim()
+  const message = String(data.get('message') ?? '').trim()
+
+  if (!to) {
+    return { ok: false, error: 'Missing recipient address.' }
+  }
+  if (!message) {
+    return { ok: false, error: 'Write a message before sending.' }
+  }
+  if (message.length > 4000) {
+    return { ok: false, error: 'Please keep the reply under 4000 characters.' }
+  }
+
+  const key = process.env.RESEND_API_KEY
+  if (!key) {
+    return { ok: false, error: 'RESEND_API_KEY is not set, so nothing can be sent yet.' }
+  }
+
+  const resend = new Resend(key)
+  const from = process.env.RESEND_FROM ?? 'Amara Moon <onboarding@resend.dev>'
+  const subject = originalSubject ? `Re: ${originalSubject}` : 'Re: your message to Amara Moon'
+
+  try {
+    const { error } = await resend.emails.send({
+      from,
+      to,
+      replyTo: SITE.email,
+      subject,
+      text: message,
+    })
+    if (error) {
+      console.error('replyToEnquiry: Resend rejected the reply:', error)
+      return { ok: false, error: 'Resend rejected the reply. Nothing was sent.' }
+    }
+    return { ok: true, sentAt: Date.now() }
+  } catch (error) {
+    console.error('replyToEnquiry threw:', error)
+    return { ok: false, error: 'Something went wrong sending the reply. Please try again.' }
+  }
 }
 
 /**

@@ -1,6 +1,23 @@
 {
   "offerings": [
     {
+      "unit": "per gathering",
+      "summary": "A women's circle held on each full moon — sharing, sound, breath and ceremony by candlelight.",
+      "durationMinutes": 120,
+      "name": "Woman's Full Moon Circle",
+      "slug": "full-moon-circle",
+      "needsPrice": true,
+      "maxQuantity": 12,
+      "kind": "gathering",
+      "image": "/images/full-moon-circle.jpg",
+      "description": [
+        "A gentle, women-only gathering held on each full moon. We sit in a circle by candlelight to slow down, share what we are carrying, and mark the turn of the month together.",
+        "Each circle weaves together breath, meditation and sound, with space to simply be heard. No experience is needed and you are welcome to come alone — you will not be alone once you arrive.",
+        "Places are limited so the circle stays intimate. Apply below and we will send you the date of the next full moon gathering and everything you need to know."
+      ],
+      "priceInCents": 0
+    },
+    {
       "unit": "per class",
       "summary": "A slow, breath-led practice that works with the flow of prana through the body.",
       "durationMinutes": 75,

@@ -148,7 +148,12 @@ export function serviceJsonLd(offering: Offering) {
     description: offering.summary,
     url,
     image: absoluteUrl(offering.image),
-    serviceType: offering.kind === 'studio_hire' ? 'Studio hire' : 'Wellness session',
+    serviceType:
+      offering.kind === 'studio_hire'
+        ? 'Studio hire'
+        : offering.kind === 'gathering'
+          ? 'Group ceremony'
+          : 'Wellness session',
     provider: { '@id': absoluteUrl('/#business') },
     areaServed: [
       { '@type': 'City', name: 'Cape Town' },

@@ -96,6 +96,19 @@ export function ContactForm({ offeringSlug }: { offeringSlug?: string }) {
         <Textarea id="message" name="message" required rows={6} className={fieldClass} />
       </div>
 
+      <label
+        htmlFor="mailingList"
+        className="flex items-start gap-3 font-sans text-sm text-muted-foreground"
+      >
+        <input
+          id="mailingList"
+          name="mailingList"
+          type="checkbox"
+          className="mt-0.5 size-4 shrink-0 rounded-none border-input accent-primary"
+        />
+        Add me to the mailing list for future events
+      </label>
+
       {state.error ? (
         <p role="alert" className="font-sans text-sm text-destructive">
           {state.error}

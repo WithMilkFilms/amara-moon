@@ -28,6 +28,7 @@ export function StayBookingForm() {
   const [phone, setPhone] = useState('')
   const [notes, setNotes] = useState('')
   const [payment, setPayment] = useState<PaymentMethod>('card')
+  const [mailingList, setMailingList] = useState(false)
 
   const [error, setError] = useState<string | null>(null)
   const [checkout, setCheckout] = useState<
@@ -58,6 +59,7 @@ export function StayBookingForm() {
         phone,
         notes,
         payment,
+        mailingList,
       })
       if (!result.ok) {
         setError(result.error)
@@ -224,6 +226,20 @@ export function StayBookingForm() {
       </dl>
 
       <PaymentMethodChoice value={payment} onChange={setPayment} disabled={pending} />
+
+      <label
+        htmlFor="stayMailingList"
+        className="flex items-start gap-3 font-sans text-sm text-muted-foreground"
+      >
+        <input
+          id="stayMailingList"
+          type="checkbox"
+          checked={mailingList}
+          onChange={(e) => setMailingList(e.target.checked)}
+          className="mt-0.5 size-4 shrink-0 rounded-none border-input accent-primary"
+        />
+        Add me to the mailing list for future events
+      </label>
 
       {error ? (
         <p role="alert" className="font-sans text-sm text-destructive">

@@ -14,6 +14,7 @@ import {
 } from '@/lib/booking'
 import { db } from '@/lib/db'
 import { bookings } from '@/lib/db/schema'
+import { subscribeToMailingList } from '@/lib/mailing-list'
 import { CURRENCY, PINE_FOREST_CABIN, getOffering } from '@/lib/offerings'
 import { AWAITING_EFT, EFT_HOLD_HOURS, type PaymentMethod } from '@/lib/payment'
 import { getStripe } from '@/lib/stripe'
@@ -132,6 +133,7 @@ export async function createStayCheckout(input: {
   phone?: string
   notes?: string
   payment?: PaymentMethod
+  mailingList?: boolean
 }): Promise<CheckoutResult> {
   const guestError = validateGuest(input)
   if (guestError) return { ok: false, error: guestError }
@@ -209,6 +211,10 @@ export async function createStayCheckout(input: {
     notes: input.notes?.trim() || null,
   })
 
+  if (input.mailingList) {
+    await subscribeToMailingList(input.name.trim(), input.email.trim(), 'stay-booking')
+  }
+
   // EFT stops here: the row holds the dates and the guest gets the reference to
   // use as their payment reference. Nothing is charged automatically.
   if (payByEft) return { ok: true, method: 'eft', reference }
@@ -254,6 +260,7 @@ export async function createSessionCheckout(input: {
   phone?: string
   notes?: string
   payment?: PaymentMethod
+  mailingList?: boolean
 }): Promise<CheckoutResult> {
   const guestError = validateGuest(input)
   if (guestError) return { ok: false, error: guestError }
@@ -325,6 +332,10 @@ export async function createSessionCheckout(input: {
     status: payByEft ? AWAITING_EFT : 'pending',
     notes: input.notes?.trim() || null,
   })
+
+  if (input.mailingList) {
+    await subscribeToMailingList(input.name.trim(), input.email.trim(), 'session-booking')
+  }
 
   if (payByEft) return { ok: true, method: 'eft', reference }
 

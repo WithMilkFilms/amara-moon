@@ -2,9 +2,10 @@
 
 import { COLLABORATION_ROLES } from '@/lib/collaboration'
 import { db } from '@/lib/db'
-import { enquiries, subscribers } from '@/lib/db/schema'
+import { enquiries } from '@/lib/db/schema'
 import { sendEnquiryNotification } from '@/lib/email'
 import { FULL_MOON_DATES, formatFullMoonDate } from '@/lib/full-moon-circle'
+import { subscribeToMailingList } from '@/lib/mailing-list'
 import { PINE_FOREST_CABIN, getOffering } from '@/lib/offerings'
 
 export interface EnquiryState {
@@ -34,6 +35,7 @@ export async function submitEnquiry(
   const phone = str(data, 'phone')
   const subject = str(data, 'subject')
   const offeringSlug = str(data, 'offeringSlug')
+  const joinMailingList = data.get('mailingList') === 'on'
 
   if (!name || !email || !message) {
     return { ok: false, error: 'Please fill in your name, email and message.' }
@@ -63,6 +65,8 @@ export async function submitEnquiry(
       message,
     })
 
+    if (joinMailingList) await subscribeToMailingList(name, email, 'contact')
+
     // Awaited, not fired-and-forgotten: serverless functions can freeze the
     // moment a response is returned, which would kill an unawaited send.
     await sendEnquiryNotification({
@@ -73,6 +77,7 @@ export async function submitEnquiry(
         { label: 'Email', value: email },
         { label: 'Phone', value: phone },
         { label: 'About', value: slug ?? 'General enquiry' },
+        { label: 'Joining mailing list', value: joinMailingList ? 'Yes' : 'No' },
         { label: 'Message', value: `\n${message}` },
       ],
     })
@@ -103,6 +108,7 @@ export async function submitCollaboration(
   const phone = str(data, 'phone')
   const links = str(data, 'links')
   const rawRole = str(data, 'role')
+  const joinMailingList = data.get('mailingList') === 'on'
 
   // `links` is required alongside the rest: seeing someone's work is how we
   // judge a collaboration, so re-checked here and not just via the input's
@@ -137,6 +143,8 @@ export async function submitCollaboration(
       message: body,
     })
 
+    if (joinMailingList) await subscribeToMailingList(name, email, 'work-with-us')
+
     await sendEnquiryNotification({
       subject: `Work with Us — ${role} — ${name}`,
       replyTo: email,
@@ -146,6 +154,7 @@ export async function submitCollaboration(
         { label: 'Phone', value: phone },
         { label: 'Role', value: role },
         { label: 'Links', value: links },
+        { label: 'Joining mailing list', value: joinMailingList ? 'Yes' : 'No' },
         { label: 'About their work', value: `\n${message}` },
       ],
     })
@@ -214,22 +223,7 @@ export async function submitFullMoonApplication(
       message,
     })
 
-    if (joinMailingList) {
-      try {
-        await db
-          .insert(subscribers)
-          .values({ name, email, source: 'womens-full-moon-circle' })
-          .onConflictDoUpdate({
-            target: subscribers.email,
-            set: { name },
-          })
-      } catch (error) {
-        // Soft-fail, same reasoning as email below: the application is the
-        // record that matters, a mailing-list write hiccup should not turn
-        // into an error message for someone who just applied.
-        console.error('subscribers upsert failed:', error)
-      }
-    }
+    if (joinMailingList) await subscribeToMailingList(name, email, 'womens-full-moon-circle')
 
     await sendEnquiryNotification({
       subject: `Full Moon Circle application — ${name}`,

@@ -14,9 +14,8 @@ export const dynamic = 'force-dynamic'
 
 // Every enquiry-style form on the site (contact, work with us, Full Moon
 // Circle applications) shares this one table — see app/actions/enquiries.ts
-// for why. Capped rather than unbounded: a long-running site could build up
-// thousands of rows, and this page is a quick lookup tool, not a report.
-const ROW_LIMIT = 200
+// for why. This is meant to be the full history, no cap, so nothing already
+// submitted ever silently drops off this page.
 
 type Category = 'all' | 'contact' | 'work-with-us' | 'full-moon-circle'
 
@@ -55,11 +54,7 @@ export default async function AdminEnquiriesPage({
   let rows: Array<typeof enquiries.$inferSelect> = []
   let loadError = false
   try {
-    rows = await db
-      .select()
-      .from(enquiries)
-      .orderBy(desc(enquiries.createdAt))
-      .limit(ROW_LIMIT)
+    rows = await db.select().from(enquiries).orderBy(desc(enquiries.createdAt))
   } catch (error) {
     console.error('Admin enquiries: failed to load enquiries:', error)
     loadError = true
@@ -77,7 +72,7 @@ export default async function AdminEnquiriesPage({
         <p className="font-sans text-sm text-muted-foreground">
           {loadError
             ? "Couldn't load enquiries."
-            : `Every contact message, Work with Us application, and Full Moon Circle application, newest first${rows.length === ROW_LIMIT ? ` — showing the most recent ${ROW_LIMIT}` : ''}.`}
+            : `Every contact message, Work with Us application, and Full Moon Circle application ever submitted, ${rows.length} total, newest first.`}
         </p>
       </div>
 

@@ -61,9 +61,13 @@ export function SiteHeader() {
           <LogoWordmark markClassName="h-9 w-9" />
         </Link>
 
-        {/* gap-6 rather than gap-7: six links plus the wordmark and the stay CTA
-            only just clear 1152px, and the extra rem was what tipped it over. */}
-        <nav aria-label="Main" className="hidden items-center gap-6 lg:flex">
+        {/* gap-3.5: with the Full Moon Circle link this is eight links plus the
+            wordmark and the stay CTA. gap-6 (previously tuned down from gap-7
+            for seven links) measurably overflowed past 1152px with an eighth
+            link added — verified with a proxy render of this markup. gap-3.5
+            is the smallest step that clears 1152px again; drop a link to the
+            footer only, or shorten a label, before loosening this further. */}
+        <nav aria-label="Main" className="hidden items-center gap-3.5 lg:flex">
           {NAV_LINKS.map((link) => {
             const active = pathname === link.href || pathname.startsWith(`${link.href}/`)
             return (

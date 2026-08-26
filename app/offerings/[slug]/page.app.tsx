@@ -110,7 +110,7 @@ export default async function OfferingPage({
                 href="#fmc-apply"
                 className="font-serif text-2xl text-primary underline decoration-primary/40 underline-offset-4 transition-colors hover:text-foreground"
               >
-                Donation based — apply below
+                Donation based, apply below
               </a>
             ) : (
               <p className="font-serif text-2xl text-primary">

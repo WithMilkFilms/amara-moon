@@ -112,7 +112,7 @@ export default async function OfferingPageStatic({
                 href={appUrl(`/offerings/${offering.slug}`)}
                 className="font-serif text-2xl text-primary underline decoration-primary/40 underline-offset-4 transition-colors hover:text-foreground"
               >
-                Donation based — apply below
+                Donation based, apply below
               </a>
             ) : (
               <p className="font-serif text-2xl text-primary">
@@ -190,7 +190,7 @@ export default async function OfferingPageStatic({
       {offering.slug === 'womens-full-moon-circle' ? (
         <div className="mx-auto mt-14 flex max-w-2xl flex-col gap-4 border-l-2 border-primary py-2 pl-5 lg:mt-20">
           <p className="max-w-prose font-sans text-sm leading-relaxed text-pretty text-muted-foreground">
-            Apply to join on our booking site — name, email, phone and your
+            Apply to join on our booking site: name, email, phone and your
             preferred date, and we will confirm your place ahead of that circle.
           </p>
           <CtaLink

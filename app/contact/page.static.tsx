@@ -20,7 +20,7 @@ import { CONTACT_PAGE } from '@/lib/pages'
 export const metadata: Metadata = {
   title: 'Contact',
   description:
-    'Get in touch with Amara Moon in Hout Bay, Cape Town — classes, studio hire, sauna and overnight stays.',
+    'Get in touch with Amara Moon in Hout Bay, Cape Town: classes, studio hire, sauna and overnight stays.',
   alternates: { canonical: '/contact' },
 }
 
@@ -43,8 +43,8 @@ export default function ContactPageStatic() {
                 Get in touch
               </h2>
               <p className="max-w-prose font-sans text-base leading-relaxed text-pretty text-muted-foreground">
-                WhatsApp is usually quickest. For anything longer — retreat plans,
-                group bookings, studio hire — email gives us room to answer properly.
+                WhatsApp is usually quickest. For anything longer, retreat plans,
+                group bookings, studio hire, email gives us room to answer properly.
               </p>
             </div>
 

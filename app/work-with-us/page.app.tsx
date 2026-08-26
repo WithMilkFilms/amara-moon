@@ -10,7 +10,7 @@ import { LOOKING_FOR } from '@/lib/work-with-us'
 export const metadata: Metadata = {
   title: 'Work with Us',
   description:
-    'Teach, host a retreat or collaborate at Amara Moon — a family run wellness sanctuary in Hout Bay, Cape Town. Introduce yourself and your practice.',
+    'Teach, host a retreat or collaborate at Amara Moon, a family run wellness sanctuary in Hout Bay, Cape Town. Introduce yourself and your practice.',
   alternates: { canonical: '/work-with-us' },
 }
 

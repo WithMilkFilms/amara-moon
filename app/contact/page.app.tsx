@@ -9,7 +9,7 @@ import { CONTACT_PAGE } from '@/lib/pages'
 export const metadata: Metadata = {
   title: 'Contact',
   description:
-    'Get in touch with Amara Moon in Hout Bay, Cape Town — classes, studio hire, sauna and overnight stays.',
+    'Get in touch with Amara Moon in Hout Bay, Cape Town: classes, studio hire, sauna and overnight stays.',
   alternates: { canonical: '/contact' },
 }
 

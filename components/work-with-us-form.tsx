@@ -24,7 +24,7 @@ export function WorkWithUsForm() {
       <div className="flex flex-col items-start gap-4 border border-primary/30 bg-card p-8">
         <Check aria-hidden className="size-6 text-primary" />
         <h2 className="font-serif text-2xl text-foreground">
-          Thank you — we have your details.
+          Thank you, we have your details.
         </h2>
         <p className="font-sans text-sm leading-relaxed text-muted-foreground">
           We read every one of these properly, so it may take us a few days to reply. If

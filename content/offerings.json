@@ -27,7 +27,7 @@
       "kind": "session",
       "image": "/images/breathwork.png",
       "description": [
-        "A guided session using conscious connected breathing. The breath is the whole technique — no experience is needed, only willingness.",
+        "A guided session using conscious connected breathing. The breath is the whole technique, no experience is needed, only willingness.",
         "Held in the Oasis Studio with the doors open to the valley. Bring water and wear something warm for the rest at the end."
       ],
       "priceInCents": 25000
@@ -53,7 +53,7 @@
       "unit": "per session",
       "summary": "A full forty minutes in the infrared sauna, looking into the trees.",
       "durationMinutes": 40,
-      "name": "Sauna — 40 min (Infrared)",
+      "name": "Sauna (40 min, Infrared)",
       "slug": "sauna-40",
       "needsPrice": false,
       "maxQuantity": 4,
@@ -67,9 +67,9 @@
     },
     {
       "unit": "per session",
-      "summary": "A shorter infrared session — ideal after a trail run or a class.",
+      "summary": "A shorter infrared session, ideal after a trail run or a class.",
       "durationMinutes": 20,
-      "name": "Sauna — 20 min (Infrared)",
+      "name": "Sauna (20 min, Infrared)",
       "slug": "sauna-20",
       "needsPrice": false,
       "maxQuantity": 4,

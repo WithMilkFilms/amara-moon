@@ -21,7 +21,7 @@ export function ContactForm({ offeringSlug }: { offeringSlug?: string }) {
     return (
       <div className="flex flex-col items-start gap-4 border border-primary/30 bg-card p-8">
         <Check aria-hidden className="size-6 text-primary" />
-        <h2 className="font-serif text-2xl text-foreground">Thank you — that&apos;s with us.</h2>
+        <h2 className="font-serif text-2xl text-foreground">Thank you, that&apos;s with us.</h2>
         <p className="font-sans text-sm leading-relaxed text-muted-foreground">
           We&apos;ll come back to you as soon as we can. If it&apos;s urgent, call us on{' '}
           <span className="text-foreground">+27 71 686 97 32</span>.

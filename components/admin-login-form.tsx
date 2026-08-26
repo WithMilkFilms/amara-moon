@@ -19,7 +19,7 @@ export function AdminLoginForm() {
       <div className="flex flex-col gap-1">
         <h1 className="font-serif text-2xl text-foreground">Admin</h1>
         <p className="font-sans text-sm text-muted-foreground">
-          Password protected — for sending the Amara Moon mailer.
+          Password protected, for sending the Amara Moon mailer.
         </p>
       </div>
 

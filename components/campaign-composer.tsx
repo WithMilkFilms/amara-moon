@@ -37,7 +37,7 @@ export function CampaignComposer({ subscriberCount }: Props) {
       renderCampaignEmail({
         template,
         subject: subject || 'Your subject line',
-        body: body || 'Write your message on the left — it will appear here as you type.',
+        body: body || 'Write your message on the left, it will appear here as you type.',
         unsubscribeUrl: '#',
       }),
     [template, subject, body],
@@ -50,7 +50,7 @@ export function CampaignComposer({ subscriberCount }: Props) {
         <h2 className="font-serif text-2xl text-foreground">Sent.</h2>
         <p className="font-sans text-sm leading-relaxed text-muted-foreground">
           Delivered to {state.sentCount} {state.sentCount === 1 ? 'address' : 'addresses'}
-          {state.failedCount ? `, ${state.failedCount} failed — check the server log.` : '.'}
+          {state.failedCount ? `, ${state.failedCount} failed, check the server log.` : '.'}
         </p>
       </div>
     )

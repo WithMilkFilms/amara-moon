@@ -183,12 +183,17 @@ export async function replyToEnquiry(
     })
     if (error) {
       console.error('replyToEnquiry: Resend rejected the reply:', error)
-      return { ok: false, error: 'Resend rejected the reply. Nothing was sent.' }
+      // Surfaced directly rather than a generic message: this admin page is
+      // only ever seen by David and his wife, not a public form, so showing
+      // Resend's actual reason (unverified domain, restricted key, etc.)
+      // saves a round trip through Vercel's logs to find out why.
+      return { ok: false, error: `Resend rejected the reply: ${error.message}` }
     }
     return { ok: true, sentAt: Date.now() }
   } catch (error) {
     console.error('replyToEnquiry threw:', error)
-    return { ok: false, error: 'Something went wrong sending the reply. Please try again.' }
+    const detail = error instanceof Error ? error.message : String(error)
+    return { ok: false, error: `Something went wrong sending the reply: ${detail}` }
   }
 }
 

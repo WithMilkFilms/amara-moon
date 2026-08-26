@@ -10,7 +10,7 @@ import { PINE_FOREST_CABIN, formatZar } from '@/lib/offerings'
 export const metadata: Metadata = {
   title: 'Book the Pine Forest Cabin',
   description:
-    'Book a night in the Pine Forest Cabin — a self-contained cabin for two in the Orangekloof Valley, with access to the pool, deck and mountain trails.',
+    'Book a night in the Pine Forest Cabin, a self-contained cabin for two in the Orangekloof Valley, with access to the pool, deck and mountain trails.',
   alternates: { canonical: '/book-a-room' },
 }
 

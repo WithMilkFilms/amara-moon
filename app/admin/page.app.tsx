@@ -1,9 +1,7 @@
 import type { Metadata } from 'next'
 import { desc } from 'drizzle-orm'
-import { Mail } from 'lucide-react'
-import { adminLogout } from '@/app/actions/admin'
+import { AdminNav } from '@/components/admin-nav'
 import { requireAdminSession } from '@/lib/admin-auth'
-import { CtaButton, CtaLink } from '@/components/cta'
 import { db } from '@/lib/db'
 import { subscribers } from '@/lib/db/schema'
 
@@ -35,26 +33,15 @@ export default async function AdminDashboardPage() {
 
   return (
     <div className="mx-auto max-w-4xl px-6 pb-20 pt-28 md:pt-36">
-      <div className="mb-10 flex flex-wrap items-center justify-between gap-4">
-        <div className="flex flex-col gap-1">
-          <h1 className="font-serif text-3xl text-foreground">Mailing list</h1>
-          <p className="font-sans text-sm text-muted-foreground">
-            {loadError
-              ? "Couldn't load the list."
-              : `${rows.length} ${rows.length === 1 ? 'address' : 'addresses'} stored, collected from the site's opt in checkboxes.`}
-          </p>
-        </div>
-        <div className="flex items-center gap-3">
-          <CtaLink href="/admin/compose" size="lg">
-            <Mail aria-hidden className="size-4" />
-            Compose mailer
-          </CtaLink>
-          <form action={adminLogout}>
-            <CtaButton type="submit" variant="quiet" size="bare">
-              Log out
-            </CtaButton>
-          </form>
-        </div>
+      <AdminNav active="list" />
+
+      <div className="mb-8 flex flex-col gap-1">
+        <h1 className="font-serif text-3xl text-foreground">Mailing list</h1>
+        <p className="font-sans text-sm text-muted-foreground">
+          {loadError
+            ? "Couldn't load the list."
+            : `${rows.length} ${rows.length === 1 ? 'address' : 'addresses'} stored, collected from the site's opt in checkboxes.`}
+        </p>
       </div>
 
       {loadError ? (

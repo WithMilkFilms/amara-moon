@@ -8,12 +8,13 @@ import { GoldRule, SectionHeading } from '@/components/section-heading'
 import { IMAGES } from '@/lib/images'
 import { OFFERINGS_PAGE } from '@/lib/pages'
 import { PINE_FOREST_CABIN, OFFERINGS, formatZar } from '@/lib/offerings'
+import { canonicalPath } from '@/lib/seo'
 
 export const metadata: Metadata = {
-  title: 'Offerings',
+  title: 'Retreats & Offerings',
   description:
-    'Oasis Studio hire, Pranic Balancing Yoga, breathwork and infrared sauna at Amara Moon in Hout Bay, Cape Town.',
-  alternates: { canonical: '/offerings' },
+    'Yoga, breathwork, infrared sauna and Oasis Studio hire come together as Amara Moon’s own wellness retreat experience in Hout Bay, Cape Town.',
+  alternates: { canonical: canonicalPath('/offerings') },
 }
 
 export default function OfferingsPage() {
@@ -26,6 +27,21 @@ export default function OfferingsPage() {
         image={IMAGES.studioInterior}
         imageAlt="The Oasis Studio, mats and crystal singing bowls set out on wooden floors"
       />
+
+      {/*
+        Frames the individual bookable items below as pieces of one retreat
+        experience, in partnership with the guest facilitators who run them,
+        rather than a plain list of unrelated services. Sits ahead of the
+        grid on purpose, so a visitor reads the whole before the parts.
+      */}
+      <section className="mx-auto max-w-6xl px-6 pt-16 md:pt-24">
+        <SectionHeading
+          eyebrow={OFFERINGS_PAGE.retreatIntro.eyebrow}
+          title={OFFERINGS_PAGE.retreatIntro.title}
+          intro={OFFERINGS_PAGE.retreatIntro.body}
+          className="max-w-3xl"
+        />
+      </section>
 
       <section className="mx-auto max-w-6xl px-6 py-16 md:py-24">
         <div className="grid gap-x-8 gap-y-14 sm:grid-cols-2 lg:grid-cols-3">

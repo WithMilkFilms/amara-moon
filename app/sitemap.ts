@@ -1,6 +1,6 @@
 import type { MetadataRoute } from 'next'
 import { OFFERINGS } from '@/lib/offerings'
-import { absoluteUrl } from '@/lib/seo'
+import { absoluteUrl, canonicalPath } from '@/lib/seo'
 
 /**
  * Sitemap for every indexable route.
@@ -42,7 +42,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   return [
     ...staticRoutes.map((route) => ({
-      url: absoluteUrl(route.path),
+      url: absoluteUrl(canonicalPath(route.path)),
       lastModified: now,
       changeFrequency: route.changeFrequency,
       priority: route.priority,
@@ -50,7 +50,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     // One entry per offering, generated from the same source the pages use so
     // a new offering cannot be added without appearing here.
     ...OFFERINGS.map((offering) => ({
-      url: absoluteUrl(`/offerings/${offering.slug}`),
+      url: absoluteUrl(canonicalPath(`/offerings/${offering.slug}`)),
       lastModified: now,
       changeFrequency: 'monthly' as const,
       priority: 0.7,

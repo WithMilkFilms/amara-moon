@@ -4,12 +4,13 @@ import { GalleryGrid } from '@/components/gallery-grid'
 import { PageHeader } from '@/components/page-header'
 import { GALLERY } from '@/lib/images'
 import { GALLERY_PAGE } from '@/lib/pages'
+import { canonicalPath } from '@/lib/seo'
 
 export const metadata: Metadata = {
   title: 'Gallery',
   description:
     'The studio, the garden, the pool and the valley at Amara Moon in Hout Bay, Cape Town.',
-  alternates: { canonical: '/gallery' },
+  alternates: { canonical: canonicalPath('/gallery') },
 }
 
 export default function GalleryPage() {

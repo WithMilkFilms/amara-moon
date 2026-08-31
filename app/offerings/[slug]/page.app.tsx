@@ -6,7 +6,7 @@ import { CtaLink } from '@/components/cta'
 import { FullMoonCircleForm } from '@/components/full-moon-circle-form'
 import { OFFERINGS, formatZar, getOffering } from '@/lib/offerings'
 import { SCHEDULE, formatTime } from '@/lib/schedule'
-import { absoluteUrl, OG_IMAGE, serviceJsonLd } from '@/lib/seo'
+import { absoluteUrl, canonicalPath, OG_IMAGE, serviceJsonLd } from '@/lib/seo'
 
 export function generateStaticParams() {
   return OFFERINGS.map((o) => ({ slug: o.slug }))
@@ -21,7 +21,7 @@ export async function generateMetadata({
   const offering = getOffering(slug)
   if (!offering) return { title: 'Offering not found' }
 
-  const canonical = `/offerings/${offering.slug}`
+  const canonical = canonicalPath(`/offerings/${offering.slug}`)
   // Prefer the offering's own photo for the share card so a link to a class
   // does not preview with the generic homepage image.
   const image = offering.image ? absoluteUrl(offering.image) : OG_IMAGE.url

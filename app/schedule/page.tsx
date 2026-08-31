@@ -6,12 +6,13 @@ import { PageHeader } from '@/components/page-header'
 import { IMAGES } from '@/lib/images'
 import { SCHEDULE_PAGE } from '@/lib/pages'
 import { PROGRAMME } from '@/lib/schedule'
+import { canonicalPath } from '@/lib/seo'
 
 export const metadata: Metadata = {
   title: 'Schedule',
   description:
     'Yoga, breathwork, movement, beach yoga, trail hikes and sauna at Amara Moon in Hout Bay, Cape Town. Times for the coming season are being confirmed.',
-  alternates: { canonical: '/schedule' },
+  alternates: { canonical: canonicalPath('/schedule') },
 }
 
 export default function SchedulePage() {

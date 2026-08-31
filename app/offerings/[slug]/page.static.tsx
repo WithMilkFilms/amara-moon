@@ -6,7 +6,7 @@ import { CtaLink } from '@/components/cta'
 import { appUrl } from '@/lib/deployment'
 import { OFFERINGS, formatZar, getOffering } from '@/lib/offerings'
 import { SCHEDULE, formatTime } from '@/lib/schedule'
-import { absoluteUrl, OG_IMAGE, serviceJsonLd } from '@/lib/seo'
+import { absoluteUrl, canonicalPath, OG_IMAGE, serviceJsonLd } from '@/lib/seo'
 
 /**
  * Static-export twin of page.app.tsx.
@@ -32,7 +32,7 @@ export async function generateMetadata({
   const offering = getOffering(slug)
   if (!offering) return { title: 'Offering not found' }
 
-  const canonical = `/offerings/${offering.slug}`
+  const canonical = canonicalPath(`/offerings/${offering.slug}`)
   const image = offering.image ? absoluteUrl(offering.image) : OG_IMAGE.url
 
   return {

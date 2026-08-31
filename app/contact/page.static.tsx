@@ -6,6 +6,7 @@ import { appUrl } from '@/lib/deployment'
 import { IMAGES } from '@/lib/images'
 import { SITE } from '@/lib/site'
 import { CONTACT_PAGE } from '@/lib/pages'
+import { canonicalPath } from '@/lib/seo'
 
 /**
  * Static-export twin of app/contact/page.app.tsx.
@@ -21,7 +22,7 @@ export const metadata: Metadata = {
   title: 'Contact',
   description:
     'Get in touch with Amara Moon in Hout Bay, Cape Town: classes, studio hire, sauna and overnight stays.',
-  alternates: { canonical: '/contact' },
+  alternates: { canonical: canonicalPath('/contact') },
 }
 
 export default function ContactPageStatic() {

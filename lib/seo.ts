@@ -1,4 +1,5 @@
 import type { Offering } from '@/lib/offerings'
+import { IS_STATIC_EXPORT } from '@/lib/deployment'
 import { DAYS, SCHEDULE } from '@/lib/schedule'
 import { SITE } from '@/lib/site'
 
@@ -24,6 +25,27 @@ export const SITE_URL = (() => {
 /** Absolute URL for a site-relative path. */
 export function absoluteUrl(path = '/'): string {
   return `${SITE_URL}${path.startsWith('/') ? path : `/${path}`}`
+}
+
+/**
+ * Normalises a page route for use in a canonical tag or the sitemap, so the
+ * URL Google is told about always matches the URL the server actually serves.
+ *
+ * next.config.mjs sets `trailingSlash: true` only for the static export,
+ * since Apache serves /offerings/index.html at /offerings/, and redirects the
+ * no-slash form to it. The Vercel app does the opposite, no trailing slash.
+ * A canonical or sitemap entry that names the redirected-from URL instead of
+ * the real one gets flagged in Search Console as "Page with redirect" rather
+ * than indexed, so this has to track whichever build is currently running
+ * rather than being written by hand on each page.
+ *
+ * Only for page routes. Do not use on assets (images, fonts) or on fragment
+ * links like `/#business`, neither of which take a trailing slash.
+ */
+export function canonicalPath(path: string): string {
+  if (!IS_STATIC_EXPORT) return path
+  if (path === '/' || path.endsWith('/')) return path
+  return `${path}/`
 }
 
 /**

@@ -137,7 +137,7 @@ export function localBusinessJsonLd() {
     },
     geo: {
       '@type': 'GeoCoordinates',
-      // Approximate — the foot of the Orangekloof valley. See SITE.geo.
+      // From the Google Business Profile embed for Amara Moon. See SITE.geo.
       latitude: SITE.geo.latitude,
       longitude: SITE.geo.longitude,
     },

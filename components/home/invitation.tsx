@@ -37,8 +37,8 @@ export function Invitation() {
 
         <div className="relative aspect-4/5 w-full overflow-hidden rounded-sm lg:w-[45%]">
           <Image
-            src={IMAGES.valleyTrail || "/placeholder.svg"}
-            alt="Sunset light on the forest trail beside the stream, climbing towards Myburghs waterfall ravine"
+            src={IMAGES.hotTub || "/placeholder.svg"}
+            alt="The hot tub set into the upper deck, the pool and pergola below"
             fill
             sizes="(min-width: 1024px) 45vw, 100vw"
             className="object-cover"

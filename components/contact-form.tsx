@@ -7,6 +7,8 @@ import { CtaButton } from '@/components/cta'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Textarea } from '@/components/ui/textarea'
+import { isValidDateString } from '@/lib/booking'
+import { formatGatheringDate } from '@/lib/gatherings'
 import { OFFERINGS, PINE_FOREST_CABIN } from '@/lib/offerings'
 
 const initial: EnquiryState = { ok: false }
@@ -14,8 +16,30 @@ const initial: EnquiryState = { ok: false }
 const fieldClass =
   'rounded-none border-input bg-card font-sans text-foreground placeholder:text-muted-foreground/60'
 
-export function ContactForm({ offeringSlug }: { offeringSlug?: string }) {
+export function ContactForm({
+  offeringSlug,
+  reservationDate,
+}: {
+  offeringSlug?: string
+  reservationDate?: string
+}) {
   const [state, action, pending] = useActionState(submitEnquiry, initial)
+
+  // A reservation link (from the schedule) arrives as ?offering=&date=. Only
+  // honour it when both are real, then pre-fill the form so the guest just
+  // confirms and sends. The server re-checks; this is only for convenience.
+  const validDate =
+    reservationDate && isValidDateString(reservationDate) ? reservationDate : undefined
+  const reservingName = validDate
+    ? OFFERINGS.find((o) => o.slug === offeringSlug)?.name
+    : undefined
+  const reserving =
+    validDate && reservingName
+      ? { name: reservingName, label: formatGatheringDate(validDate) }
+      : null
+  const messageDefault = reserving
+    ? `Hi Kirst, I'd like to reserve a place for the ${reserving.name} on ${reserving.label}. Please send me the details and how to pay to hold my place.`
+    : undefined
 
   if (state.ok) {
     return (
@@ -32,6 +56,17 @@ export function ContactForm({ offeringSlug }: { offeringSlug?: string }) {
 
   return (
     <form action={action} className="flex flex-col gap-5">
+      {reserving ? (
+        <div className="flex flex-col gap-1 border border-primary/30 bg-primary/5 p-5">
+          <span className="tracking-widest-xs font-sans text-[0.7rem] uppercase text-primary">
+            Reserving a place
+          </span>
+          <span className="font-serif text-lg text-foreground">{reserving.name}</span>
+          <span className="font-sans text-sm text-muted-foreground">{reserving.label}</span>
+          <input type="hidden" name="reservationDate" value={validDate} />
+        </div>
+      ) : null}
+
       <div className="grid gap-5 sm:grid-cols-2">
         <div className="flex flex-col gap-2">
           <Label htmlFor="name" className="label-xs font-sans text-muted-foreground">
@@ -93,7 +128,14 @@ export function ContactForm({ offeringSlug }: { offeringSlug?: string }) {
         <Label htmlFor="message" className="label-xs font-sans text-muted-foreground">
           Message
         </Label>
-        <Textarea id="message" name="message" required rows={6} className={fieldClass} />
+        <Textarea
+          id="message"
+          name="message"
+          required
+          rows={6}
+          defaultValue={messageDefault}
+          className={fieldClass}
+        />
       </div>
 
       {state.error ? (

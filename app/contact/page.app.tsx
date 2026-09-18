@@ -16,9 +16,9 @@ export const metadata: Metadata = {
 export default async function ContactPage({
   searchParams,
 }: {
-  searchParams: Promise<{ offering?: string }>
+  searchParams: Promise<{ offering?: string; date?: string }>
 }) {
-  const { offering } = await searchParams
+  const { offering, date } = await searchParams
 
   return (
     <>
@@ -32,7 +32,7 @@ export default async function ContactPage({
 
       <section className="mx-auto max-w-6xl px-6 py-16 md:py-24">
         <div className="grid gap-12 lg:grid-cols-[1fr_20rem] lg:gap-16">
-          <ContactForm offeringSlug={offering} />
+          <ContactForm offeringSlug={offering} reservationDate={date} />
 
           <aside className="flex flex-col gap-8 lg:border-l lg:border-border lg:pl-12">
             <div className="flex flex-col gap-4">

@@ -2,7 +2,9 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import { ArrowUpRight } from 'lucide-react'
 import { CtaLink } from '@/components/cta'
+import { GatheringReserve } from '@/components/booking/gathering-reserve'
 import { PageHeader } from '@/components/page-header'
+import { getGatherings } from '@/lib/gatherings'
 import { IMAGES } from '@/lib/images'
 import { SCHEDULE_PAGE } from '@/lib/pages'
 import { PROGRAMME } from '@/lib/schedule'
@@ -35,7 +37,66 @@ export default function SchedulePage() {
           {SCHEDULE_PAGE.note}
         </p>
 
-        <ul className="mt-12 flex flex-col">
+        <div className="mt-14 flex flex-col gap-8">
+          <div className="flex flex-col gap-2">
+            <span className="tracking-widest-xs font-sans text-xs uppercase text-primary">
+              Reserve a place
+            </span>
+            <h2 className="font-serif text-2xl text-foreground sm:text-3xl">
+              Circles &amp; courses
+            </h2>
+            <p className="max-w-2xl font-sans text-sm leading-relaxed text-pretty text-muted-foreground">
+              These run on set dates and keep to a small group. Choose a date and send it
+              through — Kirst will reply with everything you need, including how to pay to
+              hold your place.
+            </p>
+          </div>
+
+          <div className="grid gap-6 md:grid-cols-2">
+            {getGatherings().map((gathering) => (
+              <article
+                key={gathering.slug}
+                className="flex flex-col gap-5 border border-border bg-card/40 p-8"
+              >
+                <div className="flex flex-col gap-2">
+                  <span className="tracking-widest-xs font-sans text-[0.7rem] uppercase text-primary">
+                    {gathering.cadence}
+                  </span>
+                  <h3 className="font-serif text-2xl text-foreground">
+                    <Link
+                      href={`/offerings/${gathering.slug}`}
+                      className="outline-none transition-colors hover:text-primary focus-visible:text-primary"
+                    >
+                      {gathering.name}
+                    </Link>
+                  </h3>
+                  <p className="font-sans text-sm leading-relaxed text-pretty text-muted-foreground">
+                    {gathering.blurb}
+                  </p>
+                </div>
+
+                <dl className="flex flex-wrap gap-x-10 gap-y-3 border-y border-border py-4">
+                  <div className="flex flex-col gap-1">
+                    <dt className="tracking-widest-xs font-sans text-[0.7rem] uppercase text-muted-foreground">
+                      Cost
+                    </dt>
+                    <dd className="font-sans text-sm text-foreground">{gathering.priceLabel}</dd>
+                  </div>
+                  <div className="flex flex-col gap-1">
+                    <dt className="tracking-widest-xs font-sans text-[0.7rem] uppercase text-muted-foreground">
+                      Places
+                    </dt>
+                    <dd className="font-sans text-sm text-foreground">{gathering.spacesLabel}</dd>
+                  </div>
+                </dl>
+
+                <GatheringReserve slug={gathering.slug} dates={gathering.dates} />
+              </article>
+            ))}
+          </div>
+        </div>
+
+        <ul className="mt-16 flex flex-col">
           {PROGRAMME.map((item) => {
             // Plain text, not a link, when the practice has no offering page yet.
             const body = (

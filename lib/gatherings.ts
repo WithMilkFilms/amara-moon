@@ -114,8 +114,26 @@ export interface Gathering {
  * dates reflect whenever the page was last built or exported.
  */
 export function getGatherings(): Gathering[] {
-  // The Full Moon Circle and Breathwork series are paused for now. Their dates
-  // and copy are kept below (upcomingFullMoonDates / upcomingBreathworkDates and
-  // the offering entries) so the series can be restored by returning them here.
-  return []
+  return [
+    {
+      slug: 'full-moon-circle',
+      name: "Woman's Full Moon Circle",
+      cadence: 'Every full moon',
+      priceLabel: 'R200 per person',
+      spacesLabel: 'Limited to 16 guests',
+      blurb:
+        'A women-only circle by candlelight — sharing, sound and breath to mark the turn of the month together.',
+      dates: upcomingFullMoonDates(),
+    },
+    {
+      slug: 'breathwork',
+      name: 'Breathwork Group Class',
+      cadence: 'Every second Wednesday · 6pm',
+      priceLabel: 'R400 per person',
+      spacesLabel: 'Limited to 8 places',
+      blurb:
+        'A guided conscious-connected breathing journey in a small group, held in the Oasis Studio.',
+      dates: upcomingBreathworkDates(),
+    },
+  ]
 }

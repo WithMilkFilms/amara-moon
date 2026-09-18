@@ -4,6 +4,7 @@ import { CtaLink } from '@/components/cta'
 import { GatheringReserve } from '@/components/booking/gathering-reserve'
 import { PageHeader } from '@/components/page-header'
 import { getGatherings } from '@/lib/gatherings'
+import { getOffering } from '@/lib/offerings'
 import { IMAGES } from '@/lib/images'
 import { SCHEDULE_PAGE } from '@/lib/pages'
 import { canonicalPath } from '@/lib/seo'
@@ -65,12 +66,16 @@ export default function SchedulePage() {
                       {gathering.cadence}
                     </span>
                     <h3 className="font-serif text-2xl text-foreground">
-                      <Link
-                        href={`/offerings/${gathering.slug}`}
-                        className="outline-none transition-colors hover:text-primary focus-visible:text-primary"
-                      >
-                        {gathering.name}
-                      </Link>
+                      {getOffering(gathering.slug) ? (
+                        <Link
+                          href={`/offerings/${gathering.slug}`}
+                          className="outline-none transition-colors hover:text-primary focus-visible:text-primary"
+                        >
+                          {gathering.name}
+                        </Link>
+                      ) : (
+                        gathering.name
+                      )}
                     </h3>
                     <p className="font-sans text-sm leading-relaxed text-pretty text-muted-foreground">
                       {gathering.blurb}

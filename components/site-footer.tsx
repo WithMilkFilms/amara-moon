@@ -15,7 +15,7 @@ export function SiteFooter() {
               A studio space for authentic exploration.
             </p>
             <p className="font-sans text-sm leading-relaxed text-muted-foreground">
-              {SITE.proximity.beach}. {SITE.proximity.trails}.
+              {SITE.proximity.beach}. {SITE.proximity.trails}. {SITE.proximity.city}.
             </p>
           </div>
 

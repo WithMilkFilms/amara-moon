@@ -32,6 +32,10 @@ export function Invitation() {
               <dt className="tracking-widest-xs font-sans text-[0.7rem] uppercase text-primary">The mountain</dt>
               <dd className="font-sans text-sm leading-relaxed text-muted-foreground">{SITE.proximity.trails}</dd>
             </div>
+            <div className="flex flex-col gap-1">
+              <dt className="tracking-widest-xs font-sans text-[0.7rem] uppercase text-primary">The city</dt>
+              <dd className="font-sans text-sm leading-relaxed text-muted-foreground">{SITE.proximity.city}</dd>
+            </div>
           </dl>
         </div>
 

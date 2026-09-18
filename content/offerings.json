@@ -1,6 +1,23 @@
 {
   "offerings": [
     {
+      "unit": "per hour",
+      "summary": "The Oasis Studio, a timber space among the trees, available to teachers, practitioners and facilitators.",
+      "durationMinutes": 60,
+      "name": "Oasis Studio Hire",
+      "slug": "oasis-studio-hire",
+      "needsPrice": true,
+      "maxQuantity": 8,
+      "kind": "studio_hire",
+      "image": "/images/studio-interior-wide.jpg",
+      "description": [
+        "A quiet, light-filled space for your own classes, workshops, retreats and gatherings. Warm timber floors and walls, with glass doors that open onto the garden and forest.",
+        "The Oasis Studio comfortably holds a small group. Mats, bolsters and blocks are available, and there is parking on site and a kitchenette for tea.",
+        "Tell us what you are planning and we will find the hours that work."
+      ],
+      "priceInCents": 45000
+    },
+    {
       "unit": "per session",
       "summary": "A full forty minutes in the infrared sauna, looking into the trees.",
       "durationMinutes": 40,

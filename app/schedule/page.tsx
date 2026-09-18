@@ -100,6 +100,9 @@ export default function SchedulePage() {
             <p className="max-w-xl font-sans text-sm leading-relaxed text-pretty text-muted-foreground">
               {SCHEDULE_PAGE.bookingBody}
             </p>
+            <p className="tracking-widest-xs mt-1 font-sans text-[0.7rem] uppercase text-primary">
+              Infrared sauna — R250 (40 min) · R190 (20 min)
+            </p>
           </div>
           <div className="flex shrink-0 flex-col gap-3 sm:flex-row">
             <CtaLink href="/book/sauna-40">Book a sauna</CtaLink>

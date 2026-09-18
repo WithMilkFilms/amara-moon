@@ -10,7 +10,7 @@ import { SCHEDULE_PAGE } from '@/lib/pages'
 export const metadata: Metadata = {
   title: 'Schedule',
   description:
-    'Yoga, breathwork, movement, beach yoga, trail hikes and sauna at Amara Moon in Hout Bay, Cape Town. Times for the coming season are being confirmed.',
+    "Women's full moon circles, breathwork, yoga and infrared sauna at Amara Moon in Hout Bay, Cape Town. Reserve your place for the coming season.",
   alternates: { canonical: '/schedule' },
 }
 

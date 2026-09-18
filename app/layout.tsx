@@ -27,9 +27,10 @@ const inter = Inter({
  * and get the location clipped off the end. */
 const TITLE = 'Amara Moon | Yoga & Wellness Retreat, Hout Bay, Cape Town'
 
-/* 150 characters, and carries all three target terms: yoga, Hout Bay, Cape Town. */
+/* 139 characters, carrying the four target terms: yoga, retreat, breathwork
+ * and women's circles — each paired with Cape Town via the location clause. */
 const DESCRIPTION =
-  'Yoga studio and wellness sanctuary in Hout Bay, Cape Town. Yoga classes, breathwork, infrared sauna and forest cabin stays in the Orangekloof Valley.'
+  "Yoga studio and wellness retreat in Hout Bay, Cape Town. Yoga classes, breathwork, women's full moon circles, infrared sauna and forest cabin stays."
 
 /* Google Analytics 4 measurement ID for amaramoon.capetown. */
 const GA_MEASUREMENT_ID = 'G-KG31SC5XGR'
@@ -53,12 +54,16 @@ export const metadata: Metadata = {
     google: 'vrR-XPbfWfptTfe_aBB3Nmn-y9hVWZnuWbnMtWDFTf0',
   },
   keywords: [
+    'yoga Cape Town',
     'yoga studio Hout Bay',
+    'retreat Cape Town',
     'wellness retreat Cape Town',
     'yoga retreat Hout Bay',
+    'breathwork Cape Town',
+    "women's circle Cape Town",
+    'full moon circle Cape Town',
     'Orangekloof wellness hub',
     'yoga classes Cape Town',
-    'breathwork Cape Town',
     'infrared sauna Hout Bay',
     'studio hire Cape Town',
   ],

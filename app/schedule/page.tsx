@@ -1,13 +1,11 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
-import { ArrowUpRight } from 'lucide-react'
 import { CtaLink } from '@/components/cta'
 import { GatheringReserve } from '@/components/booking/gathering-reserve'
 import { PageHeader } from '@/components/page-header'
 import { getGatherings } from '@/lib/gatherings'
 import { IMAGES } from '@/lib/images'
 import { SCHEDULE_PAGE } from '@/lib/pages'
-import { PROGRAMME } from '@/lib/schedule'
 
 export const metadata: Metadata = {
   title: 'Schedule',
@@ -96,49 +94,7 @@ export default function SchedulePage() {
           </div>
         </div>
 
-        <ul className="mt-16 flex flex-col">
-          {PROGRAMME.map((item) => {
-            // Plain text, not a link, when the practice has no offering page yet.
-            const body = (
-              <>
-                <span className="font-serif text-xl text-foreground transition-colors group-hover:text-primary md:col-span-4 md:text-2xl">
-                  {item.title}
-                  {item.offeringSlug ? (
-                    <ArrowUpRight
-                      aria-hidden
-                      className="ml-2 inline size-4 text-primary opacity-0 transition-opacity group-hover:opacity-100"
-                    />
-                  ) : null}
-                </span>
-                <span className="font-sans text-sm leading-relaxed text-pretty text-muted-foreground md:col-span-6">
-                  {item.blurb}
-                </span>
-                <span className="tracking-widest-xs font-sans text-[0.7rem] uppercase text-primary md:col-span-2 md:text-right">
-                  Times TBA
-                </span>
-              </>
-            )
-
-            return (
-              <li key={item.title} className="border-b border-border first:border-t">
-                {item.offeringSlug ? (
-                  <Link
-                    href={`/offerings/${item.offeringSlug}`}
-                    className="group grid gap-2 py-7 outline-none transition-colors hover:bg-card/60 focus-visible:ring-2 focus-visible:ring-ring md:grid-cols-12 md:items-baseline md:gap-6"
-                  >
-                    {body}
-                  </Link>
-                ) : (
-                  <div className="grid gap-2 py-7 md:grid-cols-12 md:items-baseline md:gap-6">
-                    {body}
-                  </div>
-                )}
-              </li>
-            )
-          })}
-        </ul>
-
-        <div className="mt-14 flex flex-col gap-5 border border-border p-8 md:flex-row md:items-center md:justify-between">
+        <div className="mt-16 flex flex-col gap-5 border border-border p-8 md:flex-row md:items-center md:justify-between">
           <div className="flex flex-col gap-2">
             <h2 className="font-serif text-2xl text-foreground">{SCHEDULE_PAGE.bookingHeading}</h2>
             <p className="max-w-xl font-sans text-sm leading-relaxed text-pretty text-muted-foreground">

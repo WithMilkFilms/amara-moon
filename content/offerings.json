@@ -13,9 +13,9 @@
       "description": [
         "A gentle, women-only gathering held on each full moon. We sit in a circle by candlelight to slow down, share what we are carrying, and mark the turn of the month together.",
         "Each circle weaves together breath, meditation and sound, with space to simply be heard. No experience is needed and you are welcome to come alone — you will not be alone once you arrive.",
-        "R200 per person. Places are limited so the circle stays intimate. Choose a full-moon date on the schedule and we will reply with everything you need, including how to pay to hold your place."
+        "R2000 per person. Places are limited so the circle stays intimate. Choose a full-moon date on the schedule and we will reply with everything you need, including how to pay to hold your place."
       ],
-      "priceInCents": 20000
+      "priceInCents": 200000
     },
     {
       "unit": "per class",
@@ -35,20 +35,20 @@
     },
     {
       "unit": "per session",
-      "summary": "An immersive guided breathing journey, layered with 9-dimensional sound.",
+      "summary": "An immersive guided breathing journey in a small group.",
       "durationMinutes": 90,
-      "name": "9D Breathwork",
+      "name": "Breathwork Group Class",
       "slug": "breathwork",
       "needsPrice": true,
       "maxQuantity": 8,
       "kind": "session",
       "image": "/images/breathwork.png",
       "description": [
-        "A guided session using conscious connected breathing, carried by immersive 9-dimensional sound that moves around you. The breath is the whole technique — no experience is needed, only willingness.",
+        "A guided group class using conscious connected breathing, carried by immersive sound. The breath is the whole technique — no experience is needed, only willingness.",
         "Held in the Oasis Studio with the doors open to the valley, every second Wednesday. Bring water and wear something warm for the rest at the end.",
-        "Limited to 8 places. Choose a date on the schedule and we will reply with everything you need, including how to pay to hold your place."
+        "R400 per person. Limited to 8 places. Choose a date on the schedule and we will reply with everything you need, including how to pay to hold your place."
       ],
-      "priceInCents": 25000
+      "priceInCents": 40000
     },
     {
       "unit": "per hour",

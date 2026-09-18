@@ -113,7 +113,7 @@ export function getGatherings(): Gathering[] {
       slug: 'full-moon-circle',
       name: getOffering('full-moon-circle')?.name ?? "Woman's Full Moon Circle",
       cadence: 'Every full moon',
-      priceLabel: 'R200 per person',
+      priceLabel: 'R2000 per person',
       spacesLabel: 'Intimate circle',
       blurb:
         'A women-only circle by candlelight — sharing, sound and breath to mark the turn of the month together.',
@@ -121,12 +121,12 @@ export function getGatherings(): Gathering[] {
     },
     {
       slug: 'breathwork',
-      name: getOffering('breathwork')?.name ?? '9D Breathwork',
+      name: getOffering('breathwork')?.name ?? 'Breathwork Group Class',
       cadence: 'Every second Wednesday',
-      priceLabel: 'Payment details shared on booking',
+      priceLabel: 'R400 per person',
       spacesLabel: 'Limited to 8 places',
       blurb:
-        'A guided conscious-connected breathing journey layered with immersive 9-dimensional sound, held in the Oasis Studio.',
+        'A guided conscious-connected breathing journey in a small group, held in the Oasis Studio.',
       dates: upcomingBreathworkDates(),
     },
   ]

@@ -18,7 +18,9 @@ interface LookingForItem {
 }
 
 interface PagesFile {
-  offerings: PageHeaderCopy
+  offerings: PageHeaderCopy & {
+    retreatIntro: { eyebrow: string; title: string; body: string }
+  }
   schedule: PageHeaderCopy & { note: string; bookingHeading: string; bookingBody: string }
   gallery: PageHeaderCopy & { closingLine: string }
   workWithUs: PageHeaderCopy & {

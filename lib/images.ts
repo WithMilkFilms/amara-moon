@@ -199,7 +199,7 @@ export const GALLERY: { src: string; alt: string; feature?: boolean }[] = [
   },
   {
     src: '/images/gallery/outdoor-kitchen-kamado.jpg',
-    alt: 'The outdoor kitchen — timber sink unit, kamado grill and braai under the pergola',
+    alt: 'The outdoor kitchen, timber sink unit, kamado grill and braai under the pergola',
   },
   {
     src: IMAGES.saunaShort,
@@ -362,7 +362,7 @@ export const GALLERY: { src: string; alt: string; feature?: boolean }[] = [
   },
   {
     src: '/images/gallery/kitchen-counter-orchid.jpg',
-    alt: 'The counter close up — orchid, subway tile and a welcome card for guests',
+    alt: 'The counter close up, orchid, subway tile and a welcome card for guests',
   },
   {
     src: '/images/gallery/kitchen-island-stools.jpg',
@@ -389,7 +389,7 @@ export const GALLERY: { src: string; alt: string; feature?: boolean }[] = [
   },
   {
     src: '/images/gallery/scullery-brass-tap-garden-door.jpg',
-    alt: 'The scullery — brass tap over a farmhouse sink, laundry alongside and the door open to the deck',
+    alt: 'The scullery, brass tap over a farmhouse sink, laundry alongside and the door open to the deck',
   },
   {
     src: '/images/gallery/kitchen-range-detail.jpg',
@@ -479,7 +479,7 @@ export const GALLERY: { src: string; alt: string; feature?: boolean }[] = [
 
   {
     src: '/images/gallery/bathroom-vanity-bath-wide.jpg',
-    alt: 'The ensuite — antique timber vanity, black stone basin and freestanding bath on pebbles',
+    alt: 'The ensuite, antique timber vanity, black stone basin and freestanding bath on pebbles',
   },
   {
     src: '/images/gallery/bathroom-vanity-basin.jpg',
@@ -506,7 +506,7 @@ export const GALLERY: { src: string; alt: string; feature?: boolean }[] = [
 
   {
     src: '/images/gallery/bathroom-charcoal-wide.jpg',
-    alt: 'The charcoal bathroom — sage vanity, black rain shower behind glass and warm towels on the rail',
+    alt: 'The charcoal bathroom, sage vanity, black rain shower behind glass and warm towels on the rail',
     feature: true,
   },
   {

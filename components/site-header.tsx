@@ -57,7 +57,7 @@ export function SiteHeader() {
       )}
     >
       <div className="mx-auto flex h-20 w-full max-w-6xl items-center justify-between gap-6 px-6">
-        <Link href="/" aria-label="Amara Moon — home" className="shrink-0">
+        <Link href="/" aria-label="Amara Moon, home" className="shrink-0">
           <LogoWordmark markClassName="h-9 w-9" />
         </Link>
 

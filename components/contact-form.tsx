@@ -45,7 +45,7 @@ export function ContactForm({
     return (
       <div className="flex flex-col items-start gap-4 border border-primary/30 bg-card p-8">
         <Check aria-hidden className="size-6 text-primary" />
-        <h2 className="font-serif text-2xl text-foreground">Thank you — that&apos;s with us.</h2>
+        <h2 className="font-serif text-2xl text-foreground">Thank you, that&apos;s with us.</h2>
         <p className="font-sans text-sm leading-relaxed text-muted-foreground">
           We&apos;ll come back to you as soon as we can. If it&apos;s urgent, call us on{' '}
           <span className="text-foreground">+27 71 686 97 32</span>.
@@ -137,6 +137,19 @@ export function ContactForm({
           className={fieldClass}
         />
       </div>
+
+      <label
+        htmlFor="mailingList"
+        className="flex items-start gap-3 font-sans text-sm text-muted-foreground"
+      >
+        <input
+          id="mailingList"
+          name="mailingList"
+          type="checkbox"
+          className="mt-0.5 size-4 shrink-0 rounded-none border-input accent-primary"
+        />
+        Add me to the mailing list for future events
+      </label>
 
       {state.error ? (
         <p role="alert" className="font-sans text-sm text-destructive">

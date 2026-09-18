@@ -14,6 +14,7 @@ import {
 } from '@/lib/booking'
 import { db } from '@/lib/db'
 import { bookings } from '@/lib/db/schema'
+import { subscribeToMailingList } from '@/lib/mailing-list'
 import { CURRENCY, PINE_FOREST_CABIN, getOffering } from '@/lib/offerings'
 import { AWAITING_EFT, EFT_HOLD_HOURS, type PaymentMethod } from '@/lib/payment'
 import { getStripe } from '@/lib/stripe'
@@ -132,6 +133,7 @@ export async function createStayCheckout(input: {
   phone?: string
   notes?: string
   payment?: PaymentMethod
+  mailingList?: boolean
 }): Promise<CheckoutResult> {
   const guestError = validateGuest(input)
   if (guestError) return { ok: false, error: guestError }
@@ -150,7 +152,7 @@ export async function createStayCheckout(input: {
   if (nights > PINE_FOREST_CABIN.maxNights) {
     return {
       ok: false,
-      error: `We can take up to ${PINE_FOREST_CABIN.maxNights} nights online — please get in touch for longer stays.`,
+      error: `We can take up to ${PINE_FOREST_CABIN.maxNights} nights online, please get in touch for longer stays.`,
     }
   }
 
@@ -165,7 +167,7 @@ export async function createStayCheckout(input: {
   if (PINE_FOREST_CABIN.needsPrice) {
     return {
       ok: false,
-      error: 'Online payment for stays is not switched on yet — please send an enquiry.',
+      error: 'Online payment for stays is not switched on yet, please send an enquiry.',
     }
   }
 
@@ -209,6 +211,10 @@ export async function createStayCheckout(input: {
     notes: input.notes?.trim() || null,
   })
 
+  if (input.mailingList) {
+    await subscribeToMailingList(input.name.trim(), input.email.trim(), 'stay-booking')
+  }
+
   // EFT stops here: the row holds the dates and the guest gets the reference to
   // use as their payment reference. Nothing is charged automatically.
   if (payByEft) return { ok: true, method: 'eft', reference }
@@ -230,7 +236,7 @@ export async function createStayCheckout(input: {
             currency: CURRENCY,
             unit_amount: PINE_FOREST_CABIN.pricePerNightInCents,
             product_data: {
-              name: `${PINE_FOREST_CABIN.name} — ${nights} night${nights > 1 ? 's' : ''}`,
+              name: `${PINE_FOREST_CABIN.name} (${nights} night${nights > 1 ? 's' : ''})`,
               description: `${input.checkIn} to ${input.checkOut} · ${guests} guest${guests > 1 ? 's' : ''}`,
             },
           },
@@ -254,6 +260,7 @@ export async function createSessionCheckout(input: {
   phone?: string
   notes?: string
   payment?: PaymentMethod
+  mailingList?: boolean
 }): Promise<CheckoutResult> {
   const guestError = validateGuest(input)
   if (guestError) return { ok: false, error: guestError }
@@ -282,7 +289,7 @@ export async function createSessionCheckout(input: {
   if (offering.needsPrice) {
     return {
       ok: false,
-      error: 'This offering is priced on enquiry — please send us a message.',
+      error: 'This offering is priced on enquiry, please send us a message.',
     }
   }
 
@@ -325,6 +332,10 @@ export async function createSessionCheckout(input: {
     status: payByEft ? AWAITING_EFT : 'pending',
     notes: input.notes?.trim() || null,
   })
+
+  if (input.mailingList) {
+    await subscribeToMailingList(input.name.trim(), input.email.trim(), 'session-booking')
+  }
 
   if (payByEft) return { ok: true, method: 'eft', reference }
 

@@ -6,12 +6,13 @@ import { BookOnPlatforms } from '@/components/booking/book-on-platforms'
 import { PageHeader } from '@/components/page-header'
 import { activeBookingPlatforms } from '@/lib/booking-platforms'
 import { PINE_FOREST_CABIN, formatZar } from '@/lib/offerings'
+import { canonicalPath } from '@/lib/seo'
 
 export const metadata: Metadata = {
   title: 'Book the Pine Forest Cabin',
   description:
-    'Book a night in the Pine Forest Cabin — a self-contained cabin for two in the Orangekloof Valley, with access to the pool, deck and mountain trails.',
-  alternates: { canonical: '/book-a-room' },
+    'Book a night in the Pine Forest Cabin, a self-contained cabin for two in the Orangekloof Valley, with access to the pool, deck and mountain trails.',
+  alternates: { canonical: canonicalPath('/book-a-room') },
 }
 
 export default function BookARoomPage() {

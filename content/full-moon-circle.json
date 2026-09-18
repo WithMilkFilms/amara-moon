@@ -1,0 +1,13 @@
+{
+  "dates": [
+    { "date": "2026-09-26", "time": null, "host": null },
+    { "date": "2026-10-25", "time": null, "host": null },
+    { "date": "2026-11-24", "time": null, "host": null },
+    { "date": "2026-12-23", "time": null, "host": null },
+    { "date": "2027-01-22", "time": null, "host": null },
+    { "date": "2027-02-20", "time": null, "host": null },
+    { "date": "2027-03-22", "time": null, "host": null },
+    { "date": "2027-04-21", "time": null, "host": null },
+    { "date": "2027-05-20", "time": null, "host": null }
+  ]
+}

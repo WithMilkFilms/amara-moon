@@ -5,12 +5,13 @@ import { PageHeader } from '@/components/page-header'
 import { IMAGES } from '@/lib/images'
 import { SITE } from '@/lib/site'
 import { CONTACT_PAGE } from '@/lib/pages'
+import { canonicalPath } from '@/lib/seo'
 
 export const metadata: Metadata = {
   title: 'Contact',
   description:
-    'Get in touch with Amara Moon in Hout Bay, Cape Town — classes, studio hire, sauna and overnight stays.',
-  alternates: { canonical: '/contact' },
+    'Get in touch with Amara Moon in Hout Bay, Cape Town: classes, studio hire, sauna and overnight stays.',
+  alternates: { canonical: canonicalPath('/contact') },
 }
 
 export default async function ContactPage({
@@ -67,6 +68,41 @@ export default async function ContactPage({
                   {SITE.email}
                 </a>
               </address>
+
+              {/*
+                Google's embed, wrapped so a fixed 600x450 iframe scales with
+                the sidebar column instead of overflowing it. The place name
+                baked into the src (Amara Moon Yoga and Private Wellness
+                Retreat) is Google's own match, more reliable than the
+                hand-entered SITE.geo used to be.
+              */}
+              <div className="relative aspect-4/3 w-full overflow-hidden rounded-sm bg-muted">
+                <iframe
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3307.1842542474615!2d18.377419000000003!3d-34.0134811!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1dcc6905ace4b383%3A0xbf105a5f46d4e3e2!2sAmara%20Moon%20Yoga%20and%20Private%20Wellness%20Retreat!5e0!3m2!1sen!2suk!4v1788542250535!5m2!1sen!2suk"
+                  title="Amara Moon location on Google Maps"
+                  /*
+                   * The free embed (no API key) only ever renders Google's
+                   * light road map, there is no dark mode option for it.
+                   * This inverts the whole rendered map then rotates the hue
+                   * back, the standard CSS trick to fake a dark map without
+                   * the Maps JavaScript API and its billing requirement.
+                   */
+                  className="absolute inset-0 h-full w-full border-0 [filter:invert(90%)_hue-rotate(180deg)]"
+                  loading="lazy"
+                  referrerPolicy="strict-origin-when-cross-origin"
+                >
+                  Yoga, Wellness, Retreat
+                </iframe>
+              </div>
+              {/*
+                Visible text matching the business's exact Google listing name,
+                on the page as real content rather than only inside the iframe
+                title, so the name, address and phone stay consistent wherever
+                Google reads them from.
+              */}
+              <p className="font-sans text-xs text-muted-foreground">
+                Amara Moon Yoga and Private Wellness Retreat, as listed on Google Maps.
+              </p>
             </div>
 
             <div className="flex flex-col gap-3">

@@ -6,6 +6,7 @@ import { IMAGES } from '@/lib/images'
 import { SITE } from '@/lib/site'
 import { WORK_WITH_US_PAGE } from '@/lib/pages'
 import { LOOKING_FOR } from '@/lib/work-with-us'
+import { canonicalPath } from '@/lib/seo'
 
 /**
  * Static-export twin of app/work-with-us/page.app.tsx.
@@ -18,7 +19,7 @@ export const metadata: Metadata = {
   title: 'Work with Us',
   description:
     'Teach, host a retreat or collaborate at Amara Moon, a family run wellness sanctuary in Hout Bay, Cape Town. Introduce yourself and your practice.',
-  alternates: { canonical: '/work-with-us' },
+  alternates: { canonical: canonicalPath('/work-with-us') },
 }
 
 export default function WorkWithUsPageStatic() {

@@ -2,7 +2,12 @@
   "offerings": {
     "eyebrow": "Offerings",
     "title": "Ways to spend time here",
-    "intro": "Come for a class, book the sauna, hire the Oasis Studio for your own event, or stay the night in the valley."
+    "intro": "Come for a class, book the sauna, hire the Oasis Studio for your own event, or stay the night in the valley.",
+    "retreatIntro": {
+      "eyebrow": "The Amara Moon retreat",
+      "title": "One retreat, built from everything here",
+      "body": "Yoga, breathwork, the infrared sauna and a night in the Pine Forest Cabin are pieces of the same retreat, our own blend of movement, stillness and rest, run together with the guest facilitators who teach and hold space here. Book each piece below on its own, or bring the whole retreat together for your own group."
+    }
   },
   "schedule": {
     "eyebrow": "Schedule",

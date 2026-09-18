@@ -87,7 +87,7 @@ export default async function BookingPage({
             <>
               We&apos;ve sent a confirmation to{' '}
               <span className="text-foreground">{booking.guestEmail}</span>. Keep
-              your reference handy — quote it if you need to change anything.
+              your reference handy, quote it if you need to change anything.
             </>
           ) : isAwaitingEft ? (
             <>

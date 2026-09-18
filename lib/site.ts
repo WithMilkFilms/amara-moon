@@ -26,6 +26,12 @@ export const SITE = {
  * teachers is an active goal while the schedule is still filling out, and a
  * footer-only link was too easy to miss. It is placed last so the guest-facing
  * booking journey still reads first.
+ *
+ * The Women's Full Moon Circle briefly had its own top-level "Full Moon" tab
+ * here — removed again by request. It now lives only on /offerings and its
+ * own page (/offerings/womens-full-moon-circle), which has its own
+ * application form. site-header.tsx's nav gap, which had been tightened to
+ * fit that eighth tab, is reverted back to its original gap-6 alongside this.
  */
 export const NAV_LINKS = [
   { href: '/offerings', label: 'Offerings' },

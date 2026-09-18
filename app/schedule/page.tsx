@@ -6,12 +6,13 @@ import { PageHeader } from '@/components/page-header'
 import { getGatherings } from '@/lib/gatherings'
 import { IMAGES } from '@/lib/images'
 import { SCHEDULE_PAGE } from '@/lib/pages'
+import { canonicalPath } from '@/lib/seo'
 
 export const metadata: Metadata = {
   title: 'Schedule',
   description:
     "Women's full moon circles, breathwork, yoga and infrared sauna at Amara Moon in Hout Bay, Cape Town. Reserve your place for the coming season.",
-  alternates: { canonical: '/schedule' },
+  alternates: { canonical: canonicalPath('/schedule') },
 }
 
 export default function SchedulePage() {

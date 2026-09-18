@@ -26,6 +26,11 @@
     {
       "title": "Therapies & Bodywork",
       "blurb": "Treatments with visiting practitioners, by arrangement."
+    },
+    {
+      "title": "Women's Full Moon Circle",
+      "blurb": "A monthly circle for women, held under the full moon. Small numbers, apply to join.",
+      "offeringSlug": "womens-full-moon-circle"
     }
   ]
 }

@@ -55,7 +55,7 @@
       "unit": "per session",
       "summary": "A full forty minutes in the infrared sauna, looking into the trees.",
       "durationMinutes": 40,
-      "name": "Sauna — 40 min (Infrared)",
+      "name": "Sauna (40 min, Infrared)",
       "slug": "sauna-40",
       "needsPrice": false,
       "maxQuantity": 4,
@@ -69,9 +69,9 @@
     },
     {
       "unit": "per session",
-      "summary": "A shorter infrared session — ideal after a trail run or a class.",
+      "summary": "A shorter infrared session, ideal after a trail run or a class.",
       "durationMinutes": 20,
-      "name": "Sauna — 20 min (Infrared)",
+      "name": "Sauna (20 min, Infrared)",
       "slug": "sauna-20",
       "needsPrice": false,
       "maxQuantity": 4,
@@ -82,6 +82,22 @@
         "Towels provided."
       ],
       "priceInCents": 19000
+    },
+    {
+      "unit": "per circle",
+      "summary": "A monthly gathering for women under the full moon, sharing, ritual and stillness in the Oasis Studio.",
+      "durationMinutes": 120,
+      "name": "Women's Full Moon Circle",
+      "slug": "womens-full-moon-circle",
+      "needsPrice": true,
+      "maxQuantity": 12,
+      "kind": "session",
+      "image": "/images/gallery/shala-bowls-candles.jpg",
+      "description": [
+        "Held on the night of the full moon, this circle brings women together to sit, share and release under one roof and one sky. Expect a guided opening, space to speak or simply listen, and a closing ritual with candlelight and sound.",
+        "No experience or belief required, only an open heart. Everyone is encouraged to bring something for the harvest table to share. Numbers are kept small so everyone is heard. Apply below and we will confirm your place ahead of the next moon."
+      ],
+      "priceInCents": 15000
     }
   ]
 }

@@ -24,7 +24,7 @@ export function WorkWithUsForm() {
       <div className="flex flex-col items-start gap-4 border border-primary/30 bg-card p-8">
         <Check aria-hidden className="size-6 text-primary" />
         <h2 className="font-serif text-2xl text-foreground">
-          Thank you — we have your details.
+          Thank you, we have your details.
         </h2>
         <p className="font-sans text-sm leading-relaxed text-muted-foreground">
           We read every one of these properly, so it may take us a few days to reply. If
@@ -127,6 +127,19 @@ export function WorkWithUsForm() {
           placeholder="What you teach or offer, how long you have been doing it, and what you imagine doing here."
         />
       </div>
+
+      <label
+        htmlFor="mailingList"
+        className="flex items-start gap-3 font-sans text-sm text-muted-foreground"
+      >
+        <input
+          id="mailingList"
+          name="mailingList"
+          type="checkbox"
+          className="mt-0.5 size-4 shrink-0 rounded-none border-input accent-primary"
+        />
+        Add me to the mailing list for future events
+      </label>
 
       {state.error ? (
         <p role="alert" className="font-sans text-sm text-destructive">

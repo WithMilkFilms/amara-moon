@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { SHOP_PRODUCTS, SHOP_NOTE } from '@/lib/shop'
+import { canonicalPath } from '@/lib/seo'
 import ProductImage from './ProductImage'
 
 const SHOP_DESCRIPTION =
@@ -9,7 +10,7 @@ const SHOP_DESCRIPTION =
 export const metadata: Metadata = {
   title: 'Shop',
   description: SHOP_DESCRIPTION,
-  alternates: { canonical: '/shop' },
+  alternates: { canonical: canonicalPath('/shop') },
   openGraph: {
     title: 'Shop | Amara Moon, Hout Bay Cape Town',
     description: SHOP_DESCRIPTION,

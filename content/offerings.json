@@ -6,7 +6,7 @@
       "durationMinutes": 120,
       "name": "Woman's Full Moon Circle",
       "slug": "full-moon-circle",
-      "needsPrice": true,
+      "needsPrice": false,
   "maxQuantity": 16,
   "kind": "gathering",
   "image": "/images/full-moon-circle.jpg",
@@ -18,28 +18,12 @@
       "priceInCents": 20000
     },
     {
-      "unit": "per class",
-      "summary": "A slow, breath-led practice that works with the flow of prana through the body.",
-      "durationMinutes": 75,
-      "name": "Pranic Balancing Yoga",
-      "slug": "pranic-balancing-yoga",
-      "needsPrice": true,
-      "maxQuantity": 6,
-      "kind": "session",
-      "image": "/images/yoga.png",
-      "description": [
-        "Pranic Balancing Yoga moves at the pace of the breath. Postures are held long enough to be felt, with attention on where energy gathers and where it is stuck.",
-        "Suitable for all levels, including complete beginners. Come as you are."
-      ],
-      "priceInCents": 18000
-    },
-    {
       "unit": "per session",
       "summary": "An immersive guided breathing journey in a small group.",
       "durationMinutes": 90,
       "name": "Breathwork Group Class",
       "slug": "breathwork",
-      "needsPrice": true,
+      "needsPrice": false,
       "maxQuantity": 8,
       "kind": "session",
       "image": "/images/breathwork.png",

@@ -12,7 +12,7 @@ import { PINE_FOREST_CABIN, OFFERINGS, formatZar } from '@/lib/offerings'
 export const metadata: Metadata = {
   title: 'Offerings',
   description:
-    'Oasis Studio hire, Pranic Balancing Yoga, breathwork and infrared sauna at Amara Moon in Hout Bay, Cape Town.',
+    'Oasis Studio hire, breathwork, full moon circles and infrared sauna at Amara Moon in Hout Bay, Cape Town.',
   alternates: { canonical: '/offerings' },
 }
 

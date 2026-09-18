@@ -65,14 +65,14 @@ function addDays(iso: string, days: number): string {
 }
 
 /** Upcoming full-moon dates (today onwards, Cape Town time). */
-export function upcomingFullMoonDates(limit = 8): string[] {
+export function upcomingFullMoonDates(limit = 24): string[] {
   const today = todayInCapeTown()
   // ISO `YYYY-MM-DD` strings sort correctly with a plain string compare.
   return FULL_MOON_DATES.filter((d) => d >= today && d <= SEASON_END).slice(0, limit)
 }
 
 /** Upcoming 9D Breathwork dates, generated forward from the anchor Wednesday. */
-export function upcomingBreathworkDates(limit = 8): string[] {
+export function upcomingBreathworkDates(limit = 24): string[] {
   const today = todayInCapeTown()
   const dates: string[] = []
   let date = BREATHWORK_ANCHOR

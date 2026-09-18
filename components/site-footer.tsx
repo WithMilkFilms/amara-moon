@@ -15,7 +15,7 @@ export function SiteFooter() {
               A studio space for authentic exploration.
             </p>
             <p className="font-sans text-sm leading-relaxed text-muted-foreground">
-              {SITE.proximity.beach}. {SITE.proximity.trails}.
+              {SITE.proximity.beach}. {SITE.proximity.trails}. {SITE.proximity.city}.
             </p>
           </div>
 
@@ -99,9 +99,19 @@ export function SiteFooter() {
           <p className="font-sans text-xs text-muted-foreground">
             &copy; {new Date().getFullYear()} {SITE.name}. All rights reserved.
           </p>
-          <p className="font-sans text-xs text-muted-foreground">
-            {SITE.location}
-          </p>
+          <div className="flex flex-col gap-1 sm:items-end">
+            <p className="font-sans text-xs text-muted-foreground">
+              {SITE.location}
+            </p>
+            <a
+              href="https://holisticaspaces.co.za/amara-moon"
+              target="_blank"
+              rel="noopener"
+              className="font-sans text-xs text-muted-foreground/70 transition-colors hover:text-foreground"
+            >
+              As featured on Holistic Spaces
+            </a>
+          </div>
         </div>
       </div>
     </footer>

@@ -92,7 +92,11 @@ export default async function OfferingPage({
         <div className="flex flex-col gap-7">
           <div className="flex flex-col gap-4">
             <span className="tracking-widest-xs font-sans text-xs uppercase text-primary">
-              {offering.kind === 'studio_hire' ? 'Studio hire' : 'Session'}
+              {offering.kind === 'studio_hire'
+                ? 'Studio hire'
+                : offering.kind === 'gathering'
+                  ? "Women's circle"
+                  : 'Session'}
             </span>
             <h1 className="font-serif text-4xl leading-[1.08] text-balance text-foreground md:text-5xl">
               {offering.name}
@@ -166,10 +170,23 @@ export default async function OfferingPage({
             Every other offering keeps the CTA block below unchanged.
           */}
           {offering.slug === 'womens-full-moon-circle' ? null : (
-            // Offerings with placeholder prices route to an enquiry rather
-            // than checkout, so nobody is ever charged a guessed amount.
+            // The donation-based circle handles its own application form below.
+            // Everything else shows CTAs: gatherings invite an application, and
+            // placeholder-priced offerings route to enquiry rather than checkout
+            // so nobody is ever charged a guessed amount.
             <div className="flex flex-col gap-3 pt-1 sm:flex-row">
-              {offering.needsPrice ? (
+              {offering.kind === 'gathering' ? (
+                // A monthly circle has no weekly timetable to link to, and "apply"
+                // frames it as joining a limited gathering rather than a booking.
+                <>
+                  <CtaLink href={`/contact?offering=${offering.slug}`} size="lg">
+                    Apply to join
+                  </CtaLink>
+                  <CtaLink href="/contact" variant="outline" size="lg">
+                    Ask a question
+                  </CtaLink>
+                </>
+              ) : offering.needsPrice ? (
                 <>
                   <CtaLink href={`/contact?offering=${offering.slug}`} size="lg">
                     Enquire about this

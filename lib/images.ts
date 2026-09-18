@@ -66,6 +66,12 @@ export const IMAGES = {
    * sky and valley) and as a wide gallery tile, so it crops well either way.
    */
   valleyTrail: '/images/valley-trail-dusk.jpg',
+  /**
+   * The wood-fired hot tub on the forest deck at night, lit red, a candle at
+   * the water's edge and someone soaking under the pines. Real photo — tall
+   * portrait, so it suits the 4:5 panel on the homepage invitation section.
+   */
+  hotTub: '/images/gallery/hot-tub-forest-night.jpg',
   /** 1:1 — yoga practice in the Oasis Studio */
   yoga: '/images/yoga.png',
   /** 1:1 — breathwork session */

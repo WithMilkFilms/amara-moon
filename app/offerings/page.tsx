@@ -13,7 +13,7 @@ import { canonicalPath } from '@/lib/seo'
 export const metadata: Metadata = {
   title: 'Retreats & Offerings',
   description:
-    'Yoga, breathwork, infrared sauna and Oasis Studio hire come together as Amara Moon’s own wellness retreat experience in Hout Bay, Cape Town.',
+    'Yoga, breathwork, women’s full moon circles, infrared sauna and Oasis Studio hire — Amara Moon’s wellness retreat in Hout Bay, Cape Town.',
   alternates: { canonical: canonicalPath('/offerings') },
 }
 

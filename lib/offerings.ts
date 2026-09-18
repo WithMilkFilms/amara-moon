@@ -12,7 +12,7 @@ import cabinData from '@/content/cabin.json'
  * ─────────────────────────────────────────────────────────────────────────────
  */
 
-export type OfferingKind = 'session' | 'studio_hire'
+export type OfferingKind = 'session' | 'studio_hire' | 'gathering'
 
 export interface Offering {
   slug: string

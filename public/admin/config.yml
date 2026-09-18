@@ -140,7 +140,7 @@ collections:
             fields:
               - {label: "Slug", name: "slug", widget: "string", hint: "Must match the URL, don't change unless you mean to break links"}
               - {label: "Name", name: "name", widget: "string"}
-              - {label: "Kind", name: "kind", widget: "select", options: ["session", "studio_hire"]}
+              - {label: "Kind", name: "kind", widget: "select", options: ["session", "studio_hire", "gathering"]}
               - {label: "Unit", name: "unit", widget: "string", hint: "e.g. 'per session', 'per hour'"}
               - {label: "Price (ZAR cents)", name: "priceInCents", widget: "number", hint: "R250.00 = 25000"}
               - {label: "Needs Price (shows Enquire instead of Pay)", name: "needsPrice", widget: "boolean"}

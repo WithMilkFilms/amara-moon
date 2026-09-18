@@ -1,36 +1,38 @@
 {
   "offerings": [
     {
-      "unit": "per class",
-      "summary": "A slow, breath-led practice that works with the flow of prana through the body.",
-      "durationMinutes": 75,
-      "name": "Pranic Balancing Yoga",
-      "slug": "pranic-balancing-yoga",
-      "needsPrice": true,
-      "maxQuantity": 6,
-      "kind": "session",
-      "image": "/images/yoga.png",
+      "unit": "per gathering",
+      "summary": "A women's circle held on each full moon — sharing, sound, breath and ceremony by candlelight.",
+      "durationMinutes": 120,
+      "name": "Woman's Full Moon Circle",
+      "slug": "full-moon-circle",
+      "needsPrice": false,
+  "maxQuantity": 16,
+  "kind": "gathering",
+  "image": "/images/full-moon-circle.png",
       "description": [
-        "Pranic Balancing Yoga moves at the pace of the breath. Postures are held long enough to be felt, with attention on where energy gathers and where it is stuck.",
-        "Suitable for all levels, including complete beginners. Come as you are."
+        "A gentle, women-only gathering held on each full moon. We sit in a circle by candlelight to slow down, share what we are carrying, and mark the turn of the month together.",
+        "Each circle weaves together breath, meditation and sound, with space to simply be heard. No experience is needed and you are welcome to come alone — you will not be alone once you arrive.",
+        "R200 per person. Places are limited so the circle stays intimate. Choose a full-moon date on the schedule and we will reply with everything you need, including how to pay to hold your place."
       ],
-      "priceInCents": 18000
+      "priceInCents": 20000
     },
     {
       "unit": "per session",
-      "summary": "Guided conscious breathing to release what the body has been holding.",
+      "summary": "An immersive guided breathing journey in a small group.",
       "durationMinutes": 90,
-      "name": "Breathwork",
+      "name": "Breathwork Group Class",
       "slug": "breathwork",
-      "needsPrice": true,
-      "maxQuantity": 6,
+      "needsPrice": false,
+      "maxQuantity": 8,
       "kind": "session",
       "image": "/images/breathwork.png",
       "description": [
-        "A guided session using conscious connected breathing. The breath is the whole technique, no experience is needed, only willingness.",
-        "Held in the Oasis Studio with the doors open to the valley. Bring water and wear something warm for the rest at the end."
+        "A guided group class using conscious connected breathing, carried by immersive sound. The breath is the whole technique — no experience is needed, only willingness.",
+        "Held in the Oasis Studio with the doors open to the valley, every second Wednesday. Bring water and wear something warm for the rest at the end.",
+        "R400 per person. Limited to 8 places. Choose a date on the schedule and we will reply with everything you need, including how to pay to hold your place."
       ],
-      "priceInCents": 25000
+      "priceInCents": 40000
     },
     {
       "unit": "per hour",

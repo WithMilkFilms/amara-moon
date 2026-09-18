@@ -1,9 +1,11 @@
 'use server'
 
+import { isValidDateString } from '@/lib/booking'
 import { COLLABORATION_ROLES } from '@/lib/collaboration'
 import { db } from '@/lib/db'
 import { enquiries } from '@/lib/db/schema'
 import { sendEnquiryNotification } from '@/lib/email'
+import { formatGatheringDate } from '@/lib/gatherings'
 import { FULL_MOON_DATES, formatFullMoonDate } from '@/lib/full-moon-circle'
 import { subscribeToMailingList } from '@/lib/mailing-list'
 import { PINE_FOREST_CABIN, getOffering } from '@/lib/offerings'
@@ -55,12 +57,28 @@ export async function submitEnquiry(
     (offeringSlug === PINE_FOREST_CABIN.slug || !!getOffering(offeringSlug))
   const slug = isKnown ? offeringSlug : null
 
+  // A reservation from the schedule carries a requested date. Trust it only if
+  // it is both a real date and tied to a known offering, so a hand-crafted POST
+  // cannot inject arbitrary text into the notification subject.
+  const rawDate = str(data, 'reservationDate')
+  const reservationDate = slug && isValidDateString(rawDate) ? rawDate : null
+  const dateLabel = reservationDate ? formatGatheringDate(reservationDate) : null
+
+  // Reservations get their own subject so Kirst can spot a place to hold and
+  // reply with payment details, rather than a general enquiry.
+  const notificationSubject = dateLabel
+    ? `Reservation request from ${name}`
+    : `Website enquiry from ${name}`
+  const storedSubject = dateLabel
+    ? `Reservation — ${getOffering(slug!)?.name ?? slug} — ${dateLabel}`
+    : subject || null
+
   try {
     await db.insert(enquiries).values({
       name,
       email,
       phone: phone || null,
-      subject: subject || null,
+      subject: storedSubject,
       offeringSlug: slug,
       message,
     })
@@ -70,13 +88,14 @@ export async function submitEnquiry(
     // Awaited, not fired-and-forgotten: serverless functions can freeze the
     // moment a response is returned, which would kill an unawaited send.
     await sendEnquiryNotification({
-      subject: `Website enquiry from ${name}`,
+      subject: notificationSubject,
       replyTo: email,
       fields: [
         { label: 'Name', value: name },
         { label: 'Email', value: email },
         { label: 'Phone', value: phone },
         { label: 'About', value: slug ?? 'General enquiry' },
+        ...(dateLabel ? [{ label: 'Requested date', value: dateLabel }] : []),
         { label: 'Joining mailing list', value: joinMailingList ? 'Yes' : 'No' },
         { label: 'Message', value: `\n${message}` },
       ],

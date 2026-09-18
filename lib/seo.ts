@@ -119,7 +119,7 @@ export function localBusinessJsonLd() {
     '@type': ['HealthAndBeautyBusiness', 'LodgingBusiness'],
     '@id': absoluteUrl('/#business'),
     name: SITE.name,
-    description: `Yoga studio and wellness sanctuary in the Orangekloof Valley, Hout Bay, Cape Town. Yoga classes, breathwork, infrared sauna, studio hire and forest cabin stays.`,
+    description: `Yoga studio and wellness retreat in the Orangekloof Valley, Hout Bay, Cape Town. Yoga classes, breathwork, women's full moon circles, infrared sauna, studio hire and forest cabin stays.`,
     url: SITE_URL,
     telephone: SITE.phone,
     email: SITE.email,
@@ -170,7 +170,12 @@ export function serviceJsonLd(offering: Offering) {
     description: offering.summary,
     url,
     image: absoluteUrl(offering.image),
-    serviceType: offering.kind === 'studio_hire' ? 'Studio hire' : 'Wellness session',
+    serviceType:
+      offering.kind === 'studio_hire'
+        ? 'Studio hire'
+        : offering.kind === 'gathering'
+          ? 'Group ceremony'
+          : 'Wellness session',
     provider: { '@id': absoluteUrl('/#business') },
     areaServed: [
       { '@type': 'City', name: 'Cape Town' },

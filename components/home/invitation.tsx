@@ -32,13 +32,17 @@ export function Invitation() {
               <dt className="tracking-widest-xs font-sans text-[0.7rem] uppercase text-primary">The mountain</dt>
               <dd className="font-sans text-sm leading-relaxed text-muted-foreground">{SITE.proximity.trails}</dd>
             </div>
+            <div className="flex flex-col gap-1">
+              <dt className="tracking-widest-xs font-sans text-[0.7rem] uppercase text-primary">The city</dt>
+              <dd className="font-sans text-sm leading-relaxed text-muted-foreground">{SITE.proximity.city}</dd>
+            </div>
           </dl>
         </div>
 
         <div className="relative aspect-4/5 w-full overflow-hidden rounded-sm lg:w-[45%]">
           <Image
-            src={IMAGES.valleyTrail || "/placeholder.svg"}
-            alt="Sunset light on the forest trail beside the stream, climbing towards Myburghs waterfall ravine"
+            src={IMAGES.hotTub || "/placeholder.svg"}
+            alt="The hot tub set into the upper deck, the pool and pergola below"
             fill
             sizes="(min-width: 1024px) 45vw, 100vw"
             className="object-cover"

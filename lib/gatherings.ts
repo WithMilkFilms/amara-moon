@@ -128,7 +128,7 @@ export function getGatherings(): Gathering[] {
     {
       slug: 'breathwork',
       name: 'Breathwork Group Class',
-      cadence: 'Every second Wednesday · 6pm',
+      cadence: 'Every second Wednesday · 18:30',
       priceLabel: 'R400 per person',
       spacesLabel: 'Limited to 8 places',
       blurb:

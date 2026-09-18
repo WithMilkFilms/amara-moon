@@ -1,5 +1,4 @@
 import { todayInCapeTown } from '@/lib/booking'
-import { getOffering } from '@/lib/offerings'
 
 /*
  * ─────────────────────────────────────────────────────────────────────────────
@@ -118,7 +117,7 @@ export function getGatherings(): Gathering[] {
   return [
     {
       slug: 'full-moon-circle',
-      name: getOffering('full-moon-circle')?.name ?? "Woman's Full Moon Circle",
+      name: "Woman's Full Moon Circle",
       cadence: 'Every full moon',
       priceLabel: 'R200 per person',
       spacesLabel: 'Limited to 16 guests',
@@ -128,8 +127,8 @@ export function getGatherings(): Gathering[] {
     },
     {
       slug: 'breathwork',
-      name: getOffering('breathwork')?.name ?? 'Breathwork Group Class',
-      cadence: 'Every second Wednesday',
+      name: 'Breathwork Group Class',
+      cadence: 'Every second Wednesday · 18:30',
       priceLabel: 'R400 per person',
       spacesLabel: 'Limited to 8 places',
       blurb:

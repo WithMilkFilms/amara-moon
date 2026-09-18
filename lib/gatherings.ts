@@ -114,7 +114,7 @@ export function getGatherings(): Gathering[] {
       name: getOffering('full-moon-circle')?.name ?? "Woman's Full Moon Circle",
       cadence: 'Every full moon',
       priceLabel: 'R200 per person',
-      spacesLabel: 'Intimate circle',
+      spacesLabel: 'Limited to 16 guests',
       blurb:
         'A women-only circle by candlelight — sharing, sound and breath to mark the turn of the month together.',
       dates: upcomingFullMoonDates(),

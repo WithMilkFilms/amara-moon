@@ -49,20 +49,16 @@ execSync('next build', {
 })
 
 /*
- * Next writes React Server Component payloads next to the HTML (index.txt,
- * __next.*.txt). They exist so the app can navigate without a full reload —
- * useless on a fileserver, and they leak component structure. Remove them.
+ * Next writes an RSC segment payload next to each page (schedule/index.txt and
+ * friends). These are NOT disposable: with the App Router, every client-side
+ * navigation fetches `<path>/index.txt` for the destination. An earlier version
+ * deleted them "because a fileserver can't use them" — the opposite is true.
+ * With them gone, each in-app link fetched a missing file, 404'd, and dumped the
+ * visitor on a raw `/schedule/index.txt` URL showing the 404 page. Keeping them
+ * is what makes navigation work on Apache. They only contain the same content
+ * already present in the HTML, so there is nothing to hide by removing them.
  */
-let removed = 0
-for (const entry of readdirSync(OUT, { recursive: true })) {
-  const name = String(entry)
-  if (!name.endsWith('.txt')) continue
-  // Keep the README we are about to write and robots.txt, which Google reads.
-  if (name.endsWith('UPLOAD-README.txt') || name.endsWith('robots.txt')) continue
-  rmSync(join(OUT, name), { force: true })
-  removed += 1
-}
-console.log(`Removed ${removed} server-payload .txt files.`)
+console.log('Kept RSC segment payloads (.txt) — required for client navigation.')
 
 /*
  * `images.unoptimized` is mandatory under `output: 'export'`, so Next copies

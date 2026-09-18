@@ -51,6 +51,13 @@ const FULL_MOON_DATES = [
 const BREATHWORK_ANCHOR = '2026-09-16'
 const BREATHWORK_INTERVAL_DAYS = 14
 
+/**
+ * Both series run through the current season only — the last published date is
+ * the end of May 2027. Extend this (and FULL_MOON_DATES) when the next season
+ * is confirmed.
+ */
+const SEASON_END = '2027-05-31'
+
 /** Adds whole days to a `YYYY-MM-DD` date in UTC, avoiding timezone drift. */
 function addDays(iso: string, days: number): string {
   const date = new Date(`${iso}T00:00:00Z`)
@@ -62,7 +69,7 @@ function addDays(iso: string, days: number): string {
 export function upcomingFullMoonDates(limit = 8): string[] {
   const today = todayInCapeTown()
   // ISO `YYYY-MM-DD` strings sort correctly with a plain string compare.
-  return FULL_MOON_DATES.filter((d) => d >= today).slice(0, limit)
+  return FULL_MOON_DATES.filter((d) => d >= today && d <= SEASON_END).slice(0, limit)
 }
 
 /** Upcoming 9D Breathwork dates, generated forward from the anchor Wednesday. */
@@ -71,7 +78,7 @@ export function upcomingBreathworkDates(limit = 8): string[] {
   const dates: string[] = []
   let date = BREATHWORK_ANCHOR
   // Bounded so a stale anchor can never loop forever; ~4.6 years of fortnights.
-  for (let i = 0; i < 120 && dates.length < limit; i++) {
+  for (let i = 0; i < 120 && dates.length < limit && date <= SEASON_END; i++) {
     if (date >= today) dates.push(date)
     date = addDays(date, BREATHWORK_INTERVAL_DAYS)
   }

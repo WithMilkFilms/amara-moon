@@ -37,7 +37,10 @@ export function MoonText({
 
     const [full, lead, , tail] = match
     parts.push(
-      <span key={key++} className="whitespace-nowrap">
+      // Only the brand word is uppercased — the interlocking circles sit at cap
+      // height, so uppercase M…N frame them cleanly. The surrounding copy is
+      // left exactly as authored (this must never uppercase the whole string).
+      <span key={key++} className="whitespace-nowrap uppercase">
         <span className="sr-only">{full}</span>
         <span aria-hidden="true" className="inline-flex items-center">
           {lead}
@@ -54,8 +57,5 @@ export function MoonText({
 
   if (last < children.length) parts.push(children.slice(last))
 
-  // The brand word always reads in caps — the interlocking circles sit at
-  // cap height, so uppercase M…N frame them cleanly (lowercase descenders and
-  // x-height letters would sit out of step with the rings).
-  return <span className={cn('uppercase', className)}>{parts}</span>
+  return <span className={className}>{parts}</span>
 }

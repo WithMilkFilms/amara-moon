@@ -6,7 +6,7 @@ import { COLLABORATION_ROLES } from '@/lib/collaboration'
 import { db } from '@/lib/db'
 import { enquiries } from '@/lib/db/schema'
 import { sendEnquiryNotification } from '@/lib/email'
-import { formatGatheringDate } from '@/lib/gatherings'
+import { formatGatheringDate, getGatherings } from '@/lib/gatherings'
 import { FULL_MOON_DATES, formatFullMoonDate } from '@/lib/full-moon-circle'
 import { subscribeToMailingList } from '@/lib/mailing-list'
 import { PINE_FOREST_CABIN, getOffering } from '@/lib/offerings'
@@ -65,10 +65,15 @@ export async function submitEnquiry(
     return { ok: false, error: 'Please keep your message under 4000 characters.' }
   }
 
-  // Only store a slug we actually recognise (sessions, studio hire, or the room).
+  // Only store a slug we actually recognise: a session/studio-hire offering,
+  // the room, or a dated gathering (circles/courses live in lib/gatherings.ts,
+  // not in OFFERINGS, so they must be checked separately).
+  const gathering = offeringSlug
+    ? getGatherings().find((g) => g.slug === offeringSlug)
+    : undefined
   const isKnown =
     !!offeringSlug &&
-    (offeringSlug === PINE_FOREST_CABIN.slug || !!getOffering(offeringSlug))
+    (offeringSlug === PINE_FOREST_CABIN.slug || !!getOffering(offeringSlug) || !!gathering)
   const slug = isKnown ? offeringSlug : null
 
   // A reservation from the schedule carries a requested date. Trust it only if
@@ -83,8 +88,9 @@ export async function submitEnquiry(
   const notificationSubject = dateLabel
     ? `Reservation request from ${name}`
     : `Website enquiry from ${name}`
+  const reservingName = getOffering(slug!)?.name ?? gathering?.name ?? slug
   const storedSubject = dateLabel
-    ? `Reservation — ${getOffering(slug!)?.name ?? slug} — ${dateLabel}`
+    ? `Reservation — ${reservingName} — ${dateLabel}`
     : subject || null
 
   try {

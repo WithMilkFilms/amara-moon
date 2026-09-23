@@ -46,7 +46,7 @@ export function Hero() {
           width={846}
           height={846}
           priority
-          className="h-32 w-32 object-contain md:h-40 md:w-40"
+          className="h-16 w-16 object-contain md:h-20 md:w-20"
         />
 
         <div className="flex flex-col gap-5">

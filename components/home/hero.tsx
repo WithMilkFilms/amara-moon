@@ -1,6 +1,7 @@
 import Image from "next/image"
 import { CtaLink } from "@/components/cta"
 import { Logo } from "@/components/logo"
+import { MoonText } from "@/components/moon-text"
 import { IMAGES } from "@/lib/images"
 import { HERO } from "@/lib/home"
 import { SITE } from "@/lib/site"
@@ -44,7 +45,7 @@ export function Hero() {
 
         <div className="flex flex-col gap-5">
           <h1 className="font-serif text-5xl leading-[0.95] text-balance text-foreground sm:text-6xl md:text-7xl lg:text-8xl">
-            Amara Moon
+            Amara <MoonText>Moon</MoonText>
           </h1>
           <p className="tracking-widest-xs font-sans text-xs uppercase text-primary sm:text-sm">
             {SITE.tagline} &middot; {SITE.location}

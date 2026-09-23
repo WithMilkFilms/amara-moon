@@ -11,7 +11,7 @@ import { cn } from '@/lib/utils'
  * and the horizontal offset at roughly the radius; widening it breaks the
  * interlock, narrowing it collapses them into one.
  */
-function InterlockingCircles({
+export function InterlockingCircles({
   className,
   title,
   strokeWidth = 3,

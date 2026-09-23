@@ -1,6 +1,7 @@
 import { Mail, MapPin, Phone } from 'lucide-react'
 import Link from 'next/link'
 import { Logo } from '@/components/logo'
+import { MoonText } from '@/components/moon-text'
 import { resolveHref } from '@/lib/deployment'
 import { FOOTER_LINKS, SITE } from '@/lib/site'
 
@@ -97,7 +98,7 @@ export function SiteFooter() {
 
         <div className="flex flex-col gap-2 border-t border-border pt-8 sm:flex-row sm:items-center sm:justify-between">
           <p className="font-sans text-xs text-muted-foreground">
-            &copy; {new Date().getFullYear()} {SITE.name}. All rights reserved.
+            &copy; {new Date().getFullYear()} <MoonText>{SITE.name}</MoonText>. All rights reserved.
           </p>
           <div className="flex flex-col gap-1 sm:items-end">
             <p className="font-sans text-xs text-muted-foreground">

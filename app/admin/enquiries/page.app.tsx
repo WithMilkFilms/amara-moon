@@ -137,6 +137,11 @@ export default async function AdminEnquiriesPage({
                       year: 'numeric',
                     })}
                   </span>
+                  {row.emailSent === false ? (
+                    <span className="tracking-widest-xs mt-1 border border-destructive/50 bg-destructive/10 px-2 py-0.5 font-sans text-xs uppercase text-destructive">
+                      Email not sent — follow up
+                    </span>
+                  ) : null}
                 </div>
               </div>
               <p className="whitespace-pre-wrap font-sans text-sm leading-relaxed text-muted-foreground">

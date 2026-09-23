@@ -1,4 +1,4 @@
-import { date, index, integer, pgTable, serial, text, timestamp } from "drizzle-orm/pg-core"
+import { boolean, date, index, integer, pgTable, serial, text, timestamp } from "drizzle-orm/pg-core"
 
 /**
  * Bookings covers both flows:
@@ -42,6 +42,11 @@ export const enquiries = pgTable("enquiries", {
   subject: text("subject"),
   offeringSlug: text("offering_slug"),
   message: text("message").notNull(),
+  // Whether the info@ notification email actually went out. Null on old rows
+  // (predating this column) and until the send is attempted, true on success,
+  // false when Resend rejected or threw — the admin panel flags the false ones
+  // so a silent mail outage can't hide a real enquiry.
+  emailSent: boolean("email_sent"),
   createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
 })
 

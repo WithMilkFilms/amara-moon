@@ -1,5 +1,6 @@
 'use server'
 
+import { eq } from 'drizzle-orm'
 import { isValidDateString } from '@/lib/booking'
 import { COLLABORATION_ROLES } from '@/lib/collaboration'
 import { db } from '@/lib/db'
@@ -18,6 +19,19 @@ export interface EnquiryState {
 function str(data: FormData, key: string): string {
   const value = data.get(key)
   return typeof value === 'string' ? value.trim() : ''
+}
+
+/**
+ * Records whether the notification email went out, best-effort. The enquiry is
+ * already safely saved by this point, so a failure to write the flag must never
+ * turn into an error for the guest — we just log it and leave the flag null.
+ */
+async function recordEmailStatus(id: number, sent: boolean): Promise<void> {
+  try {
+    await db.update(enquiries).set({ emailSent: sent }).where(eq(enquiries.id, id))
+  } catch (error) {
+    console.error('Failed to record enquiry email status:', error)
+  }
 }
 
 /**
@@ -74,20 +88,23 @@ export async function submitEnquiry(
     : subject || null
 
   try {
-    await db.insert(enquiries).values({
-      name,
-      email,
-      phone: phone || null,
-      subject: storedSubject,
-      offeringSlug: slug,
-      message,
-    })
+    const [row] = await db
+      .insert(enquiries)
+      .values({
+        name,
+        email,
+        phone: phone || null,
+        subject: storedSubject,
+        offeringSlug: slug,
+        message,
+      })
+      .returning({ id: enquiries.id })
 
     if (joinMailingList) await subscribeToMailingList(name, email, 'contact')
 
     // Awaited, not fired-and-forgotten: serverless functions can freeze the
     // moment a response is returned, which would kill an unawaited send.
-    await sendEnquiryNotification({
+    const { sent } = await sendEnquiryNotification({
       subject: notificationSubject,
       replyTo: email,
       fields: [
@@ -100,6 +117,7 @@ export async function submitEnquiry(
         { label: 'Message', value: `\n${message}` },
       ],
     })
+    await recordEmailStatus(row.id, sent)
 
     return { ok: true }
   } catch (error) {
@@ -153,18 +171,21 @@ export async function submitCollaboration(
   const body = `${message}\n\nLinks: ${links}`
 
   try {
-    await db.insert(enquiries).values({
-      name,
-      email,
-      phone: phone || null,
-      subject: `Work with Us: ${role}`,
-      offeringSlug: null,
-      message: body,
-    })
+    const [row] = await db
+      .insert(enquiries)
+      .values({
+        name,
+        email,
+        phone: phone || null,
+        subject: `Work with Us: ${role}`,
+        offeringSlug: null,
+        message: body,
+      })
+      .returning({ id: enquiries.id })
 
     if (joinMailingList) await subscribeToMailingList(name, email, 'work-with-us')
 
-    await sendEnquiryNotification({
+    const { sent } = await sendEnquiryNotification({
       subject: `Work with Us: ${role} (${name})`,
       replyTo: email,
       fields: [
@@ -177,6 +198,7 @@ export async function submitCollaboration(
         { label: 'About their work', value: `\n${message}` },
       ],
     })
+    await recordEmailStatus(row.id, sent)
 
     return { ok: true }
   } catch (error) {
@@ -233,18 +255,21 @@ export async function submitFullMoonApplication(
     : `Requested circle: ${dateLabel}`
 
   try {
-    await db.insert(enquiries).values({
-      name,
-      email,
-      phone,
-      subject: 'Full Moon Circle application',
-      offeringSlug: 'womens-full-moon-circle',
-      message,
-    })
+    const [row] = await db
+      .insert(enquiries)
+      .values({
+        name,
+        email,
+        phone,
+        subject: 'Full Moon Circle application',
+        offeringSlug: 'womens-full-moon-circle',
+        message,
+      })
+      .returning({ id: enquiries.id })
 
     if (joinMailingList) await subscribeToMailingList(name, email, 'womens-full-moon-circle')
 
-    await sendEnquiryNotification({
+    const { sent } = await sendEnquiryNotification({
       subject: `Full Moon Circle application (${name})`,
       replyTo: email,
       fields: [
@@ -256,6 +281,7 @@ export async function submitFullMoonApplication(
         { label: 'Note', value: notes ? `\n${notes}` : '' },
       ],
     })
+    await recordEmailStatus(row.id, sent)
 
     return { ok: true }
   } catch (error) {

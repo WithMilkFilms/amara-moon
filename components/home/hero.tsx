@@ -1,6 +1,5 @@
 import Image from "next/image"
 import { CtaLink } from "@/components/cta"
-import { Logo } from "@/components/logo"
 import { MoonText } from "@/components/moon-text"
 import { IMAGES } from "@/lib/images"
 import { HERO } from "@/lib/home"
@@ -41,10 +40,17 @@ export function Hero() {
         it. Sitting low keeps the two moons apart and leaves the sunset clear.
       */}
       <div className="relative mx-auto flex w-full max-w-6xl flex-col items-center gap-8 px-6 pb-12 pt-28 text-center md:pb-20">
-        <Logo priority className="h-32 w-32 md:h-40 md:w-40" />
+        <Image
+          src="/images/logo-mark.png"
+          alt="Amara Moon"
+          width={846}
+          height={846}
+          priority
+          className="h-16 w-16 object-contain md:h-20 md:w-20"
+        />
 
         <div className="flex flex-col gap-5">
-          <h1 className="font-serif text-5xl uppercase leading-[0.95] text-balance text-foreground sm:text-6xl md:text-7xl lg:text-8xl">
+          <h1 className="font-wordmark font-light tracking-[0.08em] text-5xl uppercase leading-[0.95] text-balance text-foreground sm:text-6xl md:text-7xl lg:text-8xl">
             <MoonText toneClassName="text-foreground">Amara Moon</MoonText>
           </h1>
           <p className="tracking-widest-xs font-sans text-xs uppercase text-primary sm:text-sm">

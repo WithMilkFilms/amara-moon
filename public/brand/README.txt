@@ -5,10 +5,11 @@ Hout Bay, Cape Town
 CONTENTS (all vector SVG — scale to any size, no quality loss)
 ------------------------------------------------------------
 
-MARK (interlocking circles)
-  amara-moon-mark-gold.svg            Gold rings, transparent background
-  amara-moon-mark-bone.svg            Bone rings, transparent background
-  amara-moon-mark-ink.svg             Ink rings, transparent background
+MARK (the "OO" of MOON — two rings, each cradling a crescent that
+mirror one another and face inward toward the centre)
+  amara-moon-mark-gold.svg            Gold, transparent background
+  amara-moon-mark-bone.svg            Bone, transparent background
+  amara-moon-mark-ink.svg             Ink, transparent background
   amara-moon-avatar-gold-on-ink.svg   Rounded tile — app icon / social avatar
 
 WORDMARK (AMARA MOON + Hout Bay)
@@ -29,16 +30,18 @@ COLOURS
   Bone   #F4F0E6
   Moss   #5A6650
 
-Typeface: Cormorant Garamond (Medium / 500).
-The wordmark SVGs embed the font via Google Fonts, so they render
-correctly in any modern browser. For print or offline use, install
-Cormorant Garamond or ask for outlined (text-as-paths) versions.
+Typeface: Italiana (Regular / 400) — a thin, high-contrast deco
+display serif. The wordmark SVGs embed the font via Google Fonts, so
+they render correctly in any modern browser. For print or offline use,
+install Italiana or ask for outlined (text-as-paths) versions.
 
 ------------------------------------------------------------
 USAGE
 ------------------------------------------------------------
   - Keep clear space around the logo equal to the height of one ring.
   - Do not recolour, stretch, rotate, or re-typeset the logo.
+  - Keep both crescents mirrored and facing inward — do not flip one
+    so they point the same way.
   - Use the transparent mark/wordmark over photography; use the
     on-ink or on-bone versions over solid colour.
 

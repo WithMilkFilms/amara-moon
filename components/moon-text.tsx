@@ -54,5 +54,8 @@ export function MoonText({
 
   if (last < children.length) parts.push(children.slice(last))
 
-  return <span className={className}>{parts}</span>
+  // The brand word always reads in caps — the interlocking circles sit at
+  // cap height, so uppercase M…N frame them cleanly (lowercase descenders and
+  // x-height letters would sit out of step with the rings).
+  return <span className={cn('uppercase', className)}>{parts}</span>
 }

@@ -23,11 +23,19 @@ export function MoonText({
   children,
   className,
   circleClassName,
+  toneClassName,
 }: {
   children: string
   className?: string
   /** Extra classes for the circle mark, e.g. to nudge size or spacing. */
   circleClassName?: string
+  /**
+   * Overrides the brand colour. Defaults to gold (`text-primary`). Pass e.g.
+   * `text-foreground` for the rare spot (the hero wordmark) that should read
+   * white instead. Both the letters and the circles follow this, since the
+   * mark inherits `currentColor`.
+   */
+  toneClassName?: string
 }) {
   const parts: React.ReactNode[] = []
   const re = new RegExp(MOON_WORD)
@@ -44,7 +52,7 @@ export function MoonText({
       // the interlocking circles sit at cap height, so uppercase letters frame
       // them cleanly. The surrounding copy is left exactly as authored (this
       // must never uppercase the whole string).
-      <span key={key++} className="whitespace-nowrap uppercase">
+      <span key={key++} className={cn('whitespace-nowrap uppercase', toneClassName ?? 'text-primary')}>
         <span className="sr-only">{full}</span>
         <span aria-hidden="true" className="inline-flex items-center">
           {amara}

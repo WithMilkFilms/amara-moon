@@ -73,7 +73,7 @@ export function LogoWordmark({ className }: { className?: string }) {
     <span className={cn('flex flex-col leading-none', className)}>
       <span
         aria-hidden="true"
-        className="flex items-center font-serif text-xl font-light uppercase tracking-[0.18em] text-foreground"
+        className="flex items-center font-serif text-xl font-light uppercase tracking-[0.18em] text-primary"
       >
         <span>Amara&nbsp;M</span>
         <InterlockingCircles strokeWidth={1} className="mx-[0.08em] h-[0.64em] w-auto" />

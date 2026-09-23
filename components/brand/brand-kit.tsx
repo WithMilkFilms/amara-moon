@@ -1,8 +1,16 @@
 'use client'
 
-import { useRef, useState, type CSSProperties, type ReactNode } from 'react'
+import {
+  useCallback,
+  useEffect,
+  useRef,
+  useState,
+  type CSSProperties,
+  type ReactNode,
+} from 'react'
 import { toPng } from 'html-to-image'
-import { Download } from 'lucide-react'
+import JSZip from 'jszip'
+import { Download, Loader2 } from 'lucide-react'
 import { InterlockingCircles } from '@/components/logo'
 import { cn } from '@/lib/utils'
 
@@ -15,20 +23,29 @@ const INK = '#0E1014'
 type Ink = 'gold' | 'bone' | 'ink'
 const INK_HEX: Record<Ink, string> = { gold: GOLD, bone: BONE, ink: INK }
 
-async function downloadPng(
-  node: HTMLElement,
-  fileName: string,
-  { backgroundColor }: { backgroundColor?: string } = {},
-) {
-  const dataUrl = await toPng(node, {
-    pixelRatio: 4,
-    backgroundColor,
-    cacheBust: true,
-  })
+/** A single downloadable asset, registered by its card so the "Download all"
+ * button can re-export every PNG and pull in every SVG in one pass. */
+type AssetReg = {
+  node: HTMLElement
+  pngName: string
+  pngBackground?: string
+  svgHref?: string
+  svgName?: string
+}
+
+async function nodeToPng(node: HTMLElement, backgroundColor?: string) {
+  return toPng(node, { pixelRatio: 4, backgroundColor, cacheBust: true })
+}
+
+function triggerDownload(href: string, fileName: string) {
   const a = document.createElement('a')
-  a.href = dataUrl
+  a.href = href
   a.download = fileName
   a.click()
+}
+
+async function downloadPng(node: HTMLElement, fileName: string, backgroundColor?: string) {
+  triggerDownload(await nodeToPng(node, backgroundColor), fileName)
 }
 
 /** The interlocking-circle mark, colour driven by `currentColor`. */
@@ -98,19 +115,29 @@ function AssetCard({
   note,
   stage,
   children,
-  onDownloadPng,
+  pngName,
+  pngBackground,
   svgHref,
   svgName,
+  register,
 }: {
   title: string
   note?: string
   stage: 'checker' | 'ink' | 'bone'
   children: ReactNode
-  onDownloadPng: (node: HTMLElement) => void
+  pngName: string
+  pngBackground?: string
   svgHref?: string
   svgName?: string
+  register?: (asset: AssetReg) => void
 }) {
   const artRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    if (artRef.current) {
+      register?.({ node: artRef.current, pngName, pngBackground, svgHref, svgName })
+    }
+  }, [register, pngName, pngBackground, svgHref, svgName])
 
   const stageStyle: CSSProperties =
     stage === 'ink'
@@ -149,7 +176,7 @@ function AssetCard({
           ) : null}
           <button
             type="button"
-            onClick={() => artRef.current && onDownloadPng(artRef.current)}
+            onClick={() => artRef.current && downloadPng(artRef.current, pngName, pngBackground)}
             className="inline-flex items-center gap-1.5 rounded-md border border-border px-2.5 py-1.5 font-sans text-xs text-foreground transition-colors hover:border-primary hover:text-primary"
           >
             <Download className="h-3.5 w-3.5" aria-hidden="true" />
@@ -179,6 +206,13 @@ const COLORS = [
 
 export function BrandKit() {
   const [copied, setCopied] = useState<string | null>(null)
+  const [zipping, setZipping] = useState(false)
+
+  // Keyed by PNG filename so re-registration (e.g. font reflow) stays deduped.
+  const registry = useRef<Map<string, AssetReg>>(new Map())
+  const register = useCallback((asset: AssetReg) => {
+    registry.current.set(asset.pngName, asset)
+  }, [])
 
   const copy = (value: string) => {
     navigator.clipboard?.writeText(value)
@@ -186,8 +220,69 @@ export function BrandKit() {
     window.setTimeout(() => setCopied((c) => (c === value ? null : c)), 1200)
   }
 
+  const downloadAll = useCallback(async () => {
+    setZipping(true)
+    try {
+      const zip = new JSZip()
+      const svg = zip.folder('svg')
+      const png = zip.folder('png')
+      const seenSvg = new Set<string>()
+
+      for (const asset of registry.current.values()) {
+        if (asset.svgHref && asset.svgName && !seenSvg.has(asset.svgName)) {
+          seenSvg.add(asset.svgName)
+          try {
+            const res = await fetch(asset.svgHref)
+            if (res.ok) svg?.file(asset.svgName, await res.text())
+          } catch {
+            // A missing SVG shouldn't abort the whole export.
+          }
+        }
+        const dataUrl = await nodeToPng(asset.node, asset.pngBackground)
+        png?.file(asset.pngName, dataUrl.split(',')[1], { base64: true })
+      }
+
+      const blob = await zip.generateAsync({ type: 'blob' })
+      const url = URL.createObjectURL(blob)
+      triggerDownload(url, 'amara-moon-brand-kit.zip')
+      URL.revokeObjectURL(url)
+    } finally {
+      setZipping(false)
+    }
+  }, [])
+
   return (
     <div className="space-y-16">
+      <div className="flex flex-col gap-4 rounded-lg border border-border bg-card p-6 sm:flex-row sm:items-center sm:justify-between">
+        <p className="max-w-xl font-sans text-sm text-muted-foreground">
+          Grab a single asset from any card below, or take the whole set in one archive. The vector
+          packet downloads instantly; the full kit also renders a high-resolution PNG of each lockup.
+        </p>
+        <div className="flex shrink-0 flex-col gap-2 sm:flex-row sm:items-center">
+          <a
+            href="/brand/amara-moon-logo-packet.zip"
+            download
+            className="inline-flex shrink-0 items-center justify-center gap-2 rounded-md bg-primary px-4 py-2.5 font-sans text-sm font-medium text-primary-foreground transition-opacity hover:opacity-90"
+          >
+            <Download className="h-4 w-4" aria-hidden="true" />
+            Download vector packet
+          </a>
+          <button
+            type="button"
+            onClick={downloadAll}
+            disabled={zipping}
+            className="inline-flex shrink-0 items-center justify-center gap-2 rounded-md border border-border px-4 py-2.5 font-sans text-sm font-medium text-foreground transition-colors hover:bg-muted disabled:opacity-60"
+          >
+            {zipping ? (
+              <Loader2 className="h-4 w-4 animate-spin" aria-hidden="true" />
+            ) : (
+              <Download className="h-4 w-4" aria-hidden="true" />
+            )}
+            {zipping ? 'Preparing ZIP…' : 'SVG + PNG kit'}
+          </button>
+        </div>
+      </div>
+
       {/* The mark */}
       <section>
         <SectionTitle sub="Two interlocking rings — the “OO” of MOON. Use it on its own where the full name already appears nearby, as an app icon, or as a favicon. Keep the rings equal and never redraw the overlap.">
@@ -200,7 +295,8 @@ export function BrandKit() {
             stage="checker"
             svgHref="/brand/amara-moon-mark-gold.svg"
             svgName="amara-moon-mark-gold.svg"
-            onDownloadPng={(n) => downloadPng(n, 'amara-moon-mark-gold.png')}
+            pngName="amara-moon-mark-gold.png"
+            register={register}
           >
             <Mark ink="gold" className="h-16" />
           </AssetCard>
@@ -210,7 +306,8 @@ export function BrandKit() {
             stage="ink"
             svgHref="/brand/amara-moon-mark-bone.svg"
             svgName="amara-moon-mark-bone.svg"
-            onDownloadPng={(n) => downloadPng(n, 'amara-moon-mark-bone.png')}
+            pngName="amara-moon-mark-bone.png"
+            register={register}
           >
             <Mark ink="bone" className="h-16" />
           </AssetCard>
@@ -220,7 +317,8 @@ export function BrandKit() {
             stage="bone"
             svgHref="/brand/amara-moon-mark-ink.svg"
             svgName="amara-moon-mark-ink.svg"
-            onDownloadPng={(n) => downloadPng(n, 'amara-moon-mark-ink.png')}
+            pngName="amara-moon-mark-ink.png"
+            register={register}
           >
             <Mark ink="ink" className="h-16" />
           </AssetCard>
@@ -230,7 +328,8 @@ export function BrandKit() {
             stage="checker"
             svgHref="/brand/amara-moon-avatar-gold-on-ink.svg"
             svgName="amara-moon-avatar-gold-on-ink.svg"
-            onDownloadPng={(n) => downloadPng(n, 'amara-moon-avatar.png')}
+            pngName="amara-moon-avatar.png"
+            register={register}
           >
             <span
               className="flex h-24 w-24 items-center justify-center rounded-[22%]"
@@ -244,21 +343,25 @@ export function BrandKit() {
 
       {/* The wordmark */}
       <section>
-        <SectionTitle sub="The primary lockup.           The circles stand in for the “OO”, so the name always reads AMARA MOON in caps. SVG uses the Cormorant Garamond web font; PNG is baked from the live type, so use PNG where the font may be missing.">
+        <SectionTitle sub="The primary lockup. The circles stand in for the “OO”, so the name always reads AMARA MOON in caps. PNG is baked from the live Cormorant Garamond type, so use PNG where the font may be missing.">
           The wordmark
         </SectionTitle>
         <div className="grid gap-5 sm:grid-cols-2">
           <AssetCard
             title="Wordmark — Gold on ink"
             stage="ink"
-            onDownloadPng={(n) => downloadPng(n, 'amara-moon-wordmark-gold-on-ink.png', { backgroundColor: INK })}
+            pngName="amara-moon-wordmark-gold-on-ink.png"
+            pngBackground={INK}
+            register={register}
           >
             <Wordmark ink="gold" style={{ fontSize: 40 }} />
           </AssetCard>
           <AssetCard
             title="Wordmark — Bone on ink"
             stage="ink"
-            onDownloadPng={(n) => downloadPng(n, 'amara-moon-wordmark-bone-on-ink.png', { backgroundColor: INK })}
+            pngName="amara-moon-wordmark-bone-on-ink.png"
+            pngBackground={INK}
+            register={register}
           >
             <Wordmark ink="bone" style={{ fontSize: 40 }} />
           </AssetCard>
@@ -266,14 +369,17 @@ export function BrandKit() {
             title="Wordmark — Gold, transparent"
             note="No tagline"
             stage="checker"
-            onDownloadPng={(n) => downloadPng(n, 'amara-moon-wordmark-gold.png')}
+            pngName="amara-moon-wordmark-gold.png"
+            register={register}
           >
             <Wordmark ink="gold" tagline={false} style={{ fontSize: 40 }} />
           </AssetCard>
           <AssetCard
             title="Wordmark — Ink on bone"
             stage="bone"
-            onDownloadPng={(n) => downloadPng(n, 'amara-moon-wordmark-ink-on-bone.png', { backgroundColor: BONE })}
+            pngName="amara-moon-wordmark-ink-on-bone.png"
+            pngBackground={BONE}
+            register={register}
           >
             <Wordmark ink="ink" style={{ fontSize: 40 }} />
           </AssetCard>
@@ -289,14 +395,18 @@ export function BrandKit() {
           <AssetCard
             title="Stacked — Gold on ink"
             stage="ink"
-            onDownloadPng={(n) => downloadPng(n, 'amara-moon-stacked-gold-on-ink.png', { backgroundColor: INK })}
+            pngName="amara-moon-stacked-gold-on-ink.png"
+            pngBackground={INK}
+            register={register}
           >
             <StackedLockup ink="gold" />
           </AssetCard>
           <AssetCard
             title="Stacked — Bone on ink"
             stage="ink"
-            onDownloadPng={(n) => downloadPng(n, 'amara-moon-stacked-bone-on-ink.png', { backgroundColor: INK })}
+            pngName="amara-moon-stacked-bone-on-ink.png"
+            pngBackground={INK}
+            register={register}
           >
             <StackedLockup ink="bone" />
           </AssetCard>

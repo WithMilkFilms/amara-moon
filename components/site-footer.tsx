@@ -112,6 +112,12 @@ export function SiteFooter() {
             >
               As featured on Holistic Spaces
             </a>
+            <Link
+              href="/brand"
+              className="font-sans text-xs text-muted-foreground/70 transition-colors hover:text-foreground"
+            >
+              Brand kit
+            </Link>
           </div>
         </div>
       </div>

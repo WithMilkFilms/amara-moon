@@ -8,7 +8,7 @@ import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Textarea } from '@/components/ui/textarea'
 import { isValidDateString } from '@/lib/booking'
-import { formatGatheringDate } from '@/lib/gatherings'
+import { formatGatheringDate, getGatherings } from '@/lib/gatherings'
 import { OFFERINGS, PINE_FOREST_CABIN } from '@/lib/offerings'
 
 const initial: EnquiryState = { ok: false }
@@ -25,13 +25,18 @@ export function ContactForm({
 }) {
   const [state, action, pending] = useActionState(submitEnquiry, initial)
 
+  // Dated circles/courses live in lib/gatherings.ts, not in OFFERINGS, so the
+  // reservation flow (and the "About" dropdown) must resolve both lists.
+  const gatherings = getGatherings()
+
   // A reservation link (from the schedule) arrives as ?offering=&date=. Only
   // honour it when both are real, then pre-fill the form so the guest just
   // confirms and sends. The server re-checks; this is only for convenience.
   const validDate =
     reservationDate && isValidDateString(reservationDate) ? reservationDate : undefined
   const reservingName = validDate
-    ? OFFERINGS.find((o) => o.slug === offeringSlug)?.name
+    ? (OFFERINGS.find((o) => o.slug === offeringSlug)?.name ??
+      gatherings.find((g) => g.slug === offeringSlug)?.name)
     : undefined
   const reserving =
     validDate && reservingName
@@ -114,6 +119,13 @@ export function ContactForm({
             {OFFERINGS.map((o) => (
               <option key={o.slug} value={o.slug}>
                 {o.name}
+              </option>
+            ))}
+            {/* Dated circles/courses — kept selectable so a reservation link
+                pre-fills correctly and general enquiries can pick them too. */}
+            {gatherings.map((g) => (
+              <option key={g.slug} value={g.slug}>
+                {g.name}
               </option>
             ))}
             {/* Derived from the constant so the slug cannot drift out of sync. */}

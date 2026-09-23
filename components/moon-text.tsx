@@ -44,7 +44,7 @@ export function MoonText({
       // the interlocking circles sit at cap height, so uppercase letters frame
       // them cleanly. The surrounding copy is left exactly as authored (this
       // must never uppercase the whole string).
-      <span key={key++} className="whitespace-nowrap uppercase">
+      <span key={key++} className="whitespace-nowrap uppercase text-primary">
         <span className="sr-only">{full}</span>
         <span aria-hidden="true" className="inline-flex items-center">
           {amara}

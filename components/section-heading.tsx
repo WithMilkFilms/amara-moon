@@ -1,3 +1,4 @@
+import { MoonText } from "@/components/moon-text"
 import { cn } from "@/lib/utils"
 
 interface SectionHeadingProps {
@@ -12,11 +13,17 @@ export function SectionHeading({ eyebrow, title, intro, align = "left", classNam
   return (
     <div className={cn("flex flex-col gap-4", align === "center" && "items-center text-center", className)}>
       {eyebrow ? (
-        <span className="tracking-widest-xs font-sans text-xs uppercase text-primary">{eyebrow}</span>
+        <span className="tracking-widest-xs font-sans text-xs uppercase text-primary">
+          <MoonText>{eyebrow}</MoonText>
+        </span>
       ) : null}
-      <h2 className="font-serif text-3xl leading-tight text-balance text-foreground sm:text-4xl md:text-5xl">{title}</h2>
+      <h2 className="font-serif text-3xl leading-tight text-balance text-foreground sm:text-4xl md:text-5xl">
+        <MoonText>{title}</MoonText>
+      </h2>
       {intro ? (
-        <p className={cn("max-w-2xl font-sans text-base leading-relaxed text-pretty text-muted-foreground")}>{intro}</p>
+        <p className={cn("max-w-2xl font-sans text-base leading-relaxed text-pretty text-muted-foreground")}>
+          <MoonText>{intro}</MoonText>
+        </p>
       ) : null}
     </div>
   )

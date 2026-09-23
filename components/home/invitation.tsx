@@ -2,6 +2,7 @@ import Image from "next/image"
 import { IMAGES } from "@/lib/images"
 import { INVITATION } from "@/lib/home"
 import { SITE } from "@/lib/site"
+import { MoonText } from "@/components/moon-text"
 
 export function Invitation() {
   return (
@@ -14,12 +15,14 @@ export function Invitation() {
               statement moved up to the hero, so this holds the invitation itself
               — what the visitor is being asked to come and do. */}
           <p className="font-serif text-3xl leading-[1.25] text-balance text-foreground sm:text-4xl md:text-[2.75rem]">
-            {INVITATION.quote}
+            <MoonText>{INVITATION.quote}</MoonText>
           </p>
 
           <div className="flex flex-col gap-5 font-sans text-base leading-relaxed text-pretty text-muted-foreground">
             {INVITATION.paragraphs.map((paragraph) => (
-              <p key={paragraph}>{paragraph}</p>
+              <p key={paragraph}>
+                <MoonText>{paragraph}</MoonText>
+              </p>
             ))}
           </div>
 

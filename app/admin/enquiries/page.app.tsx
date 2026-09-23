@@ -68,13 +68,23 @@ export default async function AdminEnquiriesPage({
     <div className="mx-auto max-w-6xl px-6 pb-20 pt-28 md:pt-36">
       <AdminNav active="enquiries" />
 
-      <div className="mb-6 flex flex-col gap-1">
-        <h1 className="font-serif text-3xl text-foreground">Enquiries</h1>
-        <p className="font-sans text-sm text-muted-foreground">
-          {loadError
-            ? "Couldn't load enquiries."
-            : `Every contact message, Work with Us application, and Full Moon Circle application ever submitted, ${rows.length} total, newest first.`}
-        </p>
+      <div className="mb-6 flex flex-wrap items-start justify-between gap-3">
+        <div className="flex flex-col gap-1">
+          <h1 className="font-serif text-3xl text-foreground">Enquiries</h1>
+          <p className="font-sans text-sm text-muted-foreground">
+            {loadError
+              ? "Couldn't load enquiries."
+              : `Every contact message, Work with Us application, and Full Moon Circle application ever submitted, ${rows.length} total, newest first.`}
+          </p>
+        </div>
+        {!loadError && rows.length > 0 ? (
+          <a
+            href="/admin/enquiries/export"
+            className="tracking-widest-xs shrink-0 border border-primary bg-primary/10 px-4 py-2 font-sans text-xs uppercase text-primary transition-colors hover:bg-primary/20"
+          >
+            Export CSV
+          </a>
+        ) : null}
       </div>
 
       {loadError ? null : (

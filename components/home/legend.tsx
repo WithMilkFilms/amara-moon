@@ -1,4 +1,5 @@
 import { GoldRule } from '@/components/section-heading'
+import { MoonText } from '@/components/moon-text'
 import { LEGEND } from '@/lib/home'
 
 /*
@@ -15,11 +16,11 @@ export function Legend() {
     <section className="border-t border-border">
       <div className="mx-auto flex max-w-3xl flex-col items-center gap-8 px-6 py-24 text-center md:py-32">
         <span className="tracking-widest-xs font-sans text-xs uppercase text-primary">
-          {LEGEND.eyebrow}
+          <MoonText>{LEGEND.eyebrow}</MoonText>
         </span>
 
         <p className="font-sans text-base leading-relaxed text-pretty text-muted-foreground">
-          {LEGEND.paragraph}
+          <MoonText>{LEGEND.paragraph}</MoonText>
         </p>
 
         <GoldRule className="max-w-24" />
@@ -30,7 +31,7 @@ export function Legend() {
           tail of a paragraph.
         */}
         <p className="font-serif text-2xl leading-[1.35] text-balance text-foreground sm:text-3xl">
-          {LEGEND.closingQuote}
+          <MoonText>{LEGEND.closingQuote}</MoonText>
         </p>
       </div>
     </section>

@@ -1,4 +1,5 @@
 import Image from 'next/image'
+import { MoonText } from '@/components/moon-text'
 
 interface PageHeaderProps {
   eyebrow?: string
@@ -40,14 +41,16 @@ export function PageHeader({ eyebrow, title, intro, image, imageAlt }: PageHeade
           overlays page content so the home hero can sit under it. */}
       <div className="mx-auto flex max-w-6xl flex-col gap-5 px-6 pb-14 pt-28 md:pb-20 md:pt-36">
         {eyebrow ? (
-          <span className="tracking-widest-xs font-sans text-xs uppercase text-primary">{eyebrow}</span>
+          <span className="tracking-widest-xs font-sans text-xs uppercase text-primary">
+            <MoonText>{eyebrow}</MoonText>
+          </span>
         ) : null}
         <h1 className="max-w-3xl font-serif text-4xl leading-[1.05] text-balance text-foreground sm:text-5xl md:text-6xl">
-          {title}
+          <MoonText>{title}</MoonText>
         </h1>
         {intro ? (
           <p className="max-w-2xl font-sans text-base leading-relaxed text-pretty text-muted-foreground md:text-lg">
-            {intro}
+            <MoonText>{intro}</MoonText>
           </p>
         ) : null}
       </div>

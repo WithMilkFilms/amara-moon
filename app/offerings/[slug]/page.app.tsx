@@ -3,6 +3,7 @@ import Image from 'next/image'
 import { notFound } from 'next/navigation'
 import { ArrowLeft, Clock } from 'lucide-react'
 import { CtaLink } from '@/components/cta'
+import { MoonText } from '@/components/moon-text'
 import { FullMoonCircleForm } from '@/components/full-moon-circle-form'
 import { OFFERINGS, formatZar, getOffering } from '@/lib/offerings'
 import { SCHEDULE, formatTime } from '@/lib/schedule'
@@ -99,10 +100,10 @@ export default async function OfferingPage({
                   : 'Session'}
             </span>
             <h1 className="font-serif text-4xl leading-[1.08] text-balance text-foreground md:text-5xl">
-              {offering.name}
+              <MoonText>{offering.name}</MoonText>
             </h1>
             <p className="font-sans text-lg leading-relaxed text-pretty text-muted-foreground">
-              {offering.summary}
+              <MoonText>{offering.summary}</MoonText>
             </p>
           </div>
 
@@ -140,7 +141,7 @@ export default async function OfferingPage({
                 key={para}
                 className="font-sans text-base leading-relaxed text-pretty text-muted-foreground"
               >
-                {para}
+                <MoonText>{para}</MoonText>
               </p>
             ))}
           </div>

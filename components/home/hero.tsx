@@ -45,7 +45,7 @@ export function Hero() {
 
         <div className="flex flex-col gap-5">
           <h1 className="font-serif text-5xl uppercase leading-[0.95] text-balance text-foreground sm:text-6xl md:text-7xl lg:text-8xl">
-            Amara <MoonText>Moon</MoonText>
+            <MoonText>Amara Moon</MoonText>
           </h1>
           <p className="tracking-widest-xs font-sans text-xs uppercase text-primary sm:text-sm">
             {SITE.tagline} &middot; {SITE.location}

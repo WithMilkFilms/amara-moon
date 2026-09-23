@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import Link from 'next/link'
 import { BrandKit } from '@/components/brand/brand-kit'
 
 export const metadata: Metadata = {
@@ -21,6 +22,13 @@ export default function BrandPage() {
           few rules. Vector files scale to any size; PNGs come baked from the live type for places
           the font isn&apos;t installed.
         </p>
+        <Link
+          href="/brand/bible"
+          className="mt-6 inline-flex items-center gap-2 rounded-md border border-border px-4 py-2.5 font-sans text-sm text-foreground transition-colors hover:border-primary hover:text-primary"
+        >
+          Read the brand &amp; strategy bible
+          <span aria-hidden="true">&rarr;</span>
+        </Link>
       </header>
       <BrandKit />
     </main>

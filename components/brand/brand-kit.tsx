@@ -48,7 +48,8 @@ async function downloadPng(node: HTMLElement, fileName: string, backgroundColor?
   triggerDownload(await nodeToPng(node, backgroundColor), fileName)
 }
 
-/** The interlocking-circle mark, colour driven by `currentColor`. */
+/** The moon-circle mark (two rings, the first holding a crescent), colour
+ * driven by `currentColor`. */
 function Mark({ ink, className }: { ink: Ink; className?: string }) {
   return (
     <span style={{ color: INK_HEX[ink] }} className={cn('inline-flex', className)}>
@@ -57,7 +58,8 @@ function Mark({ ink, className }: { ink: Ink; className?: string }) {
   )
 }
 
-/** The signature horizontal wordmark: AMARA M⊙⊙N over the Hout Bay line. */
+/** The signature horizontal wordmark: AMARA MOON — the "OO" set as the two
+ * moon rings — over the Hout Bay line. */
 function Wordmark({
   ink,
   tagline = true,
@@ -72,7 +74,7 @@ function Wordmark({
       style={{ color: INK_HEX[ink], ...style }}
       className="flex flex-col items-center leading-none"
     >
-      <span className="flex items-center font-serif font-light uppercase tracking-[0.18em]">
+      <span className="flex items-center font-wordmark font-light uppercase tracking-[0.18em]">
         <span>Amara&nbsp;M</span>
         <InterlockingCircles strokeWidth={1} className="mx-[0.05em] h-[0.64em] w-auto" />
         <span>N</span>
@@ -95,7 +97,7 @@ function StackedLockup({ ink }: { ink: Ink }) {
     >
       <InterlockingCircles strokeWidth={2} className="h-14 w-auto" />
       <span className="flex flex-col items-center leading-none">
-        <span className="font-serif text-4xl font-light uppercase tracking-[0.2em]">
+        <span className="font-wordmark text-4xl font-light uppercase tracking-[0.2em]">
           Amara&nbsp;Moon
         </span>
         <span className="mt-3 font-sans text-[0.62rem] uppercase tracking-[0.42em] opacity-75">
@@ -285,7 +287,7 @@ export function BrandKit() {
 
       {/* The mark */}
       <section>
-        <SectionTitle sub="Two interlocking rings — the “OO” of MOON. Use it on its own where the full name already appears nearby, as an app icon, or as a favicon. Keep the rings equal and never redraw the overlap.">
+        <SectionTitle sub="Two rings — the “OO” of MOON — the left one cradling a crescent moon. Use it on its own where the full name already appears nearby, as an app icon, or as a favicon. Keep the rings equal and never redraw the crescent.">
           The mark
         </SectionTitle>
         <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
@@ -343,7 +345,7 @@ export function BrandKit() {
 
       {/* The wordmark */}
       <section>
-        <SectionTitle sub="The primary lockup. The circles stand in for the “OO”, so the name always reads AMARA MOON in caps. PNG is baked from the live Cormorant Garamond type, so use PNG where the font may be missing.">
+        <SectionTitle sub="The primary lockup. The rings stand in for the “OO”, so the name always reads AMARA MOON in caps. PNG is baked from the live Jost type, so use PNG where the font may be missing.">
           The wordmark
         </SectionTitle>
         <div className="grid gap-5 sm:grid-cols-2">
@@ -456,7 +458,7 @@ export function BrandKit() {
           <ul className="space-y-3 rounded-lg border border-border bg-card p-6 font-sans text-sm text-muted-foreground">
             <li className="text-foreground">Don&apos;t</li>
             <li>Recolour the rings outside the palette or add effects.</li>
-            <li>Stretch, rotate, or change the overlap of the circles.</li>
+            <li>Stretch, rotate, or redraw the rings or the crescent.</li>
             <li>Set the name in another typeface or in mixed case.</li>
           </ul>
         </div>

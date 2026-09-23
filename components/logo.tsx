@@ -1,15 +1,17 @@
 import { cn } from '@/lib/utils'
 
 /**
- * The Amara Moon mark — two interlocking circles (the "OO" of MOON), the
- * brand's new logo. Drawn inline as an SVG so it scales crisply at any size
- * and follows `currentColor`, letting each use pick the ink (gold on the
- * standalone mark, the wordmark's own colour inside the word).
+ * The Amara Moon mark — the "OO" of MOON drawn as two equal rings, each
+ * cradling a crescent moon. Drawn inline as an SVG so it scales crisply at
+ * any size and follows `currentColor`, letting each use pick the ink (gold on
+ * the standalone mark, the wordmark's own colour inside the word).
  *
- * The two rings sit on the same centre line, offset by one radius so they
- * overlap into a vesica — the "interlocked" reading. Keep both circles equal
- * and the horizontal offset at roughly the radius; widening it breaks the
- * interlock, narrowing it collapses them into one.
+ * The two rings sit on one centre line as separate circles with a small gap;
+ * a filled lune crescent is tucked inside each ring. Keep both circles
+ * equal and the gap tight so the pair still reads as the double "O".
+ *
+ * (Export name kept as `InterlockingCircles` for API compatibility with the
+ * many callers that import it.)
  */
 export function InterlockingCircles({
   className,
@@ -26,15 +28,19 @@ export function InterlockingCircles({
 }) {
   return (
     <svg
-      viewBox="0 0 92 56"
+      viewBox="0 0 104 52"
       fill="none"
       className={className}
       role={title ? 'img' : undefined}
       aria-label={title}
       aria-hidden={title ? undefined : true}
     >
-      <circle cx="34" cy="28" r="24" stroke="currentColor" strokeWidth={strokeWidth} vectorEffect="non-scaling-stroke" />
-      <circle cx="58" cy="28" r="24" stroke="currentColor" strokeWidth={strokeWidth} vectorEffect="non-scaling-stroke" />
+      {/* First "O" of MOON, cradling a crescent moon. */}
+      <circle cx="26" cy="26" r="24" stroke="currentColor" strokeWidth={strokeWidth} vectorEffect="non-scaling-stroke" />
+      <path d="M21 8.71A18 18 0 1 1 21 43.29A18 18 0 0 0 21 8.71Z" fill="currentColor" />
+      {/* Second "O" of MOON, cradling a matching crescent moon. */}
+      <circle cx="78" cy="26" r="24" stroke="currentColor" strokeWidth={strokeWidth} vectorEffect="non-scaling-stroke" />
+      <path d="M73 8.71A18 18 0 1 1 73 43.29A18 18 0 0 0 73 8.71Z" fill="currentColor" />
     </svg>
   )
 }
@@ -73,7 +79,7 @@ export function LogoWordmark({ className }: { className?: string }) {
     <span className={cn('flex flex-col leading-none', className)}>
       <span
         aria-hidden="true"
-        className="flex items-center font-serif text-xl font-light uppercase tracking-[0.18em] text-primary"
+        className="flex items-center font-wordmark text-xl font-light uppercase tracking-[0.18em] text-primary"
       >
         <span>Amara&nbsp;M</span>
         <InterlockingCircles strokeWidth={1} className="mx-[0.08em] h-[0.64em] w-auto" />

@@ -1,6 +1,6 @@
 import { Analytics } from '@vercel/analytics/next'
 import type { Metadata, Viewport } from 'next'
-import { Cormorant_Garamond, Inter, Jost } from 'next/font/google'
+import { Cormorant_Garamond, Inter, Italiana } from 'next/font/google'
 import Script from 'next/script'
 import { SiteFooter } from '@/components/site-footer'
 import { SiteHeader } from '@/components/site-header'
@@ -21,12 +21,13 @@ const inter = Inter({
   display: 'swap',
 })
 
-/* The wordmark face. A thin geometric sans, letter-spaced and uppercased, is
- * the logo's own typeface (distinct from the serif used for page headings). */
-const jost = Jost({
+/* The wordmark face. Italiana — a thin deco display serif with contrast in
+ * the curves — letter-spaced and uppercased, is the logo's own typeface
+ * (distinct from the Cormorant serif used for page headings). */
+const italiana = Italiana({
   subsets: ['latin'],
-  weight: ['300', '400'],
-  variable: '--font-jost',
+  weight: '400',
+  variable: '--font-italiana',
   display: 'swap',
 })
 
@@ -107,7 +108,7 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en" className={`dark bg-background ${inter.variable} ${cormorant.variable} ${jost.variable}`}>
+    <html lang="en" className={`dark bg-background ${inter.variable} ${cormorant.variable} ${italiana.variable}`}>
       <body className="min-h-dvh bg-background font-sans text-foreground antialiased">
         {/*
          * LocalBusiness and WebSite structured data. Emitted site-wide with

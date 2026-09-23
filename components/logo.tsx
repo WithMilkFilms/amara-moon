@@ -7,8 +7,10 @@ import { cn } from '@/lib/utils'
  * the standalone mark, the wordmark's own colour inside the word).
  *
  * The two rings sit on one centre line as separate circles with a small gap;
- * a filled lune crescent is tucked inside each ring. Keep both circles
- * equal and the gap tight so the pair still reads as the double "O".
+ * a slim filled lune crescent is tucked inside each ring, and the two
+ * crescents mirror each other so they face inward toward the centre gap.
+ * Keep both circles equal and the gap tight so the pair still reads as the
+ * double "O".
  *
  * (Export name kept as `InterlockingCircles` for API compatibility with the
  * many callers that import it.)
@@ -35,12 +37,14 @@ export function InterlockingCircles({
       aria-label={title}
       aria-hidden={title ? undefined : true}
     >
-      {/* First "O" of MOON, cradling a crescent moon. */}
+      {/* First "O" of MOON, cradling a slim crescent that bulges toward the
+          centre gap. */}
       <circle cx="26" cy="26" r="24" stroke="currentColor" strokeWidth={strokeWidth} vectorEffect="non-scaling-stroke" />
-      <path d="M21 8.71A18 18 0 1 1 21 43.29A18 18 0 0 0 21 8.71Z" fill="currentColor" />
-      {/* Second "O" of MOON, cradling a matching crescent moon. */}
+      <path d="M22.5 8.34A18 18 0 1 1 22.5 43.66A18 18 0 0 0 22.5 8.34Z" fill="currentColor" />
+      {/* Second "O" of MOON, cradling the mirror crescent so the pair faces
+          inward toward each other. */}
       <circle cx="78" cy="26" r="24" stroke="currentColor" strokeWidth={strokeWidth} vectorEffect="non-scaling-stroke" />
-      <path d="M73 8.71A18 18 0 1 1 73 43.29A18 18 0 0 0 73 8.71Z" fill="currentColor" />
+      <path d="M81.5 8.34A18 18 0 1 0 81.5 43.66A18 18 0 0 1 81.5 8.34Z" fill="currentColor" />
     </svg>
   )
 }
@@ -62,7 +66,7 @@ export function Logo({
   return (
     <InterlockingCircles
       title="Amara Moon"
-      strokeWidth={2}
+      strokeWidth={1.5}
       className={cn('h-10 w-10 text-primary', className)}
     />
   )

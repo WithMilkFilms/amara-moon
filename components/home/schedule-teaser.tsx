@@ -1,5 +1,6 @@
 import Link from "next/link"
 import { CtaLink } from "@/components/cta"
+import { MoonText } from "@/components/moon-text"
 import { SectionHeading } from "@/components/section-heading"
 import { PROGRAMME } from "@/lib/schedule"
 
@@ -36,7 +37,7 @@ export function ScheduleTeaser() {
                 className="group flex flex-col gap-2 py-6 transition-colors hover:bg-card/60 sm:grid sm:grid-cols-12 sm:items-baseline sm:gap-4"
               >
                 <span className="font-serif text-lg text-foreground transition-colors group-hover:text-primary sm:col-span-4 md:text-xl">
-                  {item.title}
+                  <MoonText>{item.title}</MoonText>
                 </span>
                 <span className="font-sans text-sm leading-relaxed text-pretty text-muted-foreground sm:col-span-8">
                   {item.blurb}
@@ -45,7 +46,7 @@ export function ScheduleTeaser() {
             ) : (
               <div className="flex flex-col gap-2 py-6 sm:grid sm:grid-cols-12 sm:items-baseline sm:gap-4">
                 <span className="font-serif text-lg text-foreground sm:col-span-4 md:text-xl">
-                  {item.title}
+                  <MoonText>{item.title}</MoonText>
                 </span>
                 <span className="font-sans text-sm leading-relaxed text-pretty text-muted-foreground sm:col-span-8">
                   {item.blurb}

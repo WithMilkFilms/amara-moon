@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { Mail, Phone } from 'lucide-react'
 import { PageHeader } from '@/components/page-header'
+import { MoonText } from '@/components/moon-text'
 import { WorkWithUsForm } from '@/components/work-with-us-form'
 import { IMAGES } from '@/lib/images'
 import { SITE } from '@/lib/site'
@@ -31,10 +32,10 @@ export default function WorkWithUsPage() {
           <div className="flex flex-col gap-8">
             <div className="flex flex-col gap-4">
               <h2 className="font-serif text-2xl text-foreground sm:text-3xl">
-                {WORK_WITH_US_PAGE.introduceHeading}
+                <MoonText>{WORK_WITH_US_PAGE.introduceHeading}</MoonText>
               </h2>
               <p className="max-w-prose font-sans text-base leading-relaxed text-pretty text-muted-foreground">
-                {WORK_WITH_US_PAGE.introduceBody}
+                <MoonText>{WORK_WITH_US_PAGE.introduceBody}</MoonText>
               </p>
             </div>
 

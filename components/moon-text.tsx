@@ -3,18 +3,21 @@ import { InterlockingCircles } from '@/components/logo'
 import { cn } from '@/lib/utils'
 
 /**
- * Renders text with every standalone "moon" word drawn the brand way: the
- * "oo" replaced by the two interlocking circles, in step with the surrounding
- * type weight and colour. Any other text is passed through untouched.
+ * Renders text the brand way: the "oo" of "moon" is replaced by the two
+ * interlocking circles, in step with the surrounding type weight and colour.
+ * Any other text is passed through untouched.
  *
- * Case is preserved from the source ("Moon", "MOON", "moon" all keep their
- * leading M/m and trailing n/N). The stylised word stays readable to assistive
- * tech via an sr-only copy of the real word, with the visual pieces hidden.
+ * The brand word (and the full "Amara Moon" phrase when present) is always
+ * uppercased — "AMARA MOON" / "MOON" — since the circles sit at cap height and
+ * uppercase letters frame them cleanly. Surrounding copy is left exactly as
+ * authored (this must never uppercase the whole string). The stylised word
+ * stays readable to assistive tech via an sr-only copy of the real word.
  *
- * Matches the word "moon" only on word boundaries, so "moonlit" or "afternoon"
- * are left alone — only the standalone brand/word usages get the treatment.
+ * Matches "moon" only on word boundaries, so "moonlit" or "afternoon" are left
+ * alone. An optional "Amara " prefix is captured so the brand lockup always
+ * renders in full caps together.
  */
-const MOON_WORD = /\b(m)(oo)(n)\b/gi
+const MOON_WORD = /\b(amara\s+)?(m)(oo)(n)\b/gi
 
 export function MoonText({
   children,
@@ -35,14 +38,16 @@ export function MoonText({
   while ((match = re.exec(children)) !== null) {
     if (match.index > last) parts.push(children.slice(last, match.index))
 
-    const [full, lead, , tail] = match
+    const [full, amara, lead, , tail] = match
     parts.push(
-      // Only the brand word is uppercased — the interlocking circles sit at cap
-      // height, so uppercase M…N frame them cleanly. The surrounding copy is
-      // left exactly as authored (this must never uppercase the whole string).
+      // The brand word (and the "Amara " prefix when present) is uppercased —
+      // the interlocking circles sit at cap height, so uppercase letters frame
+      // them cleanly. The surrounding copy is left exactly as authored (this
+      // must never uppercase the whole string).
       <span key={key++} className="whitespace-nowrap uppercase">
         <span className="sr-only">{full}</span>
         <span aria-hidden="true" className="inline-flex items-center">
+          {amara}
           {lead}
           <InterlockingCircles
             strokeWidth={1}

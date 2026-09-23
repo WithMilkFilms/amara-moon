@@ -2,6 +2,7 @@ import Image from "next/image"
 import Link from "next/link"
 import { ArrowUpRight } from "lucide-react"
 import { formatZar, type Offering } from "@/lib/offerings"
+import { MoonText } from "@/components/moon-text"
 
 export function OfferingCard({ offering }: { offering: Offering }) {
   return (
@@ -25,14 +26,14 @@ export function OfferingCard({ offering }: { offering: Offering }) {
 
       <div className="flex flex-col gap-3">
         <div className="flex items-start justify-between gap-4">
-          <h3 className="font-serif text-xl leading-snug text-balance text-foreground md:text-2xl">{offering.name}</h3>
+          <h3 className="font-serif text-xl leading-snug text-balance text-foreground md:text-2xl"><MoonText>{offering.name}</MoonText></h3>
           <ArrowUpRight
             aria-hidden
             className="mt-1 size-5 shrink-0 text-primary transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
           />
         </div>
 
-        <p className="font-sans text-sm leading-relaxed text-pretty text-muted-foreground">{offering.summary}</p>
+        <p className="font-sans text-sm leading-relaxed text-pretty text-muted-foreground"><MoonText>{offering.summary}</MoonText></p>
 
         <p className="tracking-widest-xs font-sans text-[0.7rem] uppercase text-primary">
           {offering.needsPrice ? "Price on enquiry" : `${formatZar(offering.priceInCents)} ${offering.unit}`}

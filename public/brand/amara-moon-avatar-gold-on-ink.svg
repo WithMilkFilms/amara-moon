@@ -1,7 +1,9 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="none" role="img" aria-label="Amara Moon">
-  <rect width="256" height="256" rx="56" fill="#0E1014" />
-  <svg x="53" y="82" width="150" height="91.3" viewBox="0 0 92 56" fill="none">
-    <circle cx="34" cy="28" r="24" stroke="#DBB668" stroke-width="3" />
-    <circle cx="58" cy="28" r="24" stroke="#DBB668" stroke-width="3" />
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240" role="img" aria-label="Amara Moon">
+  <rect width="240" height="240" rx="52" fill="#0E1014" />
+  <svg x="42" y="82" width="156" height="78" viewBox="0 0 104 52" fill="none">
+    <circle cx="26" cy="26" r="24" stroke="#DBB668" stroke-width="3" />
+    <path d="M22.5 8.34A18 18 0 1 1 22.5 43.66A18 18 0 0 0 22.5 8.34Z" fill="#DBB668" />
+    <circle cx="78" cy="26" r="24" stroke="#DBB668" stroke-width="3" />
+    <path d="M81.5 8.34A18 18 0 1 0 81.5 43.66A18 18 0 0 1 81.5 8.34Z" fill="#DBB668" />
   </svg>
 </svg>

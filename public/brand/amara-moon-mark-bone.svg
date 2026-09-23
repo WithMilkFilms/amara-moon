@@ -1,4 +1,6 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 92 56" fill="none" role="img" aria-label="Amara Moon">
-  <circle cx="34" cy="28" r="24" stroke="#F4F0E6" stroke-width="3" />
-  <circle cx="58" cy="28" r="24" stroke="#F4F0E6" stroke-width="3" />
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 104 52" fill="none" role="img" aria-label="Amara Moon">
+  <circle cx="26" cy="26" r="24" stroke="#F4F0E6" stroke-width="3" />
+  <path d="M22.5 8.34A18 18 0 1 1 22.5 43.66A18 18 0 0 0 22.5 8.34Z" fill="#F4F0E6" />
+  <circle cx="78" cy="26" r="24" stroke="#F4F0E6" stroke-width="3" />
+  <path d="M81.5 8.34A18 18 0 1 0 81.5 43.66A18 18 0 0 1 81.5 8.34Z" fill="#F4F0E6" />
 </svg>

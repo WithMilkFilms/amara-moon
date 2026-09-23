@@ -14,10 +14,15 @@ import { cn } from '@/lib/utils'
 function InterlockingCircles({
   className,
   title,
+  strokeWidth = 3,
 }: {
   className?: string
   /** When set, the SVG is announced with this label; otherwise it is decorative. */
   title?: string
+  /** Constant on-screen stroke width in px (non-scaling). Keep it in step with
+   * the ink around it — thin (~1) inside the wordmark so it matches the serif
+   * letters, a touch heavier on the large standalone mark. */
+  strokeWidth?: number
 }) {
   return (
     <svg
@@ -28,8 +33,8 @@ function InterlockingCircles({
       aria-label={title}
       aria-hidden={title ? undefined : true}
     >
-      <circle cx="34" cy="28" r="24" stroke="currentColor" strokeWidth="3" vectorEffect="non-scaling-stroke" />
-      <circle cx="58" cy="28" r="24" stroke="currentColor" strokeWidth="3" vectorEffect="non-scaling-stroke" />
+      <circle cx="34" cy="28" r="24" stroke="currentColor" strokeWidth={strokeWidth} vectorEffect="non-scaling-stroke" />
+      <circle cx="58" cy="28" r="24" stroke="currentColor" strokeWidth={strokeWidth} vectorEffect="non-scaling-stroke" />
     </svg>
   )
 }
@@ -51,6 +56,7 @@ export function Logo({
   return (
     <InterlockingCircles
       title="Amara Moon"
+      strokeWidth={2}
       className={cn('h-10 w-10 text-primary', className)}
     />
   )
@@ -70,7 +76,7 @@ export function LogoWordmark({ className }: { className?: string }) {
         className="flex items-center font-serif text-xl font-light uppercase tracking-[0.18em] text-foreground"
       >
         <span>Amara&nbsp;M</span>
-        <InterlockingCircles className="mx-[0.08em] h-[0.64em] w-auto" />
+        <InterlockingCircles strokeWidth={1} className="mx-[0.08em] h-[0.64em] w-auto" />
         <span>N</span>
       </span>
       <span className="mt-1 font-sans text-[0.6rem] uppercase tracking-widest-xs text-muted-foreground">

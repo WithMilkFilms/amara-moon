@@ -3,6 +3,7 @@ import Link from 'next/link'
 import { CtaLink } from '@/components/cta'
 import { GatheringReserve } from '@/components/booking/gathering-reserve'
 import { PageHeader } from '@/components/page-header'
+import { MoonText } from '@/components/moon-text'
 import { getGatherings } from '@/lib/gatherings'
 import { getOffering } from '@/lib/offerings'
 import { IMAGES } from '@/lib/images'
@@ -71,14 +72,14 @@ export default function SchedulePage() {
                           href={`/offerings/${gathering.slug}`}
                           className="outline-none transition-colors hover:text-primary focus-visible:text-primary"
                         >
-                          {gathering.name}
+                          <MoonText>{gathering.name}</MoonText>
                         </Link>
                       ) : (
-                        gathering.name
+                        <MoonText>{gathering.name}</MoonText>
                       )}
                     </h3>
                     <p className="font-sans text-sm leading-relaxed text-pretty text-muted-foreground">
-                      {gathering.blurb}
+                      <MoonText>{gathering.blurb}</MoonText>
                     </p>
                   </div>
 

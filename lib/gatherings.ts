@@ -125,15 +125,11 @@ export function getGatherings(): Gathering[] {
         'A women-only circle by candlelight — sharing, sound and breath to mark the turn of the month together.',
       dates: upcomingFullMoonDates(),
     },
-    {
-      slug: 'breathwork',
-      name: 'Breathwork Group Class',
-      cadence: 'Every second Wednesday · 18:30',
-      priceLabel: 'R400 per person',
-      spacesLabel: 'Limited to 8 places',
-      blurb:
-        'A guided conscious-connected breathing journey in a small group, held in the Oasis Studio.',
-      dates: upcomingBreathworkDates(),
-    },
+    // Breathwork Group Class bookings are paused for now. To bring it back,
+    // re-add: { slug: 'breathwork', name: 'Breathwork Group Class',
+    // cadence: 'Every second Wednesday · 18:30', priceLabel: 'R400 per person',
+    // spacesLabel: 'Limited to 8 places', blurb: 'A guided conscious-connected
+    // breathing journey in a small group, held in the Oasis Studio.',
+    // dates: upcomingBreathworkDates() }
   ]
 }

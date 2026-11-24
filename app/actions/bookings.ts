@@ -18,6 +18,24 @@ import { subscribeToMailingList } from '@/lib/mailing-list'
 import { CURRENCY, PINE_FOREST_CABIN, getOffering } from '@/lib/offerings'
 import { AWAITING_EFT, EFT_HOLD_HOURS, type PaymentMethod } from '@/lib/payment'
 import { getStripe } from '@/lib/stripe'
+import { sendBookingAlert } from '@/lib/whatsapp'
+
+function describeBooking(b: {
+  offeringSlug: string
+  startDate: string
+  endDate?: string | null
+  startTime?: string | null
+  quantity: number
+}) {
+  const isStay = b.offeringSlug === PINE_FOREST_CABIN.slug
+  const offering = isStay
+    ? `${PINE_FOREST_CABIN.name} (${b.quantity} night${b.quantity > 1 ? 's' : ''})`
+    : `${getOffering(b.offeringSlug)?.name ?? b.offeringSlug} x${b.quantity}`
+  const when = isStay
+    ? `${b.startDate} to ${b.endDate ?? ''}`
+    : `${b.startDate} at ${b.startTime ?? ''}`
+  return { offering, when }
+}
 
 /**
  * Booking actions for both flows. Two rules hold everywhere in this file:
@@ -217,7 +235,19 @@ export async function createStayCheckout(input: {
 
   // EFT stops here: the row holds the dates and the guest gets the reference to
   // use as their payment reference. Nothing is charged automatically.
-  if (payByEft) return { ok: true, method: 'eft', reference }
+  if (payByEft) {
+    await sendBookingAlert({
+      headline: 'New stay booking (awaiting EFT)',
+      reference,
+      ...describeBooking({ offeringSlug: PINE_FOREST_CABIN.slug, startDate: input.checkIn, endDate: input.checkOut, quantity: nights }),
+      guestName: input.name.trim(),
+      guestEmail: input.email.trim(),
+      guestPhone: input.phone?.trim(),
+      amountCents,
+      notes: input.notes?.trim(),
+    })
+    return { ok: true, method: 'eft', reference }
+  }
 
   return openCheckout(
     reference,
@@ -337,7 +367,19 @@ export async function createSessionCheckout(input: {
     await subscribeToMailingList(input.name.trim(), input.email.trim(), 'session-booking')
   }
 
-  if (payByEft) return { ok: true, method: 'eft', reference }
+  if (payByEft) {
+    await sendBookingAlert({
+      headline: 'New booking (awaiting EFT)',
+      reference,
+      ...describeBooking({ offeringSlug: offering.slug, startDate: input.date, startTime: input.time, quantity }),
+      guestName: input.name.trim(),
+      guestEmail: input.email.trim(),
+      guestPhone: input.phone?.trim(),
+      amountCents,
+      notes: input.notes?.trim(),
+    })
+    return { ok: true, method: 'eft', reference }
+  }
 
   return openCheckout(
     reference,
@@ -396,10 +438,25 @@ export async function confirmBooking(
     return { ok: false, status: 'unverified' }
   }
 
-  await db
+  // Conditional update so two confirm calls racing each other alert only once.
+  const updated = await db
     .update(bookings)
     .set({ status: 'confirmed' })
-    .where(eq(bookings.reference, reference))
+    .where(and(eq(bookings.reference, reference), eq(bookings.status, booking.status)))
+    .returning({ id: bookings.id })
+
+  if (updated.length > 0) {
+    await sendBookingAlert({
+      headline: 'New booking PAID (card)',
+      reference,
+      ...describeBooking(booking),
+      guestName: booking.guestName,
+      guestEmail: booking.guestEmail,
+      guestPhone: booking.guestPhone,
+      amountCents: booking.amountCents,
+      notes: booking.notes,
+    })
+  }
 
   return { ok: true, status: 'confirmed' }
 }

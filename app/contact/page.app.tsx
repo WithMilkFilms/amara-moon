@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
-import { Mail, MapPin, Phone } from 'lucide-react'
+import { Mail, MapPin, MessageCircle, Phone } from 'lucide-react'
 import { ContactForm } from '@/components/contact-form'
+import { whatsappLink } from '@/components/whatsapp-button'
 import { PageHeader } from '@/components/page-header'
 import { IMAGES } from '@/lib/images'
 import { SITE } from '@/lib/site'
@@ -60,6 +61,14 @@ export default async function ContactPage({
                 >
                   <Phone aria-hidden className="size-4 shrink-0 text-primary" />
                   {SITE.phone}
+                </a>
+                <a href={whatsappLink()}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-3 transition-colors hover:text-primary"
+                >
+                  <MessageCircle aria-hidden className="size-4 shrink-0 text-primary" />
+                  WhatsApp us
                 </a>
                 <a href={SITE.emailHref}
                   className="flex items-center gap-3 break-all transition-colors hover:text-primary"

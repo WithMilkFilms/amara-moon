@@ -4,6 +4,7 @@ import { Cormorant_Garamond, Inter, Italiana } from 'next/font/google'
 import Script from 'next/script'
 import { SiteFooter } from '@/components/site-footer'
 import { SiteHeader } from '@/components/site-header'
+import { WhatsappButton } from '@/components/whatsapp-button'
 import { localBusinessJsonLd, OG_IMAGE, SITE_URL, webSiteJsonLd } from '@/lib/seo'
 import { SITE } from '@/lib/site'
 import './globals.css'
@@ -125,6 +126,7 @@ export default function RootLayout({
         <SiteHeader />
         <main id="main">{children}</main>
         <SiteFooter />
+        <WhatsappButton />
         {process.env.NODE_ENV === 'production' && (
           <>
             <Script

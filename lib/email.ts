@@ -16,7 +16,22 @@ import { SITE } from '@/lib/site'
  * only deliver to the Resend account owner's own address — so set RESEND_FROM
  * once the domain is verified to reach info@ properly.
  */
-const FROM = process.env.RESEND_FROM ?? 'Amara Moon <onboarding@resend.dev>'
+const DEFAULT_FROM = 'Amara Moon <onboarding@resend.dev>'
+
+/**
+ * Normalises RESEND_FROM into Resend's `Name <email>` format. The settings form
+ * has been seen to drop the display name and leave a stray `>` behind, which
+ * Resend rejects outright, so we rebuild the value from the address it holds.
+ */
+export function resendFrom(): string {
+  const raw = process.env.RESEND_FROM?.trim()
+  if (!raw) return DEFAULT_FROM
+  if (/^[^<>]+<[^<>\s]+@[^<>\s]+>$/.test(raw)) return raw
+  const address = raw.match(/[^\s<>"]+@[^\s<>"]+/)?.[0]
+  return address ? `Amara Moon <${address}>` : DEFAULT_FROM
+}
+
+const FROM = resendFrom()
 
 interface NotifyArgs {
   subject: string

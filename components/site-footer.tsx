@@ -5,6 +5,12 @@ import { MoonText } from '@/components/moon-text'
 import { resolveHref } from '@/lib/deployment'
 import { FOOTER_LINKS, SITE } from '@/lib/site'
 
+const SISTER_SITES = [
+  { label: 'Planters Warehouse', href: 'https://planterswarehouse.co.za' },
+  { label: 'WithMilk Films', href: 'https://withmilk.tv' },
+  { label: 'WithMilk Living', href: 'https://withmilk.life' },
+]
+
 export function SiteFooter() {
   return (
     <footer className="border-t border-border bg-card">
@@ -112,6 +118,19 @@ export function SiteFooter() {
             >
               As featured on Holistic Spaces
             </a>
+            <nav aria-label="Sister sites" className="flex flex-wrap gap-x-4 gap-y-1 sm:justify-end">
+              {SISTER_SITES.map((site) => (
+                <a
+                  key={site.href}
+                  href={site.href}
+                  target="_blank"
+                  rel="noopener"
+                  className="font-sans text-xs text-muted-foreground/70 transition-colors hover:text-foreground"
+                >
+                  {site.label}
+                </a>
+              ))}
+            </nav>
             <Link
               href="/brand"
               className="font-sans text-xs text-muted-foreground/70 transition-colors hover:text-foreground"

@@ -1,33 +1,58 @@
 /**
- * Staff WhatsApp alerts via CallMeBot (free, no Meta business verification).
+ * Staff WhatsApp alerts via the official WhatsApp Business Cloud API (Meta).
  *
- * Setup: from the phone that should receive alerts, send
- * "I allow callmebot to send me messages" to +34 644 71 81 99 on WhatsApp.
- * The bot replies with an API key. Set WHATSAPP_ALERT_PHONE (that number, with
- * country code) and CALLMEBOT_API_KEY in the project's environment variables.
+ * Env vars:
+ *   WHATSAPP_TOKEN            permanent System User access token
+ *   WHATSAPP_PHONE_NUMBER_ID  ID of the sending business number (not the number itself)
+ *   WHATSAPP_TEMPLATE         approved template name with ONE body variable {{1}}
+ *   WHATSAPP_TEMPLATE_LANG    template language code (default "en")
+ *   WHATSAPP_ALERT_PHONE      who receives alerts (default +27 71 686 97 32)
+ *
+ * Meta only delivers free-form text inside a 24h window after the recipient last
+ * messaged the business number, so alerts use the approved template when one is set.
  *
  * Soft-fails like the email helper: a booking is already saved in the database,
  * so a WhatsApp outage must never surface as an error to the guest.
  */
 const DEFAULT_ALERT_PHONE = '27716869732'
+const GRAPH_VERSION = process.env.WHATSAPP_API_VERSION || 'v22.0'
 
 export async function sendWhatsappAlert(text: string): Promise<{ sent: boolean }> {
-  const phone = (process.env.WHATSAPP_ALERT_PHONE || DEFAULT_ALERT_PHONE).replace(/[^0-9]/g, '')
-  const apiKey = process.env.CALLMEBOT_API_KEY
-  if (!phone || !apiKey) {
-    console.warn('[v0] WhatsApp alert skipped: WHATSAPP_ALERT_PHONE or CALLMEBOT_API_KEY not set.')
+  const to = (process.env.WHATSAPP_ALERT_PHONE || DEFAULT_ALERT_PHONE).replace(/[^0-9]/g, '')
+  const token = process.env.WHATSAPP_TOKEN
+  const phoneNumberId = process.env.WHATSAPP_PHONE_NUMBER_ID
+  if (!to || !token || !phoneNumberId) {
+    console.warn('[v0] WhatsApp alert skipped: WHATSAPP_TOKEN or WHATSAPP_PHONE_NUMBER_ID not set.')
     return { sent: false }
   }
 
-  const url = new URL('https://api.callmebot.com/whatsapp.php')
-  url.searchParams.set('phone', phone)
-  url.searchParams.set('text', text)
-  url.searchParams.set('apikey', apiKey)
+  const template = process.env.WHATSAPP_TEMPLATE
+  // Template variables may not contain newlines, tabs or 4+ spaces, and max 1024 chars.
+  const flattened = text.replace(/\s*\n\s*/g, ' | ').replace(/\s{2,}/g, ' ').slice(0, 1000)
+
+  const body = template
+    ? {
+        messaging_product: 'whatsapp',
+        to,
+        type: 'template',
+        template: {
+          name: template,
+          language: { code: process.env.WHATSAPP_TEMPLATE_LANG || 'en' },
+          components: [{ type: 'body', parameters: [{ type: 'text', text: flattened }] }],
+        },
+      }
+    : { messaging_product: 'whatsapp', to, type: 'text', text: { body: text.slice(0, 4000) } }
 
   try {
-    const res = await fetch(url, { signal: AbortSignal.timeout(8000), cache: 'no-store' })
+    const res = await fetch(`https://graph.facebook.com/${GRAPH_VERSION}/${phoneNumberId}/messages`, {
+      method: 'POST',
+      headers: { Authorization: `Bearer ${token}`, 'Content-Type': 'application/json' },
+      body: JSON.stringify(body),
+      signal: AbortSignal.timeout(8000),
+      cache: 'no-store',
+    })
     if (!res.ok) {
-      console.error('[v0] CallMeBot rejected the alert:', res.status, await res.text())
+      console.error('[v0] WhatsApp Cloud API rejected the alert:', res.status, await res.text())
       return { sent: false }
     }
     return { sent: true }

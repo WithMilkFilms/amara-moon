@@ -18,7 +18,7 @@ import { subscribeToMailingList } from '@/lib/mailing-list'
 import { CURRENCY, PINE_FOREST_CABIN, getOffering } from '@/lib/offerings'
 import { AWAITING_EFT, EFT_HOLD_HOURS, type PaymentMethod } from '@/lib/payment'
 import { getStripe } from '@/lib/stripe'
-import { sendBookingAlert } from '@/lib/whatsapp'
+import { sendBookingAlert } from '@/lib/alerts'
 
 function describeBooking(b: {
   offeringSlug: string

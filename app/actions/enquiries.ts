@@ -10,7 +10,7 @@ import { formatGatheringDate, getGatherings } from '@/lib/gatherings'
 import { FULL_MOON_DATES, formatFullMoonDate } from '@/lib/full-moon-circle'
 import { subscribeToMailingList } from '@/lib/mailing-list'
 import { PINE_FOREST_CABIN, getOffering } from '@/lib/offerings'
-import { sendEnquiryAlert } from '@/lib/whatsapp'
+import { sendEnquiryAlert } from '@/lib/alerts'
 
 export interface EnquiryState {
   ok: boolean

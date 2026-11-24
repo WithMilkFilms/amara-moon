@@ -10,6 +10,7 @@ import { formatGatheringDate, getGatherings } from '@/lib/gatherings'
 import { FULL_MOON_DATES, formatFullMoonDate } from '@/lib/full-moon-circle'
 import { subscribeToMailingList } from '@/lib/mailing-list'
 import { PINE_FOREST_CABIN, getOffering } from '@/lib/offerings'
+import { sendEnquiryAlert } from '@/lib/alerts'
 
 export interface EnquiryState {
   ok: boolean
@@ -125,6 +126,14 @@ export async function submitEnquiry(
     })
     await recordEmailStatus(row.id, sent)
 
+    await sendEnquiryAlert(notificationSubject, [
+      { label: 'About', value: reservingName ?? 'General enquiry' },
+      { label: 'Requested date', value: dateLabel },
+      { label: 'Email', value: email },
+      { label: 'Phone', value: phone },
+      { label: 'Message', value: message },
+    ])
+
     return { ok: true }
   } catch (error) {
     // The guest only sees a friendly message, so log the real cause server-side.
@@ -205,6 +214,13 @@ export async function submitCollaboration(
       ],
     })
     await recordEmailStatus(row.id, sent)
+
+    await sendEnquiryAlert(`Work with Us: ${role} (${name})`, [
+      { label: 'Email', value: email },
+      { label: 'Phone', value: phone },
+      { label: 'Links', value: links },
+      { label: 'Message', value: message },
+    ])
 
     return { ok: true }
   } catch (error) {
@@ -288,6 +304,13 @@ export async function submitFullMoonApplication(
       ],
     })
     await recordEmailStatus(row.id, sent)
+
+    await sendEnquiryAlert(`Full Moon Circle application (${name})`, [
+      { label: 'Requested circle', value: dateLabel },
+      { label: 'Email', value: email },
+      { label: 'Phone', value: phone },
+      { label: 'Note', value: notes },
+    ])
 
     return { ok: true }
   } catch (error) {

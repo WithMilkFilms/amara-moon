@@ -3,7 +3,7 @@ import Link from 'next/link'
 import { BrandKit } from '@/components/brand/brand-kit'
 
 export const metadata: Metadata = {
-  title: 'Brand kit — Amara Moon',
+  title: 'Brand kit',
   description:
     'Download the Amara Moon logo, wordmark, colours, and usage guidance as ready-to-use SVG and PNG files.',
   robots: { index: false, follow: false },

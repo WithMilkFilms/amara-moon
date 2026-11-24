@@ -49,14 +49,15 @@ export function Hero() {
           className="h-16 w-16 object-contain md:h-20 md:w-20"
         />
 
-        <div className="flex flex-col gap-5">
-          <h1 className="font-wordmark font-light tracking-[0.08em] text-5xl uppercase leading-[0.95] text-balance text-foreground sm:text-6xl md:text-7xl lg:text-8xl">
+        <h1 className="flex flex-col gap-5">
+          <span className="font-wordmark font-light tracking-[0.08em] text-5xl uppercase leading-[0.95] text-balance text-foreground sm:text-6xl md:text-7xl lg:text-8xl">
             <MoonText toneClassName="text-foreground">Amara Moon</MoonText>
-          </h1>
-          <p className="tracking-widest-xs font-sans text-xs uppercase text-primary sm:text-sm">
-            {SITE.tagline} &middot; {SITE.location}
-          </p>
-        </div>
+          </span>
+          <span className="tracking-widest-xs font-sans text-xs uppercase text-primary sm:text-sm">
+            Yoga &amp; Wellness Retreat in Hout Bay, Cape Town
+          </span>
+        </h1>
+        <p className="sr-only">{SITE.tagline} &middot; {SITE.location}</p>
 
         <p className="max-w-xl font-sans text-base leading-relaxed text-pretty text-muted-foreground md:text-lg">
           {HERO.subtitle}

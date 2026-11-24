@@ -46,23 +46,25 @@ export function MoonText({
   while ((match = re.exec(children)) !== null) {
     if (match.index > last) parts.push(children.slice(last, match.index))
 
-    const [full, amara, lead, , tail] = match
+    const [full, amara, lead, oo, tail] = match
     parts.push(
       // The brand word (and the "Amara " prefix when present) is uppercased —
       // the interlocking circles sit at cap height, so uppercase letters frame
       // them cleanly. The surrounding copy is left exactly as authored (this
       // must never uppercase the whole string).
-      <span key={key++} className={cn('whitespace-nowrap uppercase', toneClassName ?? 'text-primary')}>
-        <span className="sr-only">{full}</span>
-        <span aria-hidden="true" className="inline-flex items-center">
-          {amara}
-          {lead}
-          <InterlockingCircles
-            strokeWidth={1}
-            className={cn('mx-[0.01em] inline-block h-[0.72em] w-auto', circleClassName)}
-          />
-          {tail}
-        </span>
+      //
+      // Only the "oo" is hidden text, swapped visually for the circles, so the
+      // element's text reads exactly "Amara Moon". A full sr-only copy beside
+      // visible letters made search engines read "Amara MoonAmara Mn".
+      <span key={key++} className={cn('inline-flex items-center whitespace-nowrap uppercase', toneClassName ?? 'text-primary')}>
+        {amara}
+        {lead}
+        <span className="sr-only">{oo}</span>
+        <InterlockingCircles
+          strokeWidth={1}
+          className={cn('mx-[0.01em] inline-block h-[0.72em] w-auto', circleClassName)}
+        />
+        {tail}
       </span>,
     )
     last = match.index + full.length

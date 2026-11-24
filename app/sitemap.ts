@@ -13,16 +13,13 @@ import { absoluteUrl, canonicalPath } from '@/lib/seo'
  *                        reference is unguessable so there is nothing to crawl.
  */
 /*
- * Required by `output: 'export'`, which cannot generate this per request. The
- * side effect is that `lastModified` freezes at build time — which is the
- * honest value for a static bundle, since the files really did last change
- * when they were exported.
+ * Required by `output: 'export'`, which cannot generate this per request.
+ * No `lastModified`: it could only ever be the build time, which tells Google
+ * nothing about when a page's content actually changed.
  */
 export const dynamic = 'force-static'
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const now = new Date()
-
   const staticRoutes: {
     path: string
     priority: number
@@ -43,7 +40,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
   return [
     ...staticRoutes.map((route) => ({
       url: absoluteUrl(canonicalPath(route.path)),
-      lastModified: now,
       changeFrequency: route.changeFrequency,
       priority: route.priority,
     })),
@@ -51,7 +47,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     // a new offering cannot be added without appearing here.
     ...OFFERINGS.map((offering) => ({
       url: absoluteUrl(canonicalPath(`/offerings/${offering.slug}`)),
-      lastModified: now,
       changeFrequency: 'monthly' as const,
       priority: 0.7,
     })),

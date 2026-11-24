@@ -56,7 +56,11 @@ export default function SchedulePage() {
               </p>
             </div>
 
-            <div className="grid gap-6 md:grid-cols-2">
+              <div
+                className={
+                  gatherings.length > 1 ? 'grid gap-6 md:grid-cols-2' : 'grid max-w-2xl gap-6'
+                }
+              >
               {gatherings.map((gathering) => (
                 <article
                   key={gathering.slug}

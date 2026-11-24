@@ -14,6 +14,7 @@ import {
 } from '@/lib/admin-auth'
 import { EMAIL_TEMPLATES, renderCampaignEmail } from '@/lib/email-templates'
 import { SITE } from '@/lib/site'
+import { resendFrom } from '@/lib/email'
 
 export interface AdminActionState {
   ok: boolean
@@ -104,7 +105,7 @@ export async function sendCampaign(
   }
 
   const resend = new Resend(key)
-  const from = process.env.RESEND_FROM ?? 'Amara Moon <onboarding@resend.dev>'
+  const from = resendFrom()
 
   let sentCount = 0
   let failedCount = 0
@@ -187,7 +188,7 @@ export async function replyToEnquiry(
   }
 
   const resend = new Resend(key)
-  const from = process.env.RESEND_FROM ?? 'Amara Moon <onboarding@resend.dev>'
+  const from = resendFrom()
   const subject = originalSubject ? `Re: ${originalSubject}` : 'Re: your message to Amara Moon'
 
   try {

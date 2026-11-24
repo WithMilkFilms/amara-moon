@@ -14,7 +14,7 @@ export function OfferingsPreview() {
           <SectionHeading
             eyebrow="Offerings"
             title="Practice, teach, or simply warm up"
-            intro="Classes and sessions held in the Oasis Studio, plus the space itself for teachers and facilitators."
+            intro="Yoga classes for all levels, women's full moon circles, infrared sauna sessions and Oasis Studio hire for teachers and facilitators, in the forest above Hout Bay, Cape Town."
           />
           <CtaLink href="/offerings" variant="quiet" size="bare" className="shrink-0 self-start">
             All offerings

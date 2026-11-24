@@ -1,5 +1,12 @@
+import type { Metadata } from 'next'
 import { CtaLink } from '@/components/cta'
 import { Logo } from '@/components/logo'
+
+export const metadata: Metadata = {
+  title: 'Page not found',
+  description: 'This page has moved or does not exist.',
+  robots: { index: false, follow: true },
+}
 
 export default function NotFound() {
   return (
